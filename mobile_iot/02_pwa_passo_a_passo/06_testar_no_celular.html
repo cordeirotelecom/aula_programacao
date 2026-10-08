@@ -1,0 +1,44 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PWA 06 - Testar no celular</title>
+<link rel="stylesheet" href="../estilo_mobile.css">
+</head>
+<body>
+<h1>Aula 6 (PWA) - Testar no celular</h1>
+<p>Para abrir o app no celular, o PC serve a pasta e o celular acessa pelo Wi-Fi. <b>Nao precisa instalar nada nem ser administrador.</b></p>
+
+<div class="passo"><b>Passo 1:</b> abra o PowerShell e copie e cole:</div>
+<pre>powershell -ExecutionPolicy Bypass -File ".\mobile_iot\servidor.ps1"</pre>
+<p>Ele mostra enderecos como <code>http://192.168.0.12:8080/</code>. Se o Windows perguntar sobre o firewall, permita para redes <b>privadas</b>.</p>
+
+<div class="passo"><b>Passo 2:</b> no <b>PC</b>, abra:<br><code>http://localhost:8080/03_projetos/painel_sensores/index.html</code></div>
+
+<div class="passo"><b>Passo 3:</b> no <b>celular</b> (no mesmo Wi-Fi), digite o endereco "No celular" mais o caminho:<br><code>http://192.168.0.12:8080/03_projetos/painel_sensores/index.html</code></div>
+
+<div class="passo"><b>Passo 4:</b> toque em <b>Configurar</b> e digite o IP do ESP32 (aparece no Monitor Serial). Deixe vazio para o simulador.</div>
+
+<h2>Se algo der errado</h2>
+<table>
+<tr><th>Sintoma</th><th>Causa provavel</th><th>Solucao</th></tr>
+<tr><td>Celular nao abre a pagina</td><td>Redes diferentes ou firewall</td><td>Mesmo Wi-Fi; permita o PowerShell no firewall (rede privada)</td></tr>
+<tr><td>Wi-Fi de visitantes</td><td>Isolamento de clientes</td><td>Use a rede principal ou o celular como roteador</td></tr>
+<tr><td>Abre mas "Sem conexao"</td><td>IP errado ou ESP32 em outra rede</td><td>Teste <code>http://IP_ESP32/dados</code> no navegador do celular</td></tr>
+<tr><td>Porta em uso</td><td>Outro programa na 8080</td><td>Adicione <code>-Porta 9000</code> ao comando</td></tr>
+</table>
+<p>Pare o servidor com <b>Ctrl+C</b>.</p>
+
+<div class="dica"><b>Atalho sem Wi-Fi do roteador:</b> use o projeto <code>proj_02_painel_web_ap</code> da pasta <code>esp32</code>: o ESP32 cria seu proprio Wi-Fi e voce se conecta direto nele.</div>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Abra o painel no celular e anote o IP do PC usado.</li>
+<li>Rode o servidor na porta 9000.</li>
+</ol></div>
+<p class="navegacao"><a href="05_service_worker_offline.html">&larr; Anterior</a> | <a href="07_esp32_servidor.html">Proxima: ESP32 como servidor &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\mobile_iot\abrir.ps1" 06_testar_no_celular -->

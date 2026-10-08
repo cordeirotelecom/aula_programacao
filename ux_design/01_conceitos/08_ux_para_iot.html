@@ -1,0 +1,47 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UX 08 - UX para IoT</title>
+<link rel="stylesheet" href="../estilo_ux.css">
+</head>
+<body>
+<h1>Aula 8 - UX especifico para IoT</h1>
+<p>IoT tem problemas que apps comuns nao tem: o aparelho pode estar <b>offline</b>, <b>lento</b> ou <b>fisicamente longe</b>. O design precisa lidar com isso.</p>
+
+<table>
+<tr><th>Desafio IoT</th><th>Boa pratica de UX</th></tr>
+<tr><td>Dispositivo demora a responder</td><td>Mostre "enviando..." e depois confirme o resultado real</td></tr>
+<tr><td>Dispositivo offline</td><td>Diga "Sem conexao" + ultima leitura + horario dela</td></tr>
+<tr><td>Dados desatualizados</td><td>Mostre "atualizado ha 2 min"; use cor cinza se estiver velho</td></tr>
+<tr><td>Acao com risco (bomba, fechadura)</td><td>Confirmacao antes; botao de parar sempre visivel</td></tr>
+<tr><td>Numeros tecnicos</td><td>Traduza: "Solo seco" em vez de "312"; mostre unidade (&deg;C, %)</td></tr>
+<tr><td>Varios dispositivos</td><td>Nome claro ("Sala", "Estufa"), agrupe por comodo</td></tr>
+<tr><td>Primeiro uso (pareamento)</td><td>Passo a passo curto, com barra de progresso</td></tr>
+<tr><td>Alertas</td><td>So avise o que importa; evite spam de notificacao</td></tr>
+<tr><td>Seguranca/privacidade</td><td>Peca senha, explique quais dados sao coletados</td></tr>
+</table>
+
+<h2>Estados que toda tela IoT deve ter</h2>
+<table>
+<tr><th>Estado</th><th>Exemplo de texto</th></tr>
+<tr><td>Carregando</td><td>Buscando dados...</td></tr>
+<tr><td>Normal</td><td>Estufa 27,5 &deg;C - OK</td></tr>
+<tr><td>Vazio</td><td>Nenhum dispositivo. Toque em "Adicionar".</td></tr>
+<tr><td>Erro</td><td>Sem conexao com a Estufa. Verifique o Wi-Fi.</td></tr>
+<tr><td>Offline com cache</td><td>Ultima leitura: 26,9 &deg;C (ha 10 min)</td></tr>
+</table>
+
+<div class="dica"><b>Regra de ouro:</b> a tela deve sempre mostrar o estado <b>real</b> do dispositivo, nao so o que o usuario pediu. Se tocou em "Ligar", so mostre "Ligado" depois que o aparelho confirmar.</div>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Escreva os 5 estados (carregando, normal, vazio, erro, offline) para um app de fechadura inteligente.</li>
+<li>Qual acao do seu projeto IoT precisa de confirmacao? Por que?</li>
+</ol></div>
+<p class="navegacao"><a href="07_mobile_first_toque.html">&larr; Anterior</a> | <a href="../02_na_pratica/01_antes_depois_formulario.html">Proxima: Na pratica &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\ux_design\abrir.ps1" 08_ux_para_iot -->

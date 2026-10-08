@@ -1,0 +1,75 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Na pratica 01 - Antes e depois: formulario</title>
+<link rel="stylesheet" href="../estilo_ux.css">
+<style>
+/* Elaborado pelo Prof. Vagner Cordeiro */
+.ruim input, .ruim button { font-size: 10px; padding: 1px; }
+.ruim { color: #999; background: #fafafa; padding: 8px; }
+.bom label { display: block; font-weight: bold; margin-top: 12px; }
+.bom input { width: 100%; box-sizing: border-box; font-size: 16px; padding: 12px; border: 2px solid #868e96; border-radius: 6px; }
+.bom input:focus { outline: 3px solid #5f3dc4; }
+.bom .ajuda { font-size: 14px; color: #495057; margin: 2px 0; }
+.bom button { width: 100%; min-height: 48px; font-size: 18px; margin-top: 16px; }
+</style>
+</head>
+<body>
+<h1>Na pratica 1 - Formulario: antes e depois</h1>
+<p>Mesma tela de "cadastrar dispositivo", sem e com boas praticas. Abra o modo celular (F12 &rarr; Ctrl+Shift+M).</p>
+
+<div class="lado-a-lado">
+<div>
+<h2>ANTES (ruim)</h2>
+<div class="ruim">
+nome <input> <br>
+ip <input> <br>
+<button>OK</button>
+</div>
+<div class="erro"><b>Problemas:</b>
+<ul>
+<li>Letra e campos minusculos</li>
+<li>Cinza claro sobre branco (baixo contraste)</li>
+<li>Sem rotulos claros, sem exemplo</li>
+<li>Botao "OK" nao diz o que faz</li>
+</ul></div>
+</div>
+
+<div>
+<h2>DEPOIS (bom)</h2>
+<form class="bom" onsubmit="return false">
+<label for="nome">Nome do dispositivo</label>
+<input id="nome" placeholder="Ex.: Estufa">
+<p class="ajuda">Um nome facil de reconhecer.</p>
+
+<label for="ip">Endereco do dispositivo</label>
+<input id="ip" inputmode="decimal" placeholder="Ex.: 192.168.0.50">
+<p class="ajuda">Aparece no monitor serial do ESP32.</p>
+
+<button type="submit">Adicionar dispositivo</button>
+</form>
+<div class="certo"><b>Melhorias:</b>
+<ul>
+<li>Rotulos visiveis e ligados aos campos (<code>label for</code>)</li>
+<li>Fonte 16px+, campos com 12px de espaco interno</li>
+<li>Contraste alto e foco visivel</li>
+<li>Ajuda curta e exemplo (placeholder)</li>
+<li>Botao grande (48px) com verbo claro</li>
+</ul></div>
+</div>
+</div>
+
+<div class="dica"><b>Dica:</b> placeholder nao substitui o rotulo (some quando a pessoa digita). Use os dois.</div>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Acrescente um campo "Comodo" com 3 opcoes (<code>select</code>).</li>
+<li>Mostre uma mensagem de erro amigavel quando o IP estiver vazio.</li>
+</ol></div>
+<p class="navegacao"><a href="../01_conceitos/08_ux_para_iot.html">&larr; Anterior</a> | <a href="02_antes_depois_painel_iot.html">Proxima: Painel IoT &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\ux_design\abrir.ps1" 01_antes_depois_formulario -->

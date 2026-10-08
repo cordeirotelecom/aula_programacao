@@ -1,0 +1,45 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercicios de UX</title>
+<link rel="stylesheet" href="../estilo_ux.css">
+</head>
+<body>
+<h1>Exercicios de UX/Design</h1>
+<p>Faca no papel ou no editor. Clique para ver uma resposta sugerida.</p>
+
+<h2>Nivel 1 - Conceitos</h2>
+<p>1) Qual a diferenca entre UX e UI?</p>
+<details><summary>Resposta</summary>UX e a experiencia/fluxo completo (funciona bem?). UI e a parte visual e de interacao (cores, botoes, layout).</details>
+<p>2) Cite 3 heuristicas de Nielsen e um exemplo de cada em um app IoT.</p>
+<details><summary>Resposta</summary>Ex.: Visibilidade do estado ("Lampada ligada"); Prevencao de erros (confirmar reset); Linguagem do usuario ("Solo seco").</details>
+
+<h2>Nivel 2 - Numeros</h2>
+<p>3) Um botao tem 30x30 px. Serve para toque? O que fazer?</p>
+<details><summary>Resposta</summary>Nao. O minimo e 44x44 px (ou 48). Aumentar o tamanho ou a area clicavel (padding) e manter 8px de espaco entre alvos.</details>
+<p>4) Texto <code>#999999</code> sobre branco passa em AA? Teste na aula 5.</p>
+<details><summary>Resposta</summary>Nao (aprox. 2,8:1). Precisa de 4,5:1; um cinza como #595959 ou mais escuro passa.</details>
+
+<h2>Nivel 3 - Reescrever</h2>
+<p>5) Melhore a mensagem: "Erro 503 timeout".</p>
+<details><summary>Resposta</summary>"Nao foi possivel falar com o dispositivo. Confira se ele esta ligado e no Wi-Fi e tente de novo."</details>
+<p>6) Melhore o botao "OK" de um formulario de cadastro.</p>
+<details><summary>Resposta</summary>"Adicionar dispositivo" (verbo + objeto).</details>
+
+<h2>Nivel 4 - Projeto</h2>
+<p>7) Faca uma persona e 3 user stories para um app de monitoramento de estufa.</p>
+<details><summary>Resposta</summary>Ex.: Persona Seu Jose, 60, produtor de hortalicas. "Como Seu Jose, quero ver se a estufa esta quente demais, para abrir a ventilacao."</details>
+<p>8) Desenhe (papel) as telas Painel, Detalhe e Adicionar dispositivo, com os 5 estados na tela Painel.</p>
+<details><summary>Resposta</summary>Painel: carregando, normal, vazio, erro, offline com cache. Botoes grandes embaixo e valores principais destacados.</details>
+
+<h2>Nivel 5 - Pratica</h2>
+<p>9) Aplique o checklist da pagina 03 ao projeto <code>painel_sensores</code> e corrija 3 itens.</p>
+<p>10) Teste o projeto com 3 pessoas, sem ajudar. Anote onde elas hesitaram.</p>
+
+<p class="navegacao"><a href="../02_na_pratica/03_checklist_ux.html">&larr; Anterior</a> | Proximo: pasta <b>mobile_iot</b></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\ux_design\abrir.ps1" exercicios_ux -->

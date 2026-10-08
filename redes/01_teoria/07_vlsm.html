@@ -1,0 +1,39 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Redes 07 - VLSM</title>
+<link rel="stylesheet" href="estilo_redes.css">
+</head>
+<body>
+<h1>Aula 7 - VLSM (mascaras de tamanho variavel)</h1>
+<p>Na divisao igual, todas as sub-redes tem o mesmo tamanho (desperdicio). Com <b>VLSM</b>, cada sub-rede tem o tamanho que precisa.</p>
+
+<h2>Regra</h2>
+<ol>
+<li>Ordene as redes da <b>maior</b> para a <b>menor</b> necessidade de hosts.</li>
+<li>Para cada uma, ache o menor bloco com 2<sup>H</sup> - 2 &ge; hosts.</li>
+<li>Aloque em sequencia, sem sobrepor.</li>
+</ol>
+
+<h2>Exemplo: 192.168.1.0/24</h2>
+<p>Precisamos: Vendas 100 hosts, TI 50, Diretoria 20 e link roteador-roteador (2).</p>
+<table>
+<tr><th>Setor</th><th>Hosts</th><th>Bloco</th><th>Rede</th><th>Faixa de hosts</th><th>Broadcast</th></tr>
+<tr><td>Vendas</td><td>100</td><td>128 (/25)</td><td>192.168.1.0/25</td><td>.1 a .126</td><td>.127</td></tr>
+<tr><td>TI</td><td>50</td><td>64 (/26)</td><td>192.168.1.128/26</td><td>.129 a .190</td><td>.191</td></tr>
+<tr><td>Diretoria</td><td>20</td><td>32 (/27)</td><td>192.168.1.192/27</td><td>.193 a .222</td><td>.223</td></tr>
+<tr><td>Link</td><td>2</td><td>4 (/30)</td><td>192.168.1.224/30</td><td>.225 e .226</td><td>.227</td></tr>
+</table>
+<p class="dica">Sobra de .228 em diante para crescimento futuro.</p>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Use 10.0.0.0/24 para: A=60 hosts, B=28, C=10, D=2. Monte a tabela.</li>
+<li>Quantos enderecos sobram no final?</li>
+</ol></div>
+<p><a href="06_subredes.html">&larr; Anterior</a> | <a href="08_portas_protocolos.html">Proxima: Portas e protocolos &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\redes\abrir.ps1" 07_vlsm -->

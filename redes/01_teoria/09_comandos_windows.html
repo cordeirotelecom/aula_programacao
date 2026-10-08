@@ -1,0 +1,42 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Redes 09 - Comandos de rede do Windows</title>
+<link rel="stylesheet" href="estilo_redes.css">
+</head>
+<body>
+<h1>Aula 9 - Comandos de rede no Windows</h1>
+<p>Abra o PowerShell e teste (nenhum precisa de administrador):</p>
+<table>
+<tr><th>Comando</th><th>O que mostra</th></tr>
+<tr><td><code>ipconfig</code></td><td>IP, mascara e gateway</td></tr>
+<tr><td><code>ipconfig /all</code></td><td>Tambem MAC, DNS e DHCP</td></tr>
+<tr><td><code>ping 8.8.8.8</code></td><td>Testa se o destino responde</td></tr>
+<tr><td><code>ping 127.0.0.1</code></td><td>Testa a placa/pilha TCP/IP local</td></tr>
+<tr><td><code>tracert google.com</code></td><td>Caminho (roteadores) ate o destino</td></tr>
+<tr><td><code>nslookup google.com</code></td><td>Consulta DNS</td></tr>
+<tr><td><code>netstat -an</code></td><td>Conexoes e portas abertas</td></tr>
+<tr><td><code>arp -a</code></td><td>Tabela IP &harr; MAC</td></tr>
+<tr><td><code>route print</code></td><td>Tabela de rotas</td></tr>
+<tr><td><code>getmac</code></td><td>Endereco MAC</td></tr>
+</table>
+
+<h2>Roteiro de diagnostico</h2>
+<ol>
+<li><code>ipconfig</code>: tem IP valido? (169.254.x.x = sem DHCP)</li>
+<li><code>ping</code> no gateway: a rede local funciona?</li>
+<li><code>ping 8.8.8.8</code>: tem Internet?</li>
+<li><code>ping google.com</code>: se falhar so aqui, o problema e DNS.</li>
+</ol>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Anote seu IP, mascara e gateway e calcule a rede e o broadcast com o programa em C.</li>
+<li>Rode <code>tracert</code> para um site e conte os saltos.</li>
+</ol></div>
+<p><a href="08_portas_protocolos.html">&larr; Anterior</a> | <a href="../03_calculadora_web/index.html">Proxima: Calculadora web &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\redes\abrir.ps1" 09_comandos_windows -->

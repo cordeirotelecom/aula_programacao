@@ -1,0 +1,84 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Na pratica 03 - Checklist de UX</title>
+<link rel="stylesheet" href="../estilo_ux.css">
+<style>
+/* Elaborado pelo Prof. Vagner Cordeiro */
+li.item { list-style: none; margin: 6px 0; }
+li.item label { cursor: pointer; }
+input[type=checkbox] { width: 22px; height: 22px; vertical-align: middle; margin-right: 8px; }
+#barra { height: 18px; background: #e9ecef; border-radius: 9px; overflow: hidden; }
+#preenche { height: 100%; width: 0; background: #2f9e44; transition: width .3s; }
+</style>
+</head>
+<body>
+<h1>Na pratica 3 - Checklist de UX</h1>
+<p>Marque o que seu app ja cumpre. O progresso fica salvo no navegador.</p>
+
+<div id="barra"><div id="preenche"></div></div>
+<p id="placar" aria-live="polite"></p>
+
+<h2>Clareza</h2>
+<ul id="lista1"></ul>
+<h2>Visual e acessibilidade</h2>
+<ul id="lista2"></ul>
+<h2>Mobile</h2>
+<ul id="lista3"></ul>
+<h2>IoT</h2>
+<ul id="lista4"></ul>
+<button onclick="limpar()">Limpar marcacoes</button>
+
+<script>
+// Elaborado pelo Prof. Vagner Cordeiro
+var grupos = {
+  lista1: ["Cada tela tem um objetivo principal", "Textos em linguagem simples", "Mensagens de erro dizem o que fazer", "Botoes tem verbos claros (Salvar, Ligar)"],
+  lista2: ["Contraste minimo 4,5:1", "Nao uso so cor para informar", "Rotulos visiveis nos campos", "Foco do teclado visivel", "Imagens com texto alternativo"],
+  lista3: ["Meta viewport presente", "Alvos de toque de 44px ou mais", "Fonte do texto 16px ou mais", "Acoes principais ao alcance do polegar"],
+  lista4: ["Mostro estado carregando / erro / offline", "Mostro a hora da ultima leitura", "Acoes de risco pedem confirmacao", "Traduzo valores tecnicos em palavras"]
+};
+var salvo = JSON.parse(localStorage.getItem("checklistUx") || "{}");
+
+function atualizar() {
+  var caixas = document.querySelectorAll("input[type=checkbox]");
+  var marcadas = 0;
+  caixas.forEach(function (c) { if (c.checked) marcadas++; });
+  var pct = Math.round(100 * marcadas / caixas.length);
+  document.getElementById("preenche").style.width = pct + "%";
+  document.getElementById("placar").textContent = marcadas + " de " + caixas.length + " itens (" + pct + "%)";
+  var estado = {};
+  caixas.forEach(function (c) { estado[c.id] = c.checked; });
+  localStorage.setItem("checklistUx", JSON.stringify(estado));
+}
+
+Object.keys(grupos).forEach(function (id) {
+  grupos[id].forEach(function (texto, i) {
+    var cid = id + "_" + i;
+    var li = document.createElement("li");
+    li.className = "item";
+    li.innerHTML = '<label><input type="checkbox" id="' + cid + '"> ' + texto + "</label>";
+    li.querySelector("input").checked = !!salvo[cid];
+    li.querySelector("input").addEventListener("change", atualizar);
+    document.getElementById(id).appendChild(li);
+  });
+});
+
+function limpar() {
+  document.querySelectorAll("input[type=checkbox]").forEach(function (c) { c.checked = false; });
+  atualizar();
+}
+atualizar();
+</script>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Avalie o app do projeto <code>painel_sensores</code> (mobile_iot) com este checklist.</li>
+<li>Acrescente 2 itens seus a lista.</li>
+</ol></div>
+<p class="navegacao"><a href="02_antes_depois_painel_iot.html">&larr; Anterior</a> | <a href="../03_exercicios/exercicios_ux.html">Proxima: Exercicios &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\ux_design\abrir.ps1" 03_checklist_ux -->

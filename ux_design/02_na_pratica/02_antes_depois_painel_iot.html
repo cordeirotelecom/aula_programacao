@@ -1,0 +1,82 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Na pratica 02 - Antes e depois: painel IoT</title>
+<link rel="stylesheet" href="../estilo_ux.css">
+<style>
+/* Elaborado pelo Prof. Vagner Cordeiro */
+.ruim { background: #fff; border: 1px solid #ddd; padding: 8px; font-size: 11px; color: #aaa; }
+.ruim span { color: #ccc; }
+.tela { background: #f1f3f5; border-radius: 12px; padding: 12px; max-width: 320px; }
+.cartao { background: #fff; border-radius: 10px; padding: 14px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,.15); }
+.cartao .nome { font-size: 14px; color: #495057; }
+.cartao .valor { font-size: 36px; font-weight: bold; color: #1b1b1b; }
+.selo { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 14px; font-weight: bold; }
+.ok { background: #d3f9d8; color: #1b6b2f; }
+.alerta { background: #ffe8cc; color: #8a4b00; }
+.tela button { width: 100%; min-height: 52px; font-size: 18px; }
+.velho { font-size: 13px; color: #495057; }
+</style>
+</head>
+<body>
+<h1>Na pratica 2 - Painel de sensores: antes e depois</h1>
+
+<div class="lado-a-lado">
+<div>
+<h2>ANTES</h2>
+<div class="ruim">
+T=27.5 U=61 S=312 <span>upd 1699999999</span><br>
+<span>ESP32-A1 ONLINE</span><br>
+<button style="font-size:9px">rl1</button>
+</div>
+<div class="erro"><b>Problemas:</b>
+<ul>
+<li>Siglas e numeros sem unidade (T, U, S)</li>
+<li>Sem hierarquia: tudo do mesmo tamanho</li>
+<li>Contraste muito baixo</li>
+<li>Horario tecnico (timestamp)</li>
+<li>Botao "rl1" sem significado e minusculo</li>
+</ul></div>
+</div>
+
+<div>
+<h2>DEPOIS</h2>
+<div class="tela">
+<div class="cartao">
+<div class="nome">Temperatura da estufa</div>
+<div class="valor">27,5 &deg;C</div>
+<span class="selo ok">&#10003; Normal</span>
+<div class="velho">Atualizado agora</div>
+</div>
+<div class="cartao">
+<div class="nome">Umidade do solo</div>
+<div class="valor">Seco</div>
+<span class="selo alerta">&#9888; Precisa regar</span>
+<div class="velho">Atualizado ha 1 min</div>
+</div>
+<button>Ligar irrigacao</button>
+</div>
+<div class="certo"><b>Melhorias:</b>
+<ul>
+<li>Titulos claros e unidades (&deg;C)</li>
+<li>Valor principal grande; detalhe pequeno</li>
+<li>Estado em palavra + icone + cor (nao so cor)</li>
+<li>"Atualizado ha 1 min" em vez de timestamp</li>
+<li>Botao grande, com verbo e o objeto</li>
+<li>Traducao do dado tecnico: "Seco"</li>
+</ul></div>
+</div>
+</div>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Acrescente um terceiro cartao "Luminosidade" no mesmo padrao.</li>
+<li>Crie o estado "Offline" para um cartao (cinza + ultima leitura).</li>
+</ol></div>
+<p class="navegacao"><a href="01_antes_depois_formulario.html">&larr; Anterior</a> | <a href="03_checklist_ux.html">Proxima: Checklist de UX &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\ux_design\abrir.ps1" 02_antes_depois_painel_iot -->

@@ -1,0 +1,61 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aula 01 - O que e um sistema embarcado</title>
+<link rel="stylesheet" href="..\estilo_embarcados.css">
+</head>
+<body>
+<h1>Aula 01 - O que e um sistema embarcado</h1>
+
+<p>Um <strong>sistema embarcado</strong> e um computador pequeno, escondido dentro de outro equipamento, feito para executar <em>uma tarefa especifica</em>. Voce nao o enxerga como "computador": ele esta na maquina de lavar, no carro, no marca-passo, no roteador e no forno de micro-ondas.</p>
+
+<h2>Exemplos do dia a dia</h2>
+<table>
+<tr><th>Equipamento</th><th>O que o sistema embarcado faz</th></tr>
+<tr><td>Micro-ondas</td><td>Le o teclado, conta o tempo, liga o magnetron, mostra o display</td></tr>
+<tr><td>Carro</td><td>Dezenas de modulos: injecao, ABS, airbag, painel</td></tr>
+<tr><td>Relogio inteligente</td><td>Sensores, tela, Bluetooth, bateria por dias</td></tr>
+<tr><td>Termostato</td><td>Le temperatura e liga/desliga o aquecedor</td></tr>
+</table>
+
+<h2>Caracteristicas principais</h2>
+<ul>
+<li><strong>Dedicado:</strong> faz poucas coisas, sempre as mesmas.</li>
+<li><strong>Recursos limitados:</strong> pouca memoria (KB, nao GB), clock baixo, pouca energia.</li>
+<li><strong>Tempo real:</strong> muitas vezes precisa responder dentro de um prazo (freio do carro!).</li>
+<li><strong>Confiavel:</strong> precisa funcionar por anos sem ninguem reiniciar.</li>
+<li><strong>Interage com o mundo fisico:</strong> sensores (entrada) e atuadores (saida).</li>
+</ul>
+
+<h2>Diagrama basico</h2>
+<pre>
+ SENSORES            MICROCONTROLADOR              ATUADORES
+ (temperatura,  -->  [ CPU + memoria +    ]  -->   (motor, LED,
+  botao, luz)         [ perifericos        ]        rele, display)
+                              |
+                       comunicacao (UART, I2C, Wi-Fi...)
+</pre>
+
+<div class="passo">Ciclo tipico do programa: <strong>ler sensores &rarr; decidir &rarr; acionar saidas &rarr; repetir para sempre</strong>.</div>
+
+<h2>Diferenca para um computador comum</h2>
+<table>
+<tr><th>Item</th><th>PC</th><th>Embarcado</th></tr>
+<tr><td>Funcao</td><td>Geral (muitos programas)</td><td>Especifica</td></tr>
+<tr><td>Memoria</td><td>Gigabytes</td><td>Kilobytes a poucos megabytes</td></tr>
+<tr><td>Sistema operacional</td><td>Windows, Linux</td><td>Nenhum ("bare metal") ou RTOS</td></tr>
+<tr><td>Consumo</td><td>Dezenas de watts</td><td>Microwatts a poucos watts</td></tr>
+<tr><td>Custo</td><td>Centenas de reais</td><td>Poucos reais por chip</td></tr>
+</table>
+
+<div class="dica">Nesta pasta voce vai <em>simular</em> tudo no PC (programas em C em <code>02_simulacoes_c</code> e VHDL em <code>01_vhdl</code>), sem precisar comprar placa nenhuma.</div>
+
+<div class="exercicio"><strong>Exercicio:</strong> liste 5 equipamentos da sua casa que tem um sistema embarcado e, para cada um, diga qual e o sensor e qual e o atuador.</div>
+
+<div class="navegacao"><a href="02_microcontrolador_vs_fpga_vs_cpu.html">Proxima: Microcontrolador vs FPGA vs CPU &rarr;</a></div>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\sistemas_embarcados\abrir.ps1" 01_o_que_e_sistema_embarcado -->

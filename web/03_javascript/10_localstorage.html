@@ -1,0 +1,40 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>JS - localStorage</title>
+</head>
+<body>
+  <h1>Memoria do navegador</h1>
+  <p id="visitas"></p>
+  <input id="nome" placeholder="Seu nome">
+  <button id="salvar">Salvar</button>
+  <p id="ola"></p>
+
+  <script>
+    // AULA 10 - localStorage: guarda dados no navegador, mesmo apos fechar a pagina.
+    // Parecido com a EEPROM do Arduino. Guarda apenas textos:
+    // para objetos, use JSON.stringify (salvar) e JSON.parse (ler).
+    let visitas = Number(localStorage.getItem("visitas")) || 0;
+    visitas++;
+    localStorage.setItem("visitas", visitas);
+    document.getElementById("visitas").textContent = "Voce abriu esta pagina " + visitas + " vez(es).";
+
+    const ola = document.getElementById("ola");
+    const guardado = localStorage.getItem("nome");
+    if (guardado) ola.textContent = "Bem-vindo de volta, " + guardado + "!";
+
+    document.getElementById("salvar").addEventListener("click", () => {
+      const nome = document.getElementById("nome").value.trim();
+      localStorage.setItem("nome", nome);
+      ola.textContent = "Nome salvo: " + nome;
+    });
+
+    // EXERCICIOS:
+    // 1. Adicione o botao "Esquecer tudo" que chama localStorage.clear().
+    // 2. Guarde um objeto {nome, idade} usando JSON.stringify.
+  </script>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 10_localstorage -->

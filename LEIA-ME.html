@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LEIA-ME - Curso de Programacao</title>
+<style>
+/* Elaborado pelo Prof. Vagner Cordeiro */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#eef3f9;color:#1b2a3a;line-height:1.6}
+header{background:linear-gradient(135deg,#073b6e,#1c7ed6 60%,#38b6ff);color:#fff;padding:44px 16px 36px;text-align:center}
+header h1{margin:0 0 8px;font-size:2.2rem}
+header p{margin:0 auto;max-width:640px;opacity:.95}
+.como{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:20px}
+.como span{background:#ffffff26;border:1px solid #ffffff55;border-radius:20px;padding:6px 16px;font-weight:600}
+nav{position:sticky;top:0;background:#fff;box-shadow:0 2px 8px #0002;display:flex;flex-wrap:wrap;justify-content:center;gap:4px;padding:8px;z-index:5}
+nav a{padding:6px 14px;border-radius:16px;text-decoration:none;color:#0b5394;font-weight:600;font-size:.9rem}
+nav a:hover{background:#e3eefb}
+main{max-width:920px;margin:0 auto;padding:16px}
+section{background:#fff;border-radius:14px;padding:8px 22px 22px;margin:22px 0;box-shadow:0 2px 10px #0001;border-top:5px solid #1c7ed6}
+h2{color:#0b5394;display:flex;align-items:center;gap:12px}
+.num{background:#0b5394;color:#fff;border-radius:50%;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;font-size:1rem;flex:none}
+.cmd{position:relative;margin:12px 0 18px}
+.cmd b{display:block;margin-bottom:4px}
+pre{margin:0;background:#0f1f2e;color:#e8f1fa;padding:14px 96px 14px 14px;border-radius:10px;overflow:auto;font-size:13px;white-space:pre-wrap;word-break:break-all;border:1px solid #23415c}
+.copiar{position:absolute;right:8px;bottom:8px;background:#2e9e4f;color:#fff;border:0;border-radius:8px;padding:7px 14px;font-weight:700;cursor:pointer}
+.copiar:hover{background:#25853f}
+.copiar.ok{background:#555}
+code{background:#e6eef7;padding:1px 6px;border-radius:4px}
+.aviso{background:#fff8dc;border-left:6px solid #e6a700;padding:8px 14px;border-radius:6px;margin:12px 0}
+.ok-box{background:#e8f7ec;border-left:6px solid #2e9e4f;padding:8px 14px;border-radius:6px;margin:12px 0}
+footer{text-align:center;padding:28px;color:#555}
+@media print{nav,.copiar{display:none}}
+</style>
+</head>
+<body>
+<header>
+<h1>Curso de Programacao</h1>
+<p>Passo a passo para instalar e executar. Nao precisa ser administrador e nao precisa digitar nada.</p>
+<div class="como"><span>1. Clique em Copiar</span><span>2. Cole no PowerShell (botao direito)</span><span>3. Aperte Enter</span></div>
+</header>
+<nav>
+<a href="#instalar">1 Instalar</a><a href="#c">2 C e C++</a><a href="#aulas">3 Aulas</a><a href="#vhdl">4 VHDL</a><a href="#integracao">5 Integracao</a><a href="#aluno">Aluno</a><a href="#problemas">Problemas</a>
+</nav>
+<main>
+
+<section id="instalar">
+<h2><span class="num">1</span>Instalar (so uma vez)</h2>
+<p>Conecte o pendrive. Abra o PowerShell: <b>Menu Iniciar &gt; digite PowerShell &gt; Enter</b>. Depois cole o comando:</p>
+<div class="cmd"><pre>$z = Get-PSDrive -PSProvider FileSystem | ForEach-Object { Join-Path $_.Root 'curso_programacao.zip' } | Where-Object { Test-Path $_ } | Select-Object -First 1; if (-not $z) { $z = Join-Path ([Environment]::GetFolderPath('Desktop')) 'curso_programacao.zip' }; $t = "$env:TEMP\curso"; Remove-Item $t -Recurse -Force -ErrorAction SilentlyContinue; Expand-Archive $z $t -Force; Get-ChildItem $t -Recurse -File | Unblock-File; powershell -NoProfile -ExecutionPolicy Bypass -File "$t\instalar_professor.ps1"; Start-Process ".\index.html"</pre></div>
+<p>Aguarde (precisa de internet para baixar GCC e Node.js). O curso fica em <code>Documentos\programacao\curso_programacao</code>.</p>
+<div class="aviso"><b>Importante:</b> depois de instalar, feche o PowerShell e abra um <b>novo</b>, para o computador reconhecer o gcc.</div>
+<div class="ok-box">Sem internet ou PowerShell bloqueado? Extraia o ZIP e de duplo clique em <code>index.html</code>. As aulas em HTML funcionam sem instalar nada.</div>
+</section>
+
+<section id="c">
+<h2><span class="num">2</span>Rodar programas em C e C++</h2>
+<div class="ok-box"><b>Jeito mais facil (recomendado):</b> de duplo clique em <code>ABRIR_NO_VSCODE.bat</code>. Abra qualquer arquivo <code>.c</code>, <code>.cpp</code> ou <code>.html</code> e aperte <b>Ctrl+Shift+B</b>: programas C/C++ compilam e rodam no terminal; aulas HTML abrem no navegador. Para rodar por nome: <b>Ctrl+Shift+P</b> &rarr; <i>Tasks: Run Task</i> &rarr; <i>Rodar por nome...</i> (ex: <code>01_ola_mundo</code>, <code>03_enderecos_ip</code>).</div>
+<div class="aviso"><b>Pelo terminal:</b> um unico comando serve para tudo (C, C++, aulas HTML de qualquer pasta). Abra a pasta do curso no Explorer, clique na barra de endereco, digite <code>powershell</code> e Enter. Depois: <div class="cmd"><pre>.\rodar.ps1 01_ola_mundo
+.\rodar.ps1 03_enderecos_ip</pre></div> Se aparecer erro de politica de execucao, use <code>powershell -ExecutionPolicy Bypass -File .\rodar.ps1 NOME</code>. Os comandos antigos (<code>executar.ps1</code> e <code>abrir.ps1</code>) continuam funcionando.</div>
+<p>Troque so o final: <code>c</code> ou <code>cpp</code> e o nome do programa.</p>
+<div class="cmd"><b>Primeiro programa em C</b><pre>powershell -ExecutionPolicy Bypass -File ".\executar.ps1" c 01_ola_mundo</pre></div>
+<div class="cmd"><b>Mesmo programa em C++</b><pre>powershell -ExecutionPolicy Bypass -File ".\executar.ps1" cpp 01_ola_mundo</pre></div>
+<div class="cmd"><b>Simulacao de sistema embarcado</b><pre>powershell -ExecutionPolicy Bypass -File ".\executar.ps1" c sim_01_maquina_estados</pre></div>
+<div class="cmd"><b>Calculo de rede (mascara, broadcast)</b><pre>powershell -ExecutionPolicy Bypass -File ".\executar.ps1" c rede_08_passo_a_passo</pre></div>
+</section>
+
+<section id="aulas">
+<h2><span class="num">3</span>Abrir aulas no navegador</h2>
+<div class="cmd"><b>Web (HTML, CSS, JavaScript)</b><pre>powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 01_primeira_pagina</pre></div>
+<div class="cmd"><b>Redes: para que serve mascara, classe e faixa</b><pre>powershell -ExecutionPolicy Bypass -File ".\redes\abrir.ps1" 00_para_que_serve</pre></div>
+<div class="cmd"><b>ESP32 e ESP32-S3: qual escolher</b><pre>powershell -ExecutionPolicy Bypass -File ".\esp32\abrir.ps1" 06_escolhedor</pre></div>
+<div class="cmd"><b>UX / Design</b><pre>powershell -ExecutionPolicy Bypass -File ".\ux_design\abrir.ps1" 01_o_que_e_ux_ui</pre></div>
+<div class="cmd"><b>Integracao: ESP32 + MQTT + Node-RED + banco + app</b><pre>powershell -ExecutionPolicy Bypass -File ".\integracao\abrir.ps1" 01_passo_a_passo_completo</pre></div>
+</section>
+
+<section id="vhdl">
+<h2><span class="num">4</span>VHDL (simulacao de circuitos)</h2>
+<p>O simulador GHDL e baixado sozinho na primeira vez.</p>
+<div class="cmd"><pre>powershell -ExecutionPolicy Bypass -File ".\sistemas_embarcados\01_vhdl\simular.ps1" 01_porta_and</pre></div>
+</section>
+
+<section id="integracao">
+<h2><span class="num">5</span>Projeto de integracao (teste automatico)</h2>
+<div class="cmd"><pre>cd ".\integracao\02_projeto"; npm run teste</pre></div>
+<div class="ok-box">Deve terminar com: <b>TUDO CERTO - a integracao funciona.</b></div>
+</section>
+
+<section id="aluno">
+<h2><span class="num">A</span>Para o aluno</h2>
+<p>Cria <code>Documentos\programacao\aluno</code> com exercicios em branco, para fazer o codigo em sala.</p>
+<div class="cmd"><b>Preparar o ambiente</b><pre>powershell -NoProfile -ExecutionPolicy Bypass -File ".\preparar_aluno.ps1"</pre></div>
+<div class="cmd"><b>Rodar um exercicio do aluno</b><pre>powershell -ExecutionPolicy Bypass -File "$([Environment]::GetFolderPath('MyDocuments'))\programacao\aluno\executar.ps1" c exercicio_01</pre></div>
+</section>
+
+<section id="problemas">
+<h2><span class="num">?</span>Se algo der errado</h2>
+<ul>
+<li><b>"gcc nao e reconhecido":</b> feche o PowerShell e abra um novo.</li>
+<li><b>"Nao encontrei o arquivo":</b> confira o nome e se a pasta esta em <code>Documentos\programacao\curso_programacao</code>.</li>
+<li><b>Download falhou:</b> confira a internet e repita o passo 1.</li>
+<li><b>Porta em uso (integracao):</b> feche a janela antiga (Ctrl+C) e rode de novo.</li>
+</ul>
+</section>
+</main>
+<footer>Elaborado pelo Prof. Vagner Cordeiro</footer>
+<script>
+// Elaborado pelo Prof. Vagner Cordeiro
+// Coloca um botao "Copiar" em cada comando da pagina.
+document.querySelectorAll(".cmd").forEach(function (caixa) {
+  var pre = caixa.querySelector("pre");
+  var botao = document.createElement("button");
+  botao.className = "copiar";
+  botao.textContent = "Copiar";
+  botao.addEventListener("click", function () {
+    var texto = pre.textContent.trim();
+    var feito = function () {
+      botao.textContent = "Copiado!";
+      botao.classList.add("ok");
+      setTimeout(function () { botao.textContent = "Copiar"; botao.classList.remove("ok"); }, 2000);
+    };
+    if (navigator.clipboard && window.isSecureContext !== false) {
+      navigator.clipboard.writeText(texto).then(feito, function () { selecionar(pre); });
+    } else {
+      selecionar(pre);
+      feito();
+    }
+  });
+  caixa.appendChild(botao);
+});
+
+// Plano B (abrindo direto do pendrive): seleciona o texto e copia
+function selecionar(el) {
+  var r = document.createRange();
+  r.selectNodeContents(el);
+  var s = window.getSelection();
+  s.removeAllRanges();
+  s.addRange(r);
+  document.execCommand("copy");
+}
+</script>
+</body>
+</html>
+<!-- Executar: de duplo clique neste arquivo para abrir no navegador -->

@@ -1,0 +1,49 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mobile IoT 02 - Nativo, hibrido ou PWA</title>
+<link rel="stylesheet" href="../estilo_mobile.css">
+</head>
+<body>
+<h1>Aula 2 - Nativo, hibrido, low-code ou PWA?</h1>
+
+<table>
+<tr><th>Abordagem</th><th>Tecnologia</th><th>Vantagens</th><th>Desvantagens</th></tr>
+<tr><td><b>Nativo</b></td><td>Kotlin (Android), Swift (iOS)</td><td>Melhor desempenho e acesso total ao aparelho</td><td>Um codigo para cada sistema; curva maior</td></tr>
+<tr><td><b>Hibrido / multiplataforma</b></td><td>Flutter (Dart), React Native (JS)</td><td>Um codigo, Android e iOS; publica nas lojas</td><td>Precisa instalar SDK e emulador</td></tr>
+<tr><td><b>Low-code</b></td><td>MIT App Inventor, Blynk</td><td>Muito rapido para prototipo e sala de aula</td><td>Menos controle e personalizacao</td></tr>
+<tr><td><b>PWA</b></td><td>HTML + CSS + JavaScript</td><td>Sem lojas, sem instalar SDK, roda em qualquer celular, instala na tela inicial</td><td>Acesso limitado a recursos nativos; Bluetooth so no Android/Chrome</td></tr>
+</table>
+
+<h2>Por que o PWA neste curso?</h2>
+<ul>
+<li>Voce ja aprendeu HTML, CSS e JavaScript na pasta <code>web</code>.</li>
+<li>Nao precisa instalar nada alem do navegador.</li>
+<li>Funciona no celular Android e no iPhone.</li>
+<li>Os conceitos de UX e de rede servem para qualquer outra abordagem depois.</li>
+</ul>
+
+<h2>O que e um PWA?</h2>
+<p><b>Progressive Web App</b> e um site com tres extras:</p>
+<ol>
+<li><b>Manifest</b> (<code>manifest.json</code>): nome, icone, cores. Permite "instalar".</li>
+<li><b>Service worker</b> (<code>sw.js</code>): guarda arquivos para funcionar offline.</li>
+<li><b>HTTPS</b> (ou localhost): exigencia de seguranca para os dois acima.</li>
+</ol>
+
+<div class="alerta"><b>Cuidado:</b> abrir o app no celular por <code>http://192.168.x.x</code> funciona como site, mas o navegador <b>nao instala</b> nem ativa service worker (nao e HTTPS). Para instalar de verdade, publique em HTTPS (ex.: GitHub Pages). Em <code>localhost</code> no PC tudo funciona.</div>
+
+<div class="dica"><b>Quando escolher outra:</b> precisa de Bluetooth no iPhone, notificacoes em segundo plano ou de publicar na loja &rarr; Flutter ou React Native.</div>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Para um app de fechadura com Bluetooth que roda no iPhone, qual abordagem voce escolheria? Por que?</li>
+<li>Para uma demonstracao em sala em 1 hora, qual escolheria?</li>
+</ol></div>
+<p class="navegacao"><a href="01_visao_geral_mobile_iot.html">&larr; Anterior</a> | <a href="03_protocolos_http_mqtt_ble.html">Proxima: Protocolos &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\mobile_iot\abrir.ps1" 02_nativo_hibrido_pwa -->

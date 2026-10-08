@@ -1,0 +1,42 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comparacao de microcontroladores</title>
+<link rel="stylesheet" href="../estilo_esp32.css">
+</head>
+<body>
+<h1>Comparacao de microcontroladores</h1>
+<p>Um microcontrolador e um minicomputador num unico chip, feito para controlar coisas (LEDs, motores, sensores). Veja os mais usados em cursos e projetos.</p>
+
+<table>
+<tr><th>Placa / chip</th><th>CPU</th><th>Clock</th><th>RAM</th><th>Conectividade</th><th>Tensao</th><th>Observacao</th></tr>
+<tr><td>Arduino Uno (ATmega328P)</td><td>AVR 8 bits</td><td>16 MHz</td><td>2 KB SRAM</td><td>Nenhuma (sem WiFi)</td><td>5 V</td><td>Simples, robusto, ideal para aprender</td></tr>
+<tr><td>ESP8266</td><td>Xtensa 32 bits</td><td>80 MHz</td><td>~80 KB</td><td>So WiFi</td><td>3,3 V</td><td>Apenas 1 ADC, barato</td></tr>
+<tr><td>ESP32</td><td>Xtensa LX6 dual-core</td><td>240 MHz</td><td>520 KB SRAM</td><td>WiFi + Bluetooth Classic + BLE</td><td>3,3 V</td><td>O "faz-tudo" popular</td></tr>
+<tr><td>ESP32-S3</td><td>Xtensa LX7 dual-core</td><td>240 MHz</td><td>512 KB SRAM (+PSRAM)</td><td>WiFi + BLE 5, USB nativo</td><td>3,3 V</td><td>IA, camera, USB HID</td></tr>
+<tr><td>ESP32-C3</td><td>RISC-V single-core</td><td>160 MHz</td><td>400 KB SRAM</td><td>WiFi + BLE 5</td><td>3,3 V</td><td>Barato e economico</td></tr>
+<tr><td>RP2040 / Raspberry Pi Pico</td><td>2x ARM Cortex-M0+</td><td>133 MHz</td><td>264 KB</td><td>Nenhuma (Pico W tem WiFi)</td><td>3,3 V</td><td>Otimo PIO, muito barato</td></tr>
+<tr><td>STM32 Blue Pill</td><td>ARM Cortex-M3</td><td>72 MHz</td><td>20 KB RAM</td><td>Nenhuma</td><td>3,3 V</td><td>Industrial, muitos perifericos</td></tr>
+</table>
+
+<div class="alerta">Valores aproximados, confirme no datasheet do fabricante antes de comprar ou projetar.</div>
+
+<h2>Como ler a tabela</h2>
+<ul>
+<li><b>Clock (MHz):</b> quantos milhoes de ciclos por segundo. Maior = mais rapido.</li>
+<li><b>RAM:</b> memoria de trabalho. O Uno tem so 2 KB; o ESP32 tem 260 vezes mais.</li>
+<li><b>Tensao:</b> o Uno trabalha em 5 V; os demais em 3,3 V. Ligar 5 V num pino de 3,3 V pode queimar a placa.</li>
+</ul>
+
+<div class="dica">Para aprender logica de programacao o Uno basta. Para IoT (internet das coisas) escolha um ESP32.</div>
+
+<div class="navegacao">
+<span>Anterior: (inicio)</span>
+<a href="02_esp32_vs_esp32s3.html">Proxima: ESP32 vs ESP32-S3</a>
+</div>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\esp32\abrir.ps1" 01_comparacao_microcontroladores -->

@@ -1,0 +1,36 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quando usar cada um</title>
+<link rel="stylesheet" href="../estilo_esp32.css">
+</head>
+<body>
+<h1>Quando usar cada um</h1>
+<p>Guia de decisao com cenarios reais.</p>
+
+<table>
+<tr><th>Cenario</th><th>Escolha</th><th>Por que</th></tr>
+<tr><td>Aprender logica, LEDs, sensores simples (sem internet)</td><td>Arduino Uno</td><td>Simples, 5 V, muita documentacao</td></tr>
+<tr><td>Sensor a bateria que acorda a cada 10 minutos e envia por WiFi</td><td>ESP32-C3 (ou ESP32)</td><td>Deep sleep com consumo muito baixo</td></tr>
+<tr><td>Camera, reconhecimento de rosto ou voz</td><td>ESP32-S3 com PSRAM</td><td>Interface de camera e instrucoes de IA</td></tr>
+<tr><td>Teclado USB, macropad, mouse</td><td>ESP32-S3</td><td>USB OTG nativo (HID)</td></tr>
+<tr><td>Audio Bluetooth (A2DP) ou serial Bluetooth Classic</td><td>ESP32 classico</td><td>O S3 so tem BLE</td></tr>
+<tr><td>Saida analogica real (gerar tom, onda)</td><td>ESP32 classico</td><td>Tem DAC</td></tr>
+<tr><td>Projeto escolar barato com WiFi</td><td>ESP32 Dev Module ou ESP32-C3</td><td>Preco baixo, muito material na internet</td></tr>
+<tr><td>Painel web / casa inteligente</td><td>ESP32</td><td>WiFi + dois nucleos</td></tr>
+<tr><td>Controle industrial robusto</td><td>STM32</td><td>Confiabilidade e perifericos</td></tr>
+<tr><td>Controle de tempo preciso de LEDs/protocolos</td><td>RP2040</td><td>PIO programavel</td></tr>
+</table>
+
+<div class="dica">Na duvida: use a pagina <a href="06_escolhedor.html">Escolhedor</a>, que recomenda por perguntas.</div>
+
+<div class="navegacao">
+<a href="02_esp32_vs_esp32s3.html">Anterior: ESP32 vs S3</a>
+<a href="04_pinagem_e_cuidados.html">Proxima: Pinagem e cuidados</a>
+</div>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\esp32\abrir.ps1" 03_quando_usar_cada_um -->

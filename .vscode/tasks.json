@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Rodar arquivo atual (Ctrl+Shift+B)",
+      "type": "shell",
+      "command": "powershell",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}\\rodar.ps1", "${file}"],
+      "group": { "kind": "build", "isDefault": true },
+      "presentation": { "reveal": "always", "focus": true, "panel": "shared", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Rodar por nome...",
+      "type": "shell",
+      "command": "powershell",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}\\rodar.ps1", "${input:nome}"],
+      "presentation": { "reveal": "always", "focus": true, "panel": "shared", "clear": true },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    { "id": "nome", "type": "promptString", "description": "Nome da aula ou programa (ex: 01_ola_mundo)" }
+  ]
+}

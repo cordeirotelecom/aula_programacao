@@ -1,0 +1,63 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projetos ESP32</title>
+<link rel="stylesheet" href="../estilo_esp32.css">
+</head>
+<body>
+<h1>Projetos ESP32</h1>
+<p>Quatro projetos. O codigo (com a explicacao completa no topo) esta na pasta de cada projeto. Abra o <code>.ino</code> na Arduino IDE (<a href="../01_conceitos/05_instalar_arduino_ide.html">instalar</a>), escolha a placa e clique em Carregar.</p>
+<div class="alerta">Use sempre resistor de 220 ohm nos LEDs e nao ligue 5 V nos pinos do ESP32.</div>
+
+<h2>Projeto 1 - Semaforo de pedestre</h2>
+<p><b>Arquivo:</b> <code>proj_01_semaforo_pedestre\proj_01_semaforo_pedestre.ino</code></p>
+<p><b>Objetivo:</b> maquina de estados (VERDE, AMARELO, VERMELHO) com botao de pedestre, sem usar delay.</p>
+<p><b>Materiais:</b> ESP32/S3, 3 LEDs, 3 resistores 220 ohm, 1 botao, protoboard.</p>
+<pre>
+GPIO 16 --[220]--LED vermelho-- GND
+GPIO 17 --[220]--LED amarelo --- GND
+GPIO 18 --[220]--LED verde ----- GND
+GPIO 15 --[botao]-- GND
+</pre>
+<div class="passo">1) Monte. 2) Carregue. 3) Aperte o botao e veja a sequencia. 4) Abra o Monitor Serial (115200) para ver os estados.</div>
+
+<h2>Projeto 2 - Painel web em modo AP</h2>
+<p><b>Arquivo:</b> <code>proj_02_painel_web_ap\proj_02_painel_web_ap.ino</code></p>
+<p><b>Objetivo:</b> o ESP32 cria a propria rede WiFi e responde a <code>/dados</code> (JSON) e <code>/led?estado=1</code>. Compativel com o app da pasta <code>mobile_iot</code>.</p>
+<p><b>Materiais:</b> ESP32/S3, 1 LED, resistor 220 ohm.</p>
+<pre>GPIO 2 --[220]--LED-- GND</pre>
+<div class="passo">1) Carregue. 2) No celular conecte em <b>ESP32-Painel</b> (senha 12345678). 3) Abra <code>http://192.168.4.1/dados</code>. 4) Teste <code>http://192.168.4.1/led?estado=1</code>.</div>
+<div class="dica">As respostas trazem o cabecalho CORS (<code>Access-Control-Allow-Origin: *</code>), por isso uma pagina em outro endereco consegue ler.</div>
+
+<h2>Projeto 3 - Alarme com deep sleep</h2>
+<p><b>Arquivo:</b> <code>proj_03_alarme_deep_sleep\proj_03_alarme_deep_sleep.ino</code></p>
+<p><b>Objetivo:</b> dormir ate o sensor PIR detectar movimento (<code>esp_sleep_enable_ext0_wakeup</code>), piscar um LED e contar disparos em <code>RTC_DATA_ATTR</code>.</p>
+<p><b>Materiais:</b> ESP32/S3, sensor PIR HC-SR501, LED, resistor 220 ohm.</p>
+<pre>
+PIR VCC -- 5V     PIR GND -- GND
+PIR OUT -- GPIO 33 (S3: GPIO 4)
+GPIO 2 --[220]--LED-- GND
+</pre>
+<div class="passo">1) Monte. 2) Carregue. 3) Espere cerca de 30 s. 4) Passe a mao na frente do sensor e veja "Disparo numero N".</div>
+
+<h2>Projeto 4 - Macropad USB (somente S3)</h2>
+<p><b>Arquivo:</b> <code>proj_04_s3_macropad_usb\proj_04_s3_macropad_usb.ino</code></p>
+<p><b>Objetivo:</b> teclado USB com 3 atalhos (Ctrl+C, Ctrl+V, Win+D). Dara erro de compilacao em placa que nao seja S3, de proposito.</p>
+<p><b>Materiais:</b> ESP32-S3 com USB nativo, 3 botoes.</p>
+<pre>
+GPIO 4 --[botao]-- GND   (Copiar)
+GPIO 5 --[botao]-- GND   (Colar)
+GPIO 6 --[botao]-- GND   (Area de trabalho)
+</pre>
+<div class="passo">1) Em Ferramentas: placa ESP32S3 Dev Module e <b>USB Mode: USB-OTG (TinyUSB)</b>. 2) Carregue (se a porta sumir: segure BOOT, aperte RESET, solte BOOT). 3) Use o cabo na porta USB nativa. 4) Teste no Bloco de Notas.</div>
+
+<div class="navegacao">
+<a href="../01_conceitos/07_roteiro_passo_a_passo.html">Anterior: Roteiro</a>
+<a href="../04_exercicios/exercicios_esp32.html">Proxima: Exercicios</a>
+</div>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\esp32\abrir.ps1" projetos_esp32 -->

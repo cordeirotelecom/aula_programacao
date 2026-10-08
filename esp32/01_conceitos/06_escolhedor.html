@@ -1,0 +1,54 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escolhedor de placa</title>
+<link rel="stylesheet" href="../estilo_esp32.css">
+</head>
+<body>
+<h1>Escolhedor de placa</h1>
+<p>Responda as perguntas e clique em Recomendar.</p>
+
+<p><label>Precisa de WiFi?
+<select id="wifi"><option value="1">Sim</option><option value="0">Nao</option></select></label></p>
+<p><label>Bluetooth?
+<select id="bluetooth"><option value="nenhum">Nao preciso</option><option value="ble">BLE (celular, sensores)</option><option value="classic">Classic (audio, serial)</option></select></label></p>
+<p><label>USB nativo (teclado/mouse)?
+<select id="usb"><option value="0">Nao</option><option value="1">Sim</option></select></label></p>
+<p><label>Camera ou IA?
+<select id="ia"><option value="0">Nao</option><option value="1">Sim</option></select></label></p>
+<p><label>Funciona a bateria?
+<select id="bateria"><option value="0">Nao</option><option value="1">Sim</option></select></label></p>
+<p><label>Preco importa muito?
+<select id="preco"><option value="0">Nao</option><option value="1">Sim, o mais barato</option></select></label></p>
+
+<button id="botao">Recomendar</button>
+<div class="passo" id="resultado">A recomendacao aparece aqui.</div>
+
+<script src="escolher.js"></script>
+<script>
+document.getElementById('botao').addEventListener('click', function () {
+  var v = function (id) { return document.getElementById(id).value; };
+  var res = recomendar({
+    wifi: v('wifi') === '1',
+    bluetooth: v('bluetooth'),
+    usbNativo: v('usb') === '1',
+    cameraIA: v('ia') === '1',
+    bateria: v('bateria') === '1',
+    barato: v('preco') === '1'
+  });
+  var html = '<b>Recomendado: ' + res.placa + '</b><ul>';
+  res.motivos.forEach(function (m) { html += '<li>' + m + '</li>'; });
+  document.getElementById('resultado').innerHTML = html + '</ul>';
+});
+</script>
+
+<div class="navegacao">
+<a href="05_instalar_arduino_ide.html">Anterior: Instalar IDE</a>
+<a href="07_roteiro_passo_a_passo.html">Proxima: Roteiro passo a passo</a>
+</div>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\esp32\abrir.ps1" 06_escolhedor -->

@@ -1,0 +1,40 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercicios de Mobile IoT</title>
+<link rel="stylesheet" href="../estilo_mobile.css">
+</head>
+<body>
+<h1>Exercicios de Mobile IoT</h1>
+
+<h2>Nivel 1 - Conceitos</h2>
+<p>1) Quais as tres partes de um sistema IoT?</p>
+<details><summary>Resposta</summary>Dispositivo (sensor/atuador + microcontrolador), rede (Wi-Fi/BLE/Internet) e aplicativo. Opcionalmente, a nuvem.</details>
+<p>2) Qual a diferenca entre HTTP e MQTT?</p>
+<details><summary>Resposta</summary>HTTP: o app pergunta e o dispositivo responde (polling). MQTT: todos falam com um broker, publicando e assinando topicos; bom para muitos dispositivos e tempo real.</details>
+
+<h2>Nivel 2 - Codigo</h2>
+<p>3) Escreva um JSON com temperatura 30, umidade 45 e bomba ligada.</p>
+<details><summary>Resposta</summary><code>{"temperatura":30,"umidade":45,"bomba":true}</code></details>
+<p>4) O que o <code>try/catch</code> faz ao redor do <code>fetch</code>?</p>
+<details><summary>Resposta</summary>Captura a falha (sem rede, tempo esgotado) para mostrar uma mensagem amigavel em vez de quebrar a tela.</details>
+
+<h2>Nivel 3 - UX</h2>
+<p>5) Por que o botao so mostra "Ligada" depois da resposta do dispositivo?</p>
+<details><summary>Resposta</summary>Para exibir o estado real. Se o comando falhar, o usuario nao e enganado.</details>
+<p>6) Por que a bomba pede confirmacao?</p>
+<details><summary>Resposta</summary>Prevencao de erros em acoes de risco (heuristica 5 de Nielsen).</details>
+
+<h2>Nivel 4 - Projetos</h2>
+<p>7) Acrescente ao <code>painel_sensores</code> um cartao "Luminosidade" (campo <code>luz</code> no JSON e no simulador).</p>
+<p>8) Em <code>controle_dispositivo</code>, crie um botao "Piscar LED 3 vezes" que envia 3 comandos.</p>
+<p>9) No firmware, acrescente a rota <code>/bomba?estado=1</code> e conecte o botao da bomba a ela.</p>
+<p>10) Teste com 3 pessoas (sem ajudar) e use o checklist de UX (pasta <code>ux_design</code>).</p>
+
+<p class="navegacao"><a href="../02_pwa_passo_a_passo/07_esp32_servidor.html">&larr; Anterior</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\mobile_iot\abrir.ps1" exercicios_mobile -->

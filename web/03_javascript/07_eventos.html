@@ -1,0 +1,45 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>JS - eventos</title>
+  <style>
+    #lampada { width: 80px; height: 80px; border-radius: 50%; background: #444; margin: 15px 0; }
+    #lampada.acesa { background: gold; box-shadow: 0 0 25px gold; }
+  </style>
+</head>
+<body>
+  <h1>Eventos</h1>
+  <div id="lampada"></div>
+  <button id="botao">Ligar / desligar</button>
+  <p id="contador">Cliques: 0</p>
+  <input id="campo" placeholder="Digite algo">
+  <p id="eco"></p>
+
+  <script>
+    // AULA 07 - Eventos: o codigo reage as acoes do usuario.
+    // addEventListener("evento", funcao)
+    const lampada = document.getElementById("lampada");
+    const botao = document.getElementById("botao");
+    const contador = document.getElementById("contador");
+    let cliques = 0;
+
+    botao.addEventListener("click", () => {
+      lampada.classList.toggle("acesa");     // liga/desliga a classe
+      cliques++;
+      contador.textContent = "Cliques: " + cliques;
+    });
+
+    document.getElementById("campo").addEventListener("input", (evento) => {
+      document.getElementById("eco").textContent = "Voce digitou: " + evento.target.value;
+    });
+
+    // EXERCICIOS:
+    // 1. Adicione um botao "Zerar" que volta o contador para 0.
+    // 2. Faca a lampada mudar de cor quando o mouse passar (evento "mouseover").
+    // 3. Mostre um alerta com alert() ao clicar na lampada.
+  </script>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 07_eventos -->

@@ -1,0 +1,46 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aula 02 - Microcontrolador vs FPGA vs CPU</title>
+<link rel="stylesheet" href="..\estilo_embarcados.css">
+</head>
+<body>
+<h1>Aula 02 - Microcontrolador vs FPGA vs CPU</h1>
+
+<h2>Os tres "cerebros"</h2>
+<ul>
+<li><strong>CPU / microprocessador</strong> (PC, celular, Raspberry Pi): muito poderoso, precisa de memoria e perifericos externos, roda sistema operacional (Linux, Windows).</li>
+<li><strong>Microcontrolador (MCU)</strong> (Arduino/AVR, ESP32, STM32): CPU + memoria + perifericos (GPIO, ADC, UART...) <em>em um unico chip</em>. Barato e de baixo consumo.</li>
+<li><strong>FPGA</strong>: chip cujo <em>hardware</em> e reconfiguravel. Voce descreve circuitos (em VHDL ou Verilog) e o chip vira esse circuito. Tudo acontece em paralelo.</li>
+</ul>
+
+<h2>Comparacao</h2>
+<table>
+<tr><th>Criterio</th><th>Microcontrolador</th><th>FPGA</th><th>CPU / SBC</th></tr>
+<tr><td>Como executa</td><td>Instrucoes, uma apos outra</td><td>Circuitos em paralelo</td><td>Instrucoes, varios nucleos</td></tr>
+<tr><td>Linguagem</td><td>C / C++</td><td>VHDL / Verilog</td><td>C, Python, etc.</td></tr>
+<tr><td>Velocidade de resposta</td><td>Microssegundos</td><td>Nanossegundos, deterministica</td><td>Variavel (sistema operacional)</td></tr>
+<tr><td>Consumo</td><td>Muito baixo</td><td>Medio</td><td>Alto</td></tr>
+<tr><td>Custo</td><td>Baixo</td><td>Medio a alto</td><td>Medio</td></tr>
+<tr><td>Dificuldade</td><td>Facil</td><td>Mais dificil</td><td>Facil</td></tr>
+</table>
+
+<h2>Quando usar cada um?</h2>
+<div class="passo"><strong>Microcontrolador:</strong> controlar LED, ler sensor, automacao residencial, dispositivo a bateria, IoT simples.</div>
+<div class="passo"><strong>FPGA:</strong> processar sinais muito rapido (video, radar, audio), protocolos com tempo exato em nanossegundos, muitas tarefas realmente simultaneas, prototipar um chip.</div>
+<div class="passo"><strong>CPU/SBC (Raspberry Pi):</strong> interface grafica, camera com visao computacional, banco de dados, servidor web, Python.</div>
+
+<div class="dica">Regra pratica: comece pelo microcontrolador. So suba para CPU se precisar de sistema operacional, e para FPGA se o MCU for lento demais ou precisar de paralelismo massivo.</div>
+
+<h2>Analogia</h2>
+<p>MCU = um cozinheiro muito habil que faz uma coisa de cada vez, bem rapido. FPGA = uma cozinha com varios fogoes, cada um ja ligado a uma receita, trabalhando juntos. CPU = um restaurante inteiro com gerente.</p>
+
+<div class="exercicio"><strong>Exercicio:</strong> qual escolher? (a) termometro Wi-Fi a pilha; (b) filtro de audio em tempo real com 1 milhao de amostras por segundo; (c) painel de totem com video e touch.</div>
+
+<div class="navegacao"><a href="01_o_que_e_sistema_embarcado.html">&larr; Anterior</a> | <a href="03_perifericos_e_protocolos.html">Proxima: Perifericos e protocolos &rarr;</a></div>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\sistemas_embarcados\abrir.ps1" 02_microcontrolador_vs_fpga_vs_cpu -->

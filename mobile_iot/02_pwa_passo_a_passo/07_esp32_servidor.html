@@ -1,0 +1,35 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PWA 07 - ESP32 como servidor</title>
+<link rel="stylesheet" href="../estilo_mobile.css">
+</head>
+<body>
+<h1>Aula 7 (PWA) - O ESP32 como servidor da API</h1>
+<p>O firmware <code>04_firmware_esp32\esp32_servidor_http\esp32_servidor_http.ino</code> faz o ESP32 responder as rotas que o app usa.</p>
+
+<div class="passo"><b>Passo 1:</b> instale a Arduino IDE e o suporte ao ESP32. Siga a aula <code>05_instalar_arduino_ide</code> da pasta <b>esp32</b>.</div>
+<div class="passo"><b>Passo 2:</b> abra o <code>.ino</code>, troque <code>SEU_WIFI</code> e <code>SUA_SENHA</code>, escolha a placa e clique em <b>Carregar</b>.</div>
+<div class="passo"><b>Passo 3:</b> abra o Monitor Serial (115200) e anote o IP, por exemplo <code>192.168.0.50</code>.</div>
+<div class="passo"><b>Passo 4:</b> teste no navegador: <code>http://192.168.0.50/dados</code> deve mostrar o JSON.</div>
+<div class="passo"><b>Passo 5:</b> no app, <b>Configurar</b> &rarr; digite o IP &rarr; <b>Salvar</b>. Teste tambem <code>controle_dispositivo</code> (o LED da placa liga e desliga).</div>
+
+<h2>Como o firmware responde</h2>
+<pre>servidor.on("/dados", aoPedirDados);   // GET /dados  -&gt; JSON com sensores
+servidor.on("/led", aoPedirLed);       // GET /led?estado=1 -&gt; liga e responde o estado real
+servidor.sendHeader("Access-Control-Allow-Origin", "*");   // CORS</pre>
+
+<div class="dica">Os sensores do firmware sao simulados. Veja a pasta <b>esp32</b> para ligar sensores reais e aprender cada passo.</div>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Faca o LED da placa acender pelo app e confira se o botao mostra o estado real.</li>
+<li>Desligue o ESP32 e observe as mensagens de erro do app.</li>
+</ol></div>
+<p class="navegacao"><a href="06_testar_no_celular.html">&larr; Anterior</a> | <a href="../05_exercicios/exercicios_mobile.html">Exercicios &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\mobile_iot\abrir.ps1" 07_esp32_servidor -->

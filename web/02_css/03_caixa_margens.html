@@ -1,0 +1,37 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS - caixa</title>
+  <style>
+    /* AULA 03 - Modelo de caixa
+       Todo elemento e uma caixa:  conteudo > padding (espaco interno)
+       > border (borda) > margin (espaco externo). */
+    * { box-sizing: border-box; }   /* largura inclui padding e borda */
+
+    .cartao {
+      width: 300px;
+      padding: 20px;
+      border: 3px solid #1e88e5;
+      border-radius: 12px;
+      margin: 30px auto;            /* auto centraliza na horizontal */
+      background-color: #e3f2fd;
+      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    }
+    .cartao h2 { margin-top: 0; }
+  </style>
+</head>
+<body>
+  <div class="cartao">
+    <h2>Sensor de temperatura</h2>
+    <p>Mede de -55 ate 150 graus Celsius.</p>
+  </div>
+
+  <!-- EXERCICIOS:
+       1. Aumente o padding para 40px e veja o que muda.
+       2. Troque o border-radius para 50px.
+       3. Crie um segundo cartao com outra cor. -->
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 03_caixa_margens -->

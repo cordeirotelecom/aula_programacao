@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Curso de Programacao - Prof. Vagner Cordeiro</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f8fc;color:#1b2a3a;line-height:1.6}
+header{background:linear-gradient(135deg,#0b5394,#1c7ed6);color:#fff;padding:40px 16px;text-align:center}
+header h1{margin:0 0 8px;font-size:2rem}
+main{max-width:960px;margin:0 auto;padding:16px}
+.botoes{display:flex;flex-wrap:wrap;gap:16px;margin:24px 0}
+.cartao{flex:1 1 300px;background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 8px #0002}
+.cartao h2{margin-top:0}
+button,.btn{display:inline-block;border:0;border-radius:8px;padding:12px 20px;font-size:1rem;font-weight:600;color:#fff;cursor:pointer;text-decoration:none}
+.prof{background:#0b5394}.aluno{background:#2e9e4f}.copiar{background:#555;padding:6px 12px;font-size:.85rem}
+pre{background:#10202f;color:#e8f1fa;padding:12px;border-radius:8px;overflow:auto;font-size:13px;white-space:pre-wrap;word-break:break-all}
+.temas{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.temas div{background:#fff;border-radius:8px;padding:12px;border-left:5px solid #0b5394}
+footer{text-align:center;padding:24px;color:#555}
+</style>
+</head>
+<body>
+<header>
+<h1>Curso de Programacao</h1>
+<p>C, C++, Web, Redes, Arduino, ESP32, VHDL, UX e Integracao IoT - Elaborado pelo Prof. Vagner Cordeiro</p>
+</header>
+<main>
+<h2>Baixar e comecar (3 passos)</h2>
+<div class="botoes">
+  <div class="cartao">
+    <h2>1. Baixar</h2>
+    <p>Baixe o curso completo em um arquivo ZIP e extraia (botao direito &gt; Extrair tudo).</p>
+    <a class="btn prof" href="https://github.com/cordeirotelecom/aula_programacao/archive/refs/heads/main.zip">Baixar o curso (ZIP)</a>
+  </div>
+  <div class="cartao">
+    <h2>2. Instalar e abrir</h2>
+    <p>Na pasta extraida, de <b>duplo clique em <code>COMECE_AQUI.bat</code></b>. Ele instala o que faltar (GCC, Node.js) e abre o curso. Depois use <code>ABRIR_NO_VSCODE.bat</code>.</p>
+  </div>
+  <div class="cartao">
+    <h2>3. Executar</h2>
+    <p>No VS Code, abra um arquivo <code>.c</code>, <code>.cpp</code> ou <code>.html</code> e aperte <b>Ctrl+Shift+B</b>. Ou, no terminal: <code>.\rodar.ps1 01_ola_mundo</code>.</p>
+  </div>
+</div>
+<p>
+  <a class="btn aluno" href="https://vscode.dev/github/cordeirotelecom/aula_programacao">Abrir no VS Code online (sem instalar)</a>
+  <a class="btn prof" href="vscode://vscode.git/clone?url=https://github.com/cordeirotelecom/aula_programacao.git">Clonar no meu VS Code</a>
+  <a class="btn copiar" href="https://github.com/cordeirotelecom/aula_programacao">Ver no GitHub</a>
+</p>
+<p><small>No VS Code online voce le e edita as aulas, mas compilar C/C++ exige instalar no computador (passo 2).</small></p>
+
+<h2>Escolha seu perfil</h2>
+<p>Clique no botao, copie o comando e cole no <b>PowerShell</b> (Menu Iniciar &gt; digite PowerShell). Nao precisa ser administrador.</p>
+<div class="botoes">
+  <div class="cartao">
+    <h2>Professor</h2>
+    <p>Baixa <b>todo o curso</b> (aulas, exercicios, projetos), instala o GCC, o Node.js e as bibliotecas da integracao.</p>
+    <button class="prof" onclick="mostrar('prof')">Quero o ambiente do professor</button>
+    <div id="cmd-prof" hidden>
+      <pre id="txt-prof">irm https://raw.githubusercontent.com/cordeirotelecom/aula_programacao/main/instalar_professor.ps1 | iex</pre>
+      <button class="copiar" onclick="copiar('txt-prof',this)">Copiar comando</button>
+      <a class="btn copiar" href="https://github.com/cordeirotelecom/aula_programacao/archive/refs/heads/main.zip">Baixar somente o ZIP</a>
+    </div>
+  </div>
+  <div class="cartao">
+    <h2>Aluno</h2>
+    <p>Instala as ferramentas e deixa <b>pastas e arquivos em branco</b> prontos para voce escrever o codigo em sala. Nao baixa as respostas.</p>
+    <button class="aluno" onclick="mostrar('aluno')">Quero preparar meu ambiente</button>
+    <div id="cmd-aluno" hidden>
+      <pre id="txt-aluno">irm https://raw.githubusercontent.com/cordeirotelecom/aula_programacao/main/preparar_aluno.ps1 | iex</pre>
+      <button class="copiar" onclick="copiar('txt-aluno',this)">Copiar comando</button>
+    </div>
+  </div>
+</div>
+
+<h2>O que o curso tem</h2>
+<div class="temas">
+<div><b>C e C++</b><br>Fundamentos, intermediario e aplicacoes praticas.</div>
+<div><b>Web</b><br>HTML, CSS e JavaScript passo a passo.</div>
+<div><b>Redes</b><br>Mascara, broadcast, sub-redes, classes e calculadora.</div>
+<div><b>Arduino</b><br>Exemplos com LEDs, botoes, sensores e motores.</div>
+<div><b>ESP32 / ESP32-S3</b><br>Wi-Fi, BLE, deep sleep e projetos; quando usar cada um.</div>
+<div><b>Sistemas embarcados</b><br>Simulacoes em C e VHDL com GHDL.</div>
+<div><b>UX/Design e Mobile IoT</b><br>Boas praticas e apps PWA para IoT.</div>
+<div><b>Integracao</b><br>ESP32 + MQTT + Node-RED + banco + app.</div>
+</div>
+<p>Codigo-fonte e guia completo: <a href="https://github.com/cordeirotelecom/aula_programacao">github.com/cordeirotelecom/aula_programacao</a></p>
+</main>
+<footer>Elaborado pelo Prof. Vagner Cordeiro</footer>
+<script>
+function mostrar(qual){
+  if(location.protocol==='file:'){
+    var s=qual==='prof'?'instalar_professor.ps1':'preparar_aluno.ps1';
+    var pasta=decodeURIComponent(location.pathname.replace(/^\/([A-Za-z]:)/,'$1').replace(/\/[^\/]*$/,'')).replace(/\//g,'\\');
+    document.getElementById('txt-'+qual).textContent='powershell -NoProfile -ExecutionPolicy Bypass -File "'+pasta+'\\'+s+'"';
+  }
+  document.getElementById('cmd-'+qual).hidden=false;
+}
+function copiar(id,botao){
+  var t=document.getElementById(id).textContent;
+  navigator.clipboard.writeText(t).then(function(){botao.textContent='Copiado!'},function(){botao.textContent='Selecione e copie manualmente'});
+}
+</script>
+</body>
+</html>
+<!-- Executar: abra o arquivo index.html no navegador (ou use GitHub Pages) -->

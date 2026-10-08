@@ -1,0 +1,9 @@
+node_modules/
+*.exe
+*.o
+dados.db
+dados.db-*
+integracao/02_projeto/node-red/*
+!integracao/02_projeto/node-red/flows.json
+.ghdl/
+*.cf

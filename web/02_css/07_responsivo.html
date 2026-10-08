@@ -1,0 +1,36 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSS - responsivo</title>
+  <style>
+    /* AULA 07 - Design responsivo
+       A linha <meta name="viewport"> acima e obrigatoria para celulares.
+       @media aplica regras so quando a tela atende uma condicao. */
+    .painel { display: flex; gap: 10px; }
+    .painel div { flex: 1; padding: 30px; background: #ffe0b2; text-align: center; }
+
+    /* Em telas de ate 600px: os blocos ficam um embaixo do outro */
+    @media (max-width: 600px) {
+      .painel { flex-direction: column; }
+      body { background: #fff3e0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Redimensione a janela!</h1>
+  <div class="painel">
+    <div>Bloco 1</div>
+    <div>Bloco 2</div>
+    <div>Bloco 3</div>
+  </div>
+
+  <!-- EXERCICIOS:
+       1. Diminua a largura da janela do navegador e observe a mudanca.
+       2. Mude o ponto de quebra de 600px para 900px.
+       3. Esconda o Bloco 3 no celular (display: none dentro do @media). -->
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 07_responsivo -->

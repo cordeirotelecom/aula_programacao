@@ -1,0 +1,46 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Exercicios de sub-redes</title>
+<link rel="stylesheet" href="../01_teoria/estilo_redes.css">
+</head>
+<body>
+<h1>Exercicios de enderecamento e sub-redes</h1>
+<p>Resolva no papel e clique para ver a resposta. Confira com <code>rede_03_rede_broadcast</code> ou com a calculadora web.</p>
+
+<h2>Nivel 1 - Rede e broadcast</h2>
+<p>1) 192.168.5.200/24</p>
+<details><summary>Resposta</summary>Rede 192.168.5.0, broadcast 192.168.5.255, hosts .1 a .254 (254).</details>
+<p>2) 10.20.30.40/8</p>
+<details><summary>Resposta</summary>Rede 10.0.0.0, broadcast 10.255.255.255, 16.777.214 hosts.</details>
+<p>3) 172.16.50.9/20</p>
+<details><summary>Resposta</summary>Bloco de 16 no 3o octeto: rede 172.16.48.0, broadcast 172.16.63.255, 4094 hosts.</details>
+
+<h2>Nivel 2 - Mascaras e hosts</h2>
+<p>4) Qual CIDR comporta 500 hosts?</p>
+<details><summary>Resposta</summary>2^9 - 2 = 510, entao 9 bits de host: /23 (255.255.254.0).</details>
+<p>5) Mascara 255.255.255.240: CIDR e hosts?</p>
+<details><summary>Resposta</summary>/28, 14 hosts.</details>
+
+<h2>Nivel 3 - Mesma rede?</h2>
+<p>6) 192.168.1.10 e 192.168.1.130 com /25.</p>
+<details><summary>Resposta</summary>Nao. Primeiro esta em 192.168.1.0/25 e o segundo em 192.168.1.128/25.</details>
+<p>7) 10.1.1.5 e 10.1.200.9 com /16.</p>
+<details><summary>Resposta</summary>Sim, ambos em 10.1.0.0/16.</details>
+
+<h2>Nivel 4 - Sub-redes</h2>
+<p>8) Divida 192.168.20.0/24 em 4 sub-redes.</p>
+<details><summary>Resposta</summary>/26: .0, .64, .128, .192 (62 hosts cada).</details>
+<p>9) Divida 172.16.0.0/16 em 8 sub-redes.</p>
+<details><summary>Resposta</summary>/19: 172.16.0.0, .32.0, .64.0, .96.0, .128.0, .160.0, .192.0, .224.0 (8190 hosts cada).</details>
+
+<h2>Nivel 5 - VLSM</h2>
+<p>10) Em 192.168.50.0/24: A=100 hosts, B=50, C=25, D=2.</p>
+<details><summary>Resposta</summary>A 192.168.50.0/25; B 192.168.50.128/26; C 192.168.50.192/27 (30 hosts); D 192.168.50.224/30.</details>
+
+<p><a href="../01_teoria/09_comandos_windows.html">&larr; Teoria</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\redes\abrir.ps1" exercicios_sub_redes -->

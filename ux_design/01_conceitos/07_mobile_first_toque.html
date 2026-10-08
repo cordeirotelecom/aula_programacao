@@ -1,0 +1,65 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UX 07 - Mobile first e toque</title>
+<link rel="stylesheet" href="../estilo_ux.css">
+<style>
+/* Elaborado pelo Prof. Vagner Cordeiro */
+.bt { display: inline-block; background: #5f3dc4; color: #fff; border-radius: 6px; margin: 4px; text-align: center; }
+.pequeno { width: 24px; height: 24px; line-height: 24px; font-size: 12px; }
+.bom { width: 48px; height: 48px; line-height: 48px; }
+.zona { background: #f1f3f5; padding: 10px; border-radius: 6px; }
+</style>
+</head>
+<body>
+<h1>Aula 7 - Mobile first e design para toque</h1>
+
+<h2>Mobile first</h2>
+<p>Projete <b>primeiro para a tela pequena</b>, depois amplie. Obriga a focar no essencial.</p>
+<pre>/* estilo base = celular */
+.cartao { padding: 16px; }
+
+/* telas maiores */
+@media (min-width: 768px) {
+  .cartao { padding: 24px; }
+}</pre>
+<p>Nao esqueca no <code>&lt;head&gt;</code>:</p>
+<pre>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</pre>
+
+<h2>Tamanho do alvo de toque</h2>
+<p>O dedo e muito mais impreciso que o mouse.</p>
+<ul>
+<li><b>Minimo: 44 x 44 px</b> (Apple) ou <b>48 x 48 dp</b> (Google).</li>
+<li>Espaco de <b>8px</b> entre alvos vizinhos.</li>
+</ul>
+<div class="zona">
+<span class="bt pequeno">1</span><span class="bt pequeno">2</span><span class="bt pequeno">3</span>
+&larr; pequeno (24px): dificil de acertar<br>
+<span class="bt bom">1</span><span class="bt bom">2</span><span class="bt bom">3</span>
+&larr; bom (48px)
+</div>
+
+<h2>Zona do polegar</h2>
+<p>Com uma mao, o polegar alcanca bem a <b>parte de baixo</b> da tela. Coloque as acoes principais embaixo (barra inferior) e deixe o topo para informacao.</p>
+
+<h2>Outras praticas mobile</h2>
+<ul>
+<li>Um objetivo por tela; poucas opcoes.</li>
+<li>Teclado certo: <code>type="number"</code>, <code>type="email"</code>, <code>type="tel"</code>.</li>
+<li>Gestos nao devem ser a unica forma (arrastar precisa de alternativa por botao).</li>
+<li>Feedback imediato ao toque (mudar cor, vibrar, mostrar "carregando").</li>
+<li>Pense em <b>sol forte</b>, <b>mao suja</b>, <b>internet ruim</b>.</li>
+</ul>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Abra esta pagina, aperte F12 e ative o modo celular (Ctrl+Shift+M). Teste os botoes pequenos e os bons.</li>
+<li>Redesenhe uma tela sua pensando na zona do polegar.</li>
+</ol></div>
+<p class="navegacao"><a href="06_acessibilidade.html">&larr; Anterior</a> | <a href="08_ux_para_iot.html">Proxima: UX para IoT &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\ux_design\abrir.ps1" 07_mobile_first_toque -->

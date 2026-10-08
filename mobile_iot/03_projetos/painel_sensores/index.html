@@ -1,0 +1,55 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#5f3dc4">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icone.svg" type="image/svg+xml">
+  <title>Painel de Sensores</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <header>
+    <h1>Minha Estufa</h1>
+    <p id="status" class="status" aria-live="polite">Buscando dados...</p>
+  </header>
+
+  <main>
+    <section class="cartao" aria-labelledby="t1">
+      <h2 id="t1">Temperatura</h2>
+      <p class="valor" id="temperatura">--</p>
+      <span class="selo" id="seloTemp">-</span>
+    </section>
+
+    <section class="cartao" aria-labelledby="t2">
+      <h2 id="t2">Umidade do solo</h2>
+      <p class="valor" id="umidade">--</p>
+      <span class="selo" id="seloUmi">-</span>
+    </section>
+
+    <p class="atualizado" id="atualizado"></p>
+  </main>
+
+  <nav class="barra">
+    <button id="btnAtualizar" type="button">Atualizar agora</button>
+    <button id="btnConfig" type="button" class="secundario">Configurar</button>
+  </nav>
+
+  <dialog id="config">
+    <form method="dialog">
+      <label for="endereco">Endereco do dispositivo</label>
+      <input id="endereco" inputmode="decimal" placeholder="Ex.: 192.168.0.50">
+      <p class="ajuda">Deixe vazio para usar dados de exemplo (simulador).</p>
+      <p class="erro" id="erroConfig"></p>
+      <button id="btnSalvar" type="button">Salvar</button>
+      <button value="cancel" class="secundario">Cancelar</button>
+    </form>
+  </dialog>
+
+  <script src="../logica.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\mobile_iot\abrir.ps1" painel_sensores -->

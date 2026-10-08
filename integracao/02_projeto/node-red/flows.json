@@ -1,0 +1,10 @@
+[
+  {"id":"aba1","type":"tab","label":"Estufa IoT (Prof. Vagner Cordeiro)","disabled":false,"info":"Elaborado pelo Prof. Vagner Cordeiro. Assina estufa/+/dados, calcula alerta e grava na API."},
+  {"id":"broker1","type":"mqtt-broker","name":"Broker local","broker":"127.0.0.1","port":"1883","clientid":"","autoConnect":true,"usetls":false,"protocolVersion":"4","keepalive":"60","cleansession":true},
+  {"id":"in1","type":"mqtt in","z":"aba1","name":"estufa/+/dados","topic":"estufa/+/dados","qos":"0","datatype":"json","broker":"broker1","x":140,"y":100,"wires":[["fn1"]]},
+  {"id":"fn1","type":"function","z":"aba1","name":"calcula alerta","func":"// topico: estufa/<dispositivo>/dados\nconst dispositivo = msg.topic.split('/')[1];\nconst d = msg.payload;\nconst alerta = d.temperatura > 30;\nmsg.payload = { dispositivo, temperatura: d.temperatura, umidade: d.umidade, led: !!d.led, alerta };\nmsg.headers = { 'Content-Type': 'application/json' };\nreturn msg;","outputs":1,"x":360,"y":100,"wires":[["http1","sw1","dbg1"]]},
+  {"id":"http1","type":"http request","z":"aba1","name":"POST /api/leituras","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://127.0.0.1:3000/api/leituras","tls":"","persist":false,"proxy":"","authType":"","x":610,"y":60,"wires":[[]]},
+  {"id":"sw1","type":"switch","z":"aba1","name":"alerta?","property":"payload.alerta","propertyType":"msg","rules":[{"t":"true"}],"checkall":"true","outputs":1,"x":590,"y":120,"wires":[["out1"]]},
+  {"id":"out1","type":"mqtt out","z":"aba1","name":"estufa/alerta","topic":"estufa/alerta","qos":"0","retain":"false","broker":"broker1","x":790,"y":120,"wires":[]},
+  {"id":"dbg1","type":"debug","z":"aba1","name":"ver dados","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"payload","x":600,"y":180,"wires":[]}
+]

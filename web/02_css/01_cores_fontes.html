@@ -1,0 +1,43 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS - cores e fontes</title>
+  <style>
+    /* AULA 01 - Cores e fontes
+       CSS tem o formato:  seletor { propriedade: valor; }
+       Cores: nome (red), hexadecimal (#1e88e5) ou rgb(30, 136, 229). */
+    body {
+      background-color: #f0f4f8;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      color: #1e88e5;
+      font-size: 36px;
+      text-align: center;
+    }
+    p {
+      color: rgb(60, 60, 60);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    .destaque {
+      color: white;
+      background-color: crimson;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Estilizando com CSS</h1>
+  <p>Este paragrafo usa cor cinza escura e fonte Arial.</p>
+  <p class="destaque">Este paragrafo tem destaque.</p>
+
+  <!-- EXERCICIOS:
+       1. Troque a cor do titulo para o seu azul ou verde favorito.
+       2. Mude a fonte para "Courier New", monospace.
+       3. Alinhe o titulo a direita (text-align: right). -->
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 01_cores_fontes -->

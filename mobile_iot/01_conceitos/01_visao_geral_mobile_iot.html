@@ -1,0 +1,42 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mobile IoT 01 - Visao geral</title>
+<link rel="stylesheet" href="../estilo_mobile.css">
+</head>
+<body>
+<h1>Aula 1 - Visao geral: app mobile + IoT</h1>
+<p>Um sistema IoT tem tres partes que conversam entre si:</p>
+<pre>[ Sensor / Atuador ] --- [ Microcontrolador (ESP32) ] ~~~ Wi-Fi ~~~ [ App no celular ]
+   mede / liga           le, decide, responde                         mostra e comanda</pre>
+
+<table>
+<tr><th>Parte</th><th>Papel</th><th>Exemplo</th></tr>
+<tr><td>Dispositivo</td><td>Le sensores e aciona coisas</td><td>ESP32 + sensor de solo + rele</td></tr>
+<tr><td>Rede</td><td>Leva as mensagens</td><td>Wi-Fi, Bluetooth (BLE), a Internet</td></tr>
+<tr><td>Aplicativo</td><td>Interface do usuario</td><td>PWA no celular</td></tr>
+<tr><td>(Opcional) Nuvem</td><td>Guarda historico, acesso de qualquer lugar</td><td>Broker MQTT, banco de dados</td></tr>
+</table>
+
+<h2>Dois jeitos de conectar</h2>
+<table>
+<tr><th>Direto (local)</th><th>Via nuvem</th></tr>
+<tr><td>Celular fala com o ESP32 no mesmo Wi-Fi</td><td>Celular e ESP32 falam com um servidor na Internet</td></tr>
+<tr><td>Simples, rapido, sem custo</td><td>Funciona de qualquer lugar, mais complexo</td></tr>
+<tr><td><b>Usado neste curso</b></td><td>Veja MQTT na aula 3</td></tr>
+</table>
+
+<div class="dica">Comece sempre pelo <b>local</b>: e mais facil de entender e depurar. A nuvem entra depois.</div>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Desenhe o diagrama de um sistema de alarme residencial com as 3 partes.</li>
+<li>Cite 2 vantagens e 2 desvantagens de falar direto com o dispositivo.</li>
+</ol></div>
+<p class="navegacao"><a href="02_nativo_hibrido_pwa.html">Proxima: Nativo, hibrido ou PWA &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\mobile_iot\abrir.ps1" 01_visao_geral_mobile_iot -->

@@ -1,0 +1,33 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS - grid</title>
+  <style>
+    /* AULA 06 - Grid: organiza itens em linhas E colunas */
+    .grade {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);   /* 3 colunas iguais */
+      gap: 10px;
+    }
+    .item { background: #c8e6c9; padding: 25px; text-align: center; border-radius: 6px; }
+    .largo { grid-column: span 2; background: #a5d6a7; }   /* ocupa 2 colunas */
+  </style>
+</head>
+<body>
+  <div class="grade">
+    <div class="item largo">Largo (2 colunas)</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+    <div class="item">6</div>
+  </div>
+
+  <!-- EXERCICIOS:
+       1. Mude para 4 colunas (repeat(4, 1fr)).
+       2. Use grid-template-columns: 200px 1fr 1fr para colunas de tamanhos diferentes. -->
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 06_grid -->

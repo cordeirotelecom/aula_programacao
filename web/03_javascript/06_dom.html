@@ -1,0 +1,38 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>JS - DOM</title>
+</head>
+<body>
+  <h1 id="titulo">Titulo original</h1>
+  <p class="texto">Primeiro paragrafo</p>
+  <p class="texto">Segundo paragrafo</p>
+  <ul id="lista"></ul>
+
+  <script>
+    // AULA 06 - DOM: o JavaScript enxerga a pagina como uma arvore de elementos
+    // e pode ler e mudar tudo nela.
+    const titulo = document.getElementById("titulo");
+    titulo.textContent = "Titulo alterado pelo JavaScript";
+    titulo.style.color = "teal";
+
+    const textos = document.querySelectorAll(".texto");   // todos com a classe
+    textos.forEach((p, i) => { p.textContent += " (editado " + (i + 1) + ")"; });
+
+    const lista = document.getElementById("lista");
+    ["LED", "Botao", "Buzzer"].forEach(item => {
+      const li = document.createElement("li");            // cria um elemento
+      li.textContent = item;
+      lista.appendChild(li);                              // coloca na pagina
+    });
+
+    // EXERCICIOS:
+    // 1. Mude a cor de fundo da pagina (document.body.style.backgroundColor).
+    // 2. Adicione mais 3 itens na lista.
+    // 3. Use titulo.classList.add("...") depois de criar uma classe no CSS.
+  </script>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 06_dom -->

@@ -1,0 +1,62 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PWA 03 - Estados da tela</title>
+<link rel="stylesheet" href="../estilo_mobile.css">
+<style>
+/* Elaborado pelo Prof. Vagner Cordeiro */
+#caixa { border: 2px solid #868e96; border-radius: 10px; padding: 14px; max-width: 360px; font-size: 18px; }
+.carregando { background: #e7f5ff; } .normal { background: #d3f9d8; } .erro { background: #ffe3e3; } .cache { background: #fff3bf; }
+</style>
+</head>
+<body>
+<h1>Aula 3 (PWA) - Estados da tela</h1>
+<p>Em IoT a rede falha. Toda tela precisa decidir o que mostrar em cada situacao (aula 8 de UX).</p>
+
+<table>
+<tr><th>Estado</th><th>Quando</th><th>O que mostrar</th></tr>
+<tr><td>Carregando</td><td>Pedido enviado</td><td>"Buscando dados..."</td></tr>
+<tr><td>Normal</td><td>Resposta chegou</td><td>Valores e "atualizado agora"</td></tr>
+<tr><td>Erro</td><td>Falhou e nao ha dado antigo</td><td>Mensagem + o que fazer</td></tr>
+<tr><td>Offline com cache</td><td>Falhou, mas ha leitura salva</td><td>Ultima leitura em cinza + horario</td></tr>
+</table>
+
+<h2>Experimente</h2>
+<button onclick="estado('carregando')">Carregando</button>
+<button onclick="estado('normal')">Normal</button>
+<button onclick="estado('erro')">Erro</button>
+<button onclick="estado('cache')">Offline com cache</button>
+<div id="caixa" class="carregando" aria-live="polite">Buscando dados...</div>
+
+<script>
+// Elaborado pelo Prof. Vagner Cordeiro
+var textos = {
+  carregando: "Buscando dados...",
+  normal: "27,5 \u00B0C \u2713 Normal - atualizado agora",
+  erro: "Sem conexao. Confira se o dispositivo esta ligado e no mesmo Wi-Fi.",
+  cache: "26,9 \u00B0C (ultima leitura, ha 10 min) - sem conexao"
+};
+function estado(nome) {
+  var c = document.getElementById("caixa");
+  c.className = nome;
+  c.textContent = textos[nome];
+}
+</script>
+
+<h2>Guardando a ultima leitura</h2>
+<pre>localStorage.setItem("ultimaLeitura", JSON.stringify({ dados: dados, quando: Date.now() }));
+var antiga = JSON.parse(localStorage.getItem("ultimaLeitura") || "null");</pre>
+<p>Veja o uso real em <code>painel_sensores\script.js</code> (funcao <code>atualizar</code>).</p>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Acrescente o estado "Dispositivo desligado ha mais de 1 hora".</li>
+<li>No painel, desligue o ESP32 (ou digite um IP errado) e observe o estado de cache.</li>
+</ol></div>
+<p class="navegacao"><a href="02_buscar_dados_fetch.html">&larr; Anterior</a> | <a href="04_manifest_instalar.html">Proxima: Manifest e instalacao &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\mobile_iot\abrir.ps1" 03_estados_da_tela -->

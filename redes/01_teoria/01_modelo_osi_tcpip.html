@@ -1,0 +1,36 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Redes 01 - Modelo OSI e TCP/IP</title>
+<link rel="stylesheet" href="estilo_redes.css">
+</head>
+<body>
+<h1>Aula 1 - Modelo OSI e TCP/IP</h1>
+<p>Para dois computadores conversarem, o trabalho e dividido em <b>camadas</b>. Cada camada cuida de uma tarefa e conversa so com a vizinha.</p>
+
+<table>
+<tr><th>#</th><th>Camada OSI</th><th>Funcao</th><th>Exemplos</th><th>TCP/IP</th></tr>
+<tr><td>7</td><td>Aplicacao</td><td>Servicos para o usuario</td><td>HTTP, DNS, SMTP</td><td rowspan="3">Aplicacao</td></tr>
+<tr><td>6</td><td>Apresentacao</td><td>Formato, criptografia</td><td>TLS, JPEG</td></tr>
+<tr><td>5</td><td>Sessao</td><td>Controle do dialogo</td><td>Sessoes</td></tr>
+<tr><td>4</td><td>Transporte</td><td>Portas, confiabilidade</td><td>TCP, UDP</td><td>Transporte</td></tr>
+<tr><td>3</td><td>Rede</td><td>Enderecos IP e rotas</td><td>IP, ICMP, roteador</td><td>Internet</td></tr>
+<tr><td>2</td><td>Enlace</td><td>Enderecos MAC, quadros</td><td>Ethernet, Wi-Fi, switch</td><td rowspan="2">Acesso a rede</td></tr>
+<tr><td>1</td><td>Fisica</td><td>Bits no meio fisico</td><td>Cabo, fibra, radio</td></tr>
+</table>
+
+<h2>Encapsulamento</h2>
+<p>Ao enviar, cada camada adiciona seu cabecalho: Dados &rarr; Segmento (TCP) &rarr; Pacote (IP) &rarr; Quadro (Ethernet) &rarr; Bits.</p>
+<p class="dica">Dica de memoria (7 a 1): <b>A</b>ll <b>P</b>eople <b>S</b>eem <b>T</b>o <b>N</b>eed <b>D</b>ata <b>P</b>rocessing.</p>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Em que camada trabalha um switch? E um roteador?</li>
+<li>O que o TCP faz que o UDP nao faz?</li>
+</ol></div>
+<p><a href="02_binario_decimal.html">Proxima: Binario e decimal &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\redes\abrir.ps1" 01_modelo_osi_tcpip -->

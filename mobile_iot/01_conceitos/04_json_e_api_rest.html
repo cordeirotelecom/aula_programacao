@@ -1,0 +1,54 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mobile IoT 04 - JSON e API REST</title>
+<link rel="stylesheet" href="../estilo_mobile.css">
+</head>
+<body>
+<h1>Aula 4 - JSON e API REST</h1>
+
+<h2>JSON: o idioma comum</h2>
+<p>JSON e um texto que organiza dados em <b>chave: valor</b>. Todo celular e todo ESP32 entendem.</p>
+<pre>{
+  "temperatura": 27.5,
+  "umidade": 61,
+  "led": false
+}</pre>
+<table>
+<tr><th>Tipo</th><th>Exemplo</th></tr>
+<tr><td>Numero</td><td><code>27.5</code></td></tr>
+<tr><td>Texto (aspas duplas)</td><td><code>"Estufa"</code></td></tr>
+<tr><td>Verdadeiro/falso</td><td><code>true</code>, <code>false</code></td></tr>
+<tr><td>Lista</td><td><code>[1, 2, 3]</code></td></tr>
+<tr><td>Objeto</td><td><code>{"a": 1}</code></td></tr>
+</table>
+
+<h2>No JavaScript</h2>
+<pre>var texto = '{"temperatura":27.5,"led":false}';
+var dados = JSON.parse(texto);        // texto -> objeto
+console.log(dados.temperatura);       // 27.5
+var de_volta = JSON.stringify(dados); // objeto -> texto</pre>
+
+<h2>API REST: rotas simples</h2>
+<table>
+<tr><th>Rota</th><th>Metodo</th><th>Faz</th><th>Resposta</th></tr>
+<tr><td><code>/dados</code></td><td>GET</td><td>Le os sensores</td><td><code>{"temperatura":27.5,"umidade":61,"led":false}</code></td></tr>
+<tr><td><code>/led?estado=1</code></td><td>GET</td><td>Liga o LED</td><td><code>{"led":true}</code></td></tr>
+<tr><td><code>/led?estado=0</code></td><td>GET</td><td>Desliga o LED</td><td><code>{"led":false}</code></td></tr>
+</table>
+<p>Codigos de resposta: <b>200</b> deu certo, <b>400</b> pedido errado, <b>404</b> rota nao existe, <b>500</b> erro no dispositivo.</p>
+
+<div class="dica">Teste a API sem app: com o ESP32 ligado, abra <code>http://IP_DO_ESP32/dados</code> no navegador do PC. Se aparecer o JSON, a parte do dispositivo esta pronta.</div>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Escreva o JSON de uma estufa com temperatura, umidade, luz e estado da bomba.</li>
+<li>Defina as rotas para uma fechadura (abrir, fechar, ler estado).</li>
+</ol></div>
+<p class="navegacao"><a href="03_protocolos_http_mqtt_ble.html">&larr; Anterior</a> | <a href="05_seguranca_basica.html">Proxima: Seguranca basica &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\mobile_iot\abrir.ps1" 04_json_e_api_rest -->

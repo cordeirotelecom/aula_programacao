@@ -1,0 +1,42 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS - flexbox</title>
+  <style>
+    /* AULA 05 - Flexbox: organiza itens em linha ou coluna com facilidade */
+    .menu {
+      display: flex;                    /* ativa o flexbox */
+      justify-content: space-between;   /* distribui no eixo principal */
+      align-items: center;              /* alinha no eixo cruzado */
+      gap: 10px;
+      background: #263238;
+      padding: 15px;
+    }
+    .menu a { color: white; text-decoration: none; }
+
+    .cartoes { display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+    .cartao { flex: 1; min-width: 150px; background: #b3e5fc; padding: 20px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <nav class="menu">
+    <strong style="color:white">Meu Site</strong>
+    <a href="#">Inicio</a>
+    <a href="#">Cursos</a>
+    <a href="#">Contato</a>
+  </nav>
+
+  <div class="cartoes">
+    <div class="cartao">LED</div>
+    <div class="cartao">Botao</div>
+    <div class="cartao">Sensor</div>
+  </div>
+
+  <!-- EXERCICIOS:
+       1. Mude justify-content do menu para center e depois flex-end.
+       2. Faca os cartoes ficarem em coluna (flex-direction: column). -->
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 05_flexbox -->

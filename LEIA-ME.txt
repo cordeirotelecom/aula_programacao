@@ -1,0 +1,116 @@
+﻿==============================================================
+ CURSO DE PROGRAMACAO - LEIA-ME
+ Elaborado pelo Prof. Vagner Cordeiro
+==============================================================
+ Nao precisa ser administrador. So copiar e colar.
+ Colar no PowerShell = clique com o botao DIREITO do mouse.
+
+
+--------------------------------------------------------------
+ PASSO 1 - INSTALAR (so uma vez)
+--------------------------------------------------------------
+ a) Conecte o pendrive.
+ b) Menu Iniciar > digite PowerShell > Enter.
+ c) Copie TODO o bloco abaixo, cole no PowerShell e aperte Enter:
+
+$z = Get-PSDrive -PSProvider FileSystem | ForEach-Object { Join-Path $_.Root 'curso_programacao.zip' } | Where-Object { Test-Path $_ } | Select-Object -First 1; if (-not $z) { $z = Join-Path ([Environment]::GetFolderPath('Desktop')) 'curso_programacao.zip' }; $t = "$env:TEMP\curso"; Remove-Item $t -Recurse -Force -ErrorAction SilentlyContinue; Expand-Archive $z $t -Force; Get-ChildItem $t -Recurse -File | Unblock-File; powershell -NoProfile -ExecutionPolicy Bypass -File "$t\instalar_professor.ps1"; Start-Process ".\index.html"
+
+ d) Aguarde (precisa de internet para baixar GCC e Node.js).
+    O curso fica em: Documentos\programacao\curso_programacao
+    Ao final abre a pagina inicial do curso no navegador.
+
+ IMPORTANTE: depois de instalar, FECHE o PowerShell e abra um NOVO.
+ So assim o computador reconhece o gcc.
+
+ Sem internet ou PowerShell bloqueado?
+    Extraia o ZIP (botao direito > Extrair tudo) e de duplo clique
+    em index.html. As aulas em HTML funcionam sem instalar nada.
+
+
+--------------------------------------------------------------
+ PASSO 2 - RODAR PROGRAMAS EM C E C++
+--------------------------------------------------------------
+ Trocar so o final: c ou cpp  +  nome do programa.
+
+ Primeiro programa em C:
+powershell -ExecutionPolicy Bypass -File ".\executar.ps1" c 01_ola_mundo
+
+ JEITO MAIS FACIL (recomendado):
+   1) Duplo clique em ABRIR_NO_VSCODE.bat
+   2) Abra qualquer arquivo .c, .cpp ou .html e aperte Ctrl+Shift+B
+      (C/C++ compila e roda no terminal; HTML abre no navegador).
+   3) Por nome: Ctrl+Shift+P > Tasks: Run Task > "Rodar por nome..."
+
+ PELO TERMINAL: um unico comando serve para tudo. Abra a pasta do curso no
+ Explorer, clique na barra de endereco, digite powershell e Enter:
+   .\rodar.ps1 01_ola_mundo
+   .\rodar.ps1 03_enderecos_ip
+ (se der erro de politica: powershell -ExecutionPolicy Bypass -File .\rodar.ps1 NOME)
+ Os comandos antigos (executar.ps1 e abrir.ps1) continuam funcionando.
+
+ ONDE EXECUTAR os comandos antigos: rodam a partir da pasta do curso
+ (onde esta o executar.ps1). Abra a pasta no Explorer, clique na barra de
+ endereco, digite powershell e Enter. Ou: cd "CAMINHO\curso_programacao"
+
+ Mesmo programa em C++:
+powershell -ExecutionPolicy Bypass -File ".\executar.ps1" cpp 01_ola_mundo
+
+ Simulacao de sistemas embarcados (C):
+powershell -ExecutionPolicy Bypass -File ".\executar.ps1" c sim_01_maquina_estados
+
+ Calculo de rede (mascara, broadcast):
+powershell -ExecutionPolicy Bypass -File ".\executar.ps1" c rede_08_passo_a_passo
+
+
+--------------------------------------------------------------
+ PASSO 3 - ABRIR AULAS NO NAVEGADOR
+--------------------------------------------------------------
+ Web (HTML, CSS, JavaScript):
+powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 01_primeira_pagina
+
+ Redes (para que serve mascara, classe, faixa):
+powershell -ExecutionPolicy Bypass -File ".\redes\abrir.ps1" 00_para_que_serve
+
+ ESP32 e ESP32-S3 (qual escolher):
+powershell -ExecutionPolicy Bypass -File ".\esp32\abrir.ps1" 06_escolhedor
+
+ UX / Design:
+powershell -ExecutionPolicy Bypass -File ".\ux_design\abrir.ps1" 01_o_que_e_ux_ui
+
+ Integracao (ESP32 + MQTT + Node-RED + banco + app), passo a passo:
+powershell -ExecutionPolicy Bypass -File ".\integracao\abrir.ps1" 01_passo_a_passo_completo
+
+
+--------------------------------------------------------------
+ PASSO 4 - VHDL (simulacao de circuitos)
+--------------------------------------------------------------
+ O simulador GHDL e baixado sozinho na primeira vez.
+powershell -ExecutionPolicy Bypass -File ".\sistemas_embarcados\01_vhdl\simular.ps1" 01_porta_and
+
+
+--------------------------------------------------------------
+ PASSO 5 - PROJETO DE INTEGRACAO (teste automatico)
+--------------------------------------------------------------
+cd ".\integracao\02_projeto"; npm run teste
+
+ Deve terminar com: TUDO CERTO - a integracao funciona.
+
+
+--------------------------------------------------------------
+ PARA O ALUNO (pastas em branco para fazer o codigo em sala)
+--------------------------------------------------------------
+powershell -NoProfile -ExecutionPolicy Bypass -File ".\preparar_aluno.ps1"
+
+ Cria Documentos\programacao\aluno com exercicios vazios.
+ Rodar um exercicio do aluno:
+powershell -ExecutionPolicy Bypass -File "$([Environment]::GetFolderPath('MyDocuments'))\programacao\aluno\executar.ps1" c exercicio_01
+
+
+--------------------------------------------------------------
+ SE ALGO DER ERRADO
+--------------------------------------------------------------
+ - "gcc nao e reconhecido": feche o PowerShell e abra um NOVO.
+ - "Nao encontrei o arquivo": confira o nome e se a pasta esta em
+   Documentos\programacao\curso_programacao.
+ - Download falhou: confira a internet e repita o PASSO 1.
+ - Porta em uso (integracao): feche a janela antiga (Ctrl+C) e rode de novo.

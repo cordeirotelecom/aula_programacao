@@ -1,0 +1,88 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Redes 10 - Passo a passo no papel</title>
+<link rel="stylesheet" href="estilo_redes.css">
+</head>
+<body>
+<h1>Aula 10 - Calculando rede e broadcast, passo a passo</h1>
+<p>Aqui voce aprende a calcular <b>de cabeca ou no papel</b>, sem calculadora. So precisa saber somar e multiplicar.</p>
+
+<h2>Antes de comecar: 3 coisas para decorar</h2>
+<table>
+<tr><th>Bits 1 no octeto</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr>
+<tr><th>Valor da mascara</th><td>128</td><td>192</td><td>224</td><td>240</td><td>248</td><td>252</td><td>254</td><td>255</td></tr>
+<tr><th>Bloco (256 - mascara)</th><td>128</td><td>64</td><td>32</td><td>16</td><td>8</td><td>4</td><td>2</td><td>1</td></tr>
+</table>
+
+<h2>Exemplo completo: 192.168.10.77 /26</h2>
+
+<h3>Passo 1 - Rede e host</h3>
+<p>/26 = 26 bits de rede. Sobram 32 - 26 = <b>6 bits de host</b>.</p>
+
+<h3>Passo 2 - Mascara</h3>
+<p>Cada octeto tem 8 bits. 26 = 8 + 8 + 8 + <b>2</b>. Entao os 3 primeiros octetos sao 255 e o quarto tem 2 bits ligados = 128 + 64 = <b>192</b>.</p>
+<p>Mascara: <code>255.255.255.192</code></p>
+
+<h3>Passo 3 - Tamanho do bloco</h3>
+<p>Olhe o octeto que nao e 255 nem 0 (o <i>octeto interessante</i>): aqui e o 4o, valor 192.</p>
+<p>Bloco = 256 - 192 = <b>64</b>. As redes nascem de 64 em 64: 0, 64, 128, 192.</p>
+
+<h3>Passo 4 - Endereco da rede</h3>
+<p>No octeto interessante o IP vale 77. Qual multiplo de 64 vem logo antes (ou igual)? 0, <b>64</b>, 128... &rarr; 64 (pois 77 &divide; 64 = 1 inteiro; 1 &times; 64).</p>
+<p>Octetos anteriores: copie. Octetos depois: 0.</p>
+<p>Rede: <code>192.168.10.64</code></p>
+
+<h3>Passo 5 - Broadcast</h3>
+<p>Broadcast = rede + bloco - 1 = 64 + 64 - 1 = <b>127</b> no octeto interessante.</p>
+<p>Broadcast: <code>192.168.10.127</code></p>
+
+<h3>Passo 6 - Hosts</h3>
+<p>Primeiro host = rede + 1 = <code>192.168.10.65</code><br>
+Ultimo host = broadcast - 1 = <code>192.168.10.126</code><br>
+Quantidade = 2<sup>6</sup> - 2 = 64 - 2 = <b>62 hosts</b></p>
+
+<h3>Passo 7 - Prova (E binario)</h3>
+<pre>77   = 01001101
+192  = 11000000
+AND  = 01000000  = 64  &#10003;</pre>
+
+<h2>Outro exemplo: o octeto interessante nao e o ultimo</h2>
+<p><b>172.16.50.9 /20</b></p>
+<ol>
+<li>/20 = 8 + 8 + <b>4</b> &rarr; mascara 255.255.<b>240</b>.0 (4 bits = 128+64+32+16 = 240)</li>
+<li>Octeto interessante: o <b>3o</b> (240). Bloco = 256 - 240 = <b>16</b></li>
+<li>IP neste octeto = 50. Multiplos de 16: 0, 16, 32, <b>48</b>, 64. Rede = <code>172.16.48.0</code></li>
+<li>Broadcast: 48 + 16 - 1 = 63; octetos depois = 255 &rarr; <code>172.16.63.255</code></li>
+<li>Hosts: 2<sup>12</sup> - 2 = <b>4094</b></li>
+</ol>
+
+<h2>Faca voce mesmo: o explicador</h2>
+<p>Digite qualquer IP e CIDR. O explicador mostra cada passo igual ao do papel.</p>
+<label>IP: <input id="ip" value="10.0.77.200"></label>
+<label>CIDR: <input id="cidr" type="number" min="0" max="32" value="21" style="width:60px"></label>
+<button onclick="mostrar()">Explicar passo a passo</button>
+<pre id="saida"></pre>
+
+<script src="passo_a_passo.js"></script>
+<script>
+// Elaborado pelo Prof. Vagner Cordeiro
+function mostrar() {
+  var passos = explicar(document.getElementById("ip").value, Number(document.getElementById("cidr").value));
+  document.getElementById("saida").textContent = passos ? passos.join("\n\n") : "IP ou CIDR invalido.";
+}
+mostrar();
+</script>
+
+<div class="exercicio"><b>Exercicios</b> (use o explicador so para conferir)
+<ol>
+<li>192.168.1.130 /25</li>
+<li>10.4.200.33 /18</li>
+<li>172.20.100.5 /29</li>
+</ol></div>
+<p><a href="09_comandos_windows.html">&larr; Anterior</a> | <a href="../04_exercicios/exercicios_sub_redes.html">Exercicios &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\redes\abrir.ps1" 10_passo_a_passo_calculo -->

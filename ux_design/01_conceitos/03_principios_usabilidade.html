@@ -1,0 +1,41 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UX 03 - Principios de usabilidade</title>
+<link rel="stylesheet" href="../estilo_ux.css">
+</head>
+<body>
+<h1>Aula 3 - Principios de usabilidade (as 10 heuristicas de Nielsen)</h1>
+<p>Regras testadas ha decadas. Use como lista de verificacao em qualquer tela.</p>
+
+<table>
+<tr><th>#</th><th>Principio</th><th>Em palavras simples</th><th>Exemplo IoT</th></tr>
+<tr><td>1</td><td>Visibilidade do estado</td><td>Sempre mostre o que esta acontecendo</td><td>"Conectando..." / "Lampada LIGADA"</td></tr>
+<tr><td>2</td><td>Linguagem do usuario</td><td>Fale como a pessoa fala</td><td>"Solo seco", nao "ADC=312"</td></tr>
+<tr><td>3</td><td>Controle e liberdade</td><td>Permita desfazer e cancelar</td><td>Botao "Desligar" sempre a vista</td></tr>
+<tr><td>4</td><td>Consistencia</td><td>Mesma coisa, mesmo jeito</td><td>Verde sempre = ligado</td></tr>
+<tr><td>5</td><td>Prevencao de erros</td><td>Evite o erro antes dele ocorrer</td><td>Confirmar "Resetar dispositivo?"</td></tr>
+<tr><td>6</td><td>Reconhecer em vez de lembrar</td><td>Mostre opcoes, nao exija memoria</td><td>Lista de dispositivos pelo nome</td></tr>
+<tr><td>7</td><td>Flexibilidade</td><td>Atalhos para experientes</td><td>Favoritos na tela inicial</td></tr>
+<tr><td>8</td><td>Design minimalista</td><td>Tire o que nao e necessario</td><td>Mostre so 3 sensores principais</td></tr>
+<tr><td>9</td><td>Ajudar com erros</td><td>Diga o problema e como resolver</td><td>"Sem Wi-Fi. Aproxime-se do roteador."</td></tr>
+<tr><td>10</td><td>Ajuda e documentacao</td><td>Ajuda curta e no momento certo</td><td>Dica ao parear o dispositivo</td></tr>
+</table>
+
+<div class="erro"><b>Ruim:</b> "Erro 0x80004005"</div>
+<div class="certo"><b>Bom:</b> "Nao consegui falar com a lampada. Verifique se ela esta ligada na tomada e tente de novo."</div>
+
+<div class="dica">Mensagem boa = <b>o que houve</b> + <b>o que fazer</b>, em linguagem simples, sem culpar o usuario.</div>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Reescreva 3 mensagens de erro tecnicas em mensagens amigaveis.</li>
+<li>Avalie um app seu usando as 10 heuristicas: quais ele cumpre e quais falha?</li>
+</ol></div>
+<p class="navegacao"><a href="02_usuario_e_pesquisa.html">&larr; Anterior</a> | <a href="04_hierarquia_visual_layout.html">Proxima: Hierarquia visual e layout &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\ux_design\abrir.ps1" 03_principios_usabilidade -->

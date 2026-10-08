@@ -1,0 +1,49 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PWA 04 - Manifest e instalacao</title>
+<link rel="stylesheet" href="../estilo_mobile.css">
+</head>
+<body>
+<h1>Aula 4 (PWA) - Manifest: instalar na tela inicial</h1>
+<p>O <b>manifest</b> e um arquivo JSON que diz ao navegador como o app se chama e parece.</p>
+
+<div class="passo"><b>Passo 1 - crie <code>manifest.json</code>:</b></div>
+<pre>{
+  "name": "Painel de Sensores IoT",
+  "short_name": "Estufa",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f1f3f5",
+  "theme_color": "#5f3dc4",
+  "icons": [ { "src": "icone.svg", "sizes": "any", "type": "image/svg+xml" } ]
+}</pre>
+
+<div class="passo"><b>Passo 2 - ligue ao HTML (dentro de <code>&lt;head&gt;</code>):</b></div>
+<pre>&lt;link rel="manifest" href="manifest.json"&gt;
+&lt;meta name="theme-color" content="#5f3dc4"&gt;</pre>
+
+<table>
+<tr><th>Campo</th><th>Para que serve</th></tr>
+<tr><td><code>short_name</code></td><td>Nome embaixo do icone (curto!)</td></tr>
+<tr><td><code>display: standalone</code></td><td>Abre sem barra do navegador, parece um app</td></tr>
+<tr><td><code>theme_color</code></td><td>Cor da barra de status</td></tr>
+<tr><td><code>icons</code></td><td>Icone na tela inicial (use tambem PNG 192 e 512 para maxima compatibilidade)</td></tr>
+</table>
+
+<div class="passo"><b>Passo 3 - instalar:</b> no Chrome do Android, menu &#8942; &rarr; "Instalar app". No iPhone (Safari), Compartilhar &rarr; "Adicionar a Tela de Inicio". No PC, o icone de instalar na barra de enderecos (em <code>localhost</code> ou HTTPS).</div>
+
+<div class="alerta">Em <code>http://192.168.x.x</code> o navegador do celular nao oferece a instalacao (nao e conexao segura). Para o PWA instalar no celular, publique em HTTPS.</div>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Mude o <code>short_name</code> e o <code>theme_color</code> do projeto.</li>
+<li>Crie seu proprio icone SVG e troque <code>icone.svg</code>.</li>
+</ol></div>
+<p class="navegacao"><a href="03_estados_da_tela.html">&larr; Anterior</a> | <a href="05_service_worker_offline.html">Proxima: Service worker (offline) &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\mobile_iot\abrir.ps1" 04_manifest_instalar -->

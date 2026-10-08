@@ -1,0 +1,39 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Formularios</title>
+</head>
+<body>
+  <!-- AULA 06 - Formularios
+       <form> agrupa campos; <input> cria campos; <label> descreve o campo;
+       <button> envia. O "for" do label deve ser igual ao "id" do campo. -->
+  <h1>Cadastro</h1>
+  <form>
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" placeholder="Digite seu nome"><br><br>
+
+    <label for="idade">Idade:</label>
+    <input type="number" id="idade" name="idade" min="0" max="120"><br><br>
+
+    <label for="curso">Curso:</label>
+    <select id="curso" name="curso">
+      <option>Eletronica</option>
+      <option>Informatica</option>
+      <option>Mecatronica</option>
+    </select><br><br>
+
+    <input type="checkbox" id="aceito" name="aceito">
+    <label for="aceito">Aceito os termos</label><br><br>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <!-- EXERCICIOS:
+       1. Adicione um campo de e-mail (type="email").
+       2. Adicione um campo de senha (type="password").
+       3. Adicione "required" ao campo nome e tente enviar vazio. -->
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 06_formularios -->

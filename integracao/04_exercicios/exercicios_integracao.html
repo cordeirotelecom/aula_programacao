@@ -1,0 +1,13 @@
+﻿<!DOCTYPE html>
+<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Integracao - Exercicios</title><link rel="stylesheet" href="../estilo_integracao.css"></head><body>
+<nav><a href="../01_conceitos/01_como_as_pecas_se_encaixam.html">Conceitos</a> <a href="../03_passo_a_passo/01_passo_a_passo_completo.html">Passo a passo</a></nav>
+<h1>Exercicios de integracao</h1>
+<div class="passo"><h2>1. Mudar o limite de alerta</h2><p>Em <code>ingestor.js</code> troque <code>LIMITE_TEMPERATURA = 30</code> por 28. Reinicie e observe o ALERTA aparecer mais cedo. (No Node-RED: edite o bloco "calcula alerta".)</p></div>
+<div class="passo"><h2>2. Segundo dispositivo</h2><p>Em outra janela: <code>$env:DISPOSITIVO="sala2"; npm run simulador</code>. Veja dois dispositivos no app.</p></div>
+<div class="passo"><h2>3. Novo sensor</h2><p>Adicione <code>luminosidade</code> no simulador, na API (<code>api.js</code>) e no app. Dica: siga o caminho do dado da esquerda para a direita.</p></div>
+<div class="passo"><h2>4. Ver o MQTT por dentro</h2><p>Instale <b>MQTT Explorer</b> e conecte em 127.0.0.1:1883. Veja os topicos <code>estufa/#</code>.</p></div>
+<div class="passo"><h2>5. Desafio</h2><p>Faca o ESP32 real acender o LED sozinho quando a temperatura passar de 30 C, sem esperar o app.</p></div>
+</body></html>
+<!-- Executar: powershell -ExecutionPolicy Bypass -File ".\integracao\abrir.ps1" exercicios_integracao -->

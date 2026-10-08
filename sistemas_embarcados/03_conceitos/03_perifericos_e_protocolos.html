@@ -1,0 +1,54 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aula 03 - Perifericos e protocolos</title>
+<link rel="stylesheet" href="..\estilo_embarcados.css">
+</head>
+<body>
+<h1>Aula 03 - Perifericos e protocolos</h1>
+
+<p>Perifericos sao os "sentidos e musculos" do microcontrolador. Protocolos sao as "linguas" para conversar com outros chips.</p>
+
+<h2>Perifericos</h2>
+<table>
+<tr><th>Sigla</th><th>Nome</th><th>Para que serve</th><th>Simulacao</th></tr>
+<tr><td>GPIO</td><td>Entrada/saida digital</td><td>Ler botao (0/1), acender LED</td><td>sim_11</td></tr>
+<tr><td>ADC</td><td>Conversor analogico-digital</td><td>Ler tensao de sensor (ex: 0 a 1023)</td><td>sim_06</td></tr>
+<tr><td>PWM</td><td>Modulacao por largura de pulso</td><td>Dimmer de LED, velocidade de motor, servo</td><td>sim_05</td></tr>
+<tr><td>Timer</td><td>Contador de tempo</td><td>Gerar interrupcao periodica</td><td>sim_03</td></tr>
+</table>
+
+<h2>Protocolos de comunicacao</h2>
+<table>
+<tr><th></th><th>UART</th><th>I2C</th><th>SPI</th><th>CAN</th></tr>
+<tr><td>Fios</td><td>2 (TX, RX)</td><td>2 (SDA, SCL)</td><td>4+ (MOSI, MISO, SCK, CS)</td><td>2 (CAN_H, CAN_L)</td></tr>
+<tr><td>Clock</td><td>Nao (assincrono)</td><td>Sim, do mestre</td><td>Sim, do mestre</td><td>Nao</td></tr>
+<tr><td>Dispositivos</td><td>2 (ponto a ponto)</td><td>Muitos (enderecos)</td><td>Muitos (1 CS cada)</td><td>Muitos (rede)</td></tr>
+<tr><td>Velocidade</td><td>~9600 a 115200 baud</td><td>100 kHz a 400 kHz</td><td>Mhz (dezenas)</td><td>ate 1 Mbit/s</td></tr>
+<tr><td>Distancia</td><td>Curta/media</td><td>Muito curta (placa)</td><td>Muito curta</td><td>Longa (carros, industria)</td></tr>
+<tr><td>Uso tipico</td><td>Console serial, GPS, Bluetooth</td><td>Sensores, RTC, display OLED</td><td>Cartao SD, display, memoria flash</td><td>Redes automotivas</td></tr>
+</table>
+
+<h2>UART 8N1 em resumo</h2>
+<pre>
+linha ociosa = 1
+ START(0) D0 D1 D2 D3 D4 D5 D6 D7 STOP(1)
+Tempo por bit = 1 / baud.  9600 baud -> 104 us por bit
+Um byte usa 10 bits -> 960 bytes por segundo
+</pre>
+
+<div class="passo">Veja bit a bit nos programas <code>sim_02_uart_bits</code> e <code>sim_08_i2c_spi</code>, e em VHDL na aula <code>08_uart_tx</code>.</div>
+
+<div class="dica">Resumo para escolher: poucos fios e sensor simples &rarr; <strong>I2C</strong>. Velocidade alta &rarr; <strong>SPI</strong>. Dois equipamentos conversando por texto &rarr; <strong>UART</strong>. Ambiente barulhento e longo (carro) &rarr; <strong>CAN</strong>.</div>
+
+<div class="alerta">I2C precisa de resistores de pull-up em SDA e SCL. Sem eles, a comunicacao nao funciona.</div>
+
+<div class="exercicio"><strong>Exercicio:</strong> um sensor de temperatura I2C esta no endereco 0x48. Qual e o byte enviado no barramento para escrever nele? (dica: endereco deslocado 1 bit + bit R/W).</div>
+
+<div class="navegacao"><a href="02_microcontrolador_vs_fpga_vs_cpu.html">&larr; Anterior</a> | <a href="04_rtos_e_interrupcoes.html">Proxima: RTOS e interrupcoes &rarr;</a></div>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\sistemas_embarcados\abrir.ps1" 03_perifericos_e_protocolos -->

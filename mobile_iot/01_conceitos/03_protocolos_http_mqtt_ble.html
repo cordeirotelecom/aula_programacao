@@ -1,0 +1,43 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mobile IoT 03 - Protocolos</title>
+<link rel="stylesheet" href="../estilo_mobile.css">
+</head>
+<body>
+<h1>Aula 3 - Como o app fala com o dispositivo</h1>
+
+<table>
+<tr><th>Protocolo</th><th>Como funciona</th><th>Bom para</th><th>Cuidado</th></tr>
+<tr><td><b>HTTP / REST</b></td><td>App pede (<code>GET /dados</code>) e o dispositivo responde</td><td>Rede local, projetos simples, <b>este curso</b></td><td>O app precisa "perguntar" de tempos em tempos (polling)</td></tr>
+<tr><td><b>MQTT</b></td><td>Todos falam com um <i>broker</i>: publicam e assinam <i>topicos</i></td><td>Muitos dispositivos, nuvem, atualizacao em tempo real</td><td>Precisa de um broker (ex.: Mosquitto, HiveMQ)</td></tr>
+<tr><td><b>WebSocket</b></td><td>Conexao aberta nos dois sentidos</td><td>Dados em tempo real direto no navegador</td><td>Mais codigo no dispositivo</td></tr>
+<tr><td><b>BLE (Bluetooth Low Energy)</b></td><td>Pareamento curto alcance, baixo consumo</td><td>Sem Wi-Fi, a pilha, configuracao inicial</td><td>Web Bluetooth so no Chrome/Android</td></tr>
+</table>
+
+<h2>HTTP: o que acontece</h2>
+<pre>Celular                             ESP32
+  | -- GET /dados ------------------> |
+  | <-- 200 {"temperatura":27.5,...}  |
+  | -- GET /led?estado=1 -----------> |
+  | <-- 200 {"led":true}              |</pre>
+
+<h2>MQTT: o que acontece</h2>
+<pre>ESP32  --publica "estufa/temperatura" = 27.5 --&gt;  BROKER  --&gt;  Celular (assina "estufa/#")
+Celular --publica "estufa/led" = ON ------------&gt;  BROKER  --&gt;  ESP32  (assina "estufa/led")</pre>
+
+<h2>CORS: por que o navegador as vezes bloqueia</h2>
+<p>Se a pagina vem de um endereco e pede dados de outro (o ESP32), o navegador exige que o ESP32 responda com o cabecalho <code>Access-Control-Allow-Origin: *</code>. O firmware deste curso ja faz isso.</p>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Qual protocolo para 50 sensores enviando dados para uma nuvem? Por que?</li>
+<li>Escreva as rotas HTTP para: ler temperatura, ligar bomba, desligar bomba.</li>
+</ol></div>
+<p class="navegacao"><a href="02_nativo_hibrido_pwa.html">&larr; Anterior</a> | <a href="04_json_e_api_rest.html">Proxima: JSON e API REST &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\mobile_iot\abrir.ps1" 03_protocolos_http_mqtt_ble -->

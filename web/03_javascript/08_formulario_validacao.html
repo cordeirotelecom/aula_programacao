@@ -1,0 +1,52 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>JS - validacao de formulario</title>
+  <style>
+    .erro { color: crimson; }
+    .ok { color: green; }
+  </style>
+</head>
+<body>
+  <h1>Cadastro com validacao</h1>
+  <form id="formulario">
+    <label for="nome">Nome:</label>
+    <input id="nome"><br><br>
+    <label for="idade">Idade:</label>
+    <input id="idade" type="number"><br><br>
+    <button type="submit">Cadastrar</button>
+  </form>
+  <p id="mensagem"></p>
+
+  <script>
+    // AULA 08 - Validar dados antes de aceitar
+    const formulario = document.getElementById("formulario");
+    const mensagem = document.getElementById("mensagem");
+
+    formulario.addEventListener("submit", (evento) => {
+      evento.preventDefault();                        // impede recarregar a pagina
+      const nome = document.getElementById("nome").value.trim();
+      const idade = Number(document.getElementById("idade").value);
+
+      if (nome.length < 3) {
+        mensagem.className = "erro";
+        mensagem.textContent = "O nome precisa de pelo menos 3 letras.";
+      } else if (!Number.isInteger(idade) || idade < 1 || idade > 120) {
+        mensagem.className = "erro";
+        mensagem.textContent = "Digite uma idade entre 1 e 120.";
+      } else {
+        mensagem.className = "ok";
+        mensagem.textContent = `Cadastro de ${nome} (${idade} anos) realizado!`;
+      }
+    });
+
+    // EXERCICIOS:
+    // 1. Exija idade minima de 16 anos.
+    // 2. Adicione um campo e-mail e confira se contem "@".
+    // 3. Limpe o formulario apos o sucesso (formulario.reset()).
+  </script>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 08_formulario_validacao -->

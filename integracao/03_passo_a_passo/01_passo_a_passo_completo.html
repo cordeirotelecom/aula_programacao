@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Integracao - Passo a passo completo</title><link rel="stylesheet" href="../estilo_integracao.css"></head><body>
+<nav><a href="../01_conceitos/01_como_as_pecas_se_encaixam.html">Conceitos</a> <a href="../04_exercicios/exercicios_integracao.html">Exercicios</a></nav>
+<h1>Passo a passo: copie e cole no PowerShell</h1>
+<p>Cada passo que roda um servidor precisa de <b>uma janela PowerShell propria</b> (abra uma nova com o menu Iniciar &gt; PowerShell). Nao precisa ser administrador.</p>
+
+<div class="passo"><h2>Passo 1 - Instalar o Node.js (uma vez so)</h2>
+<pre><code>winget install OpenJS.NodeJS.LTS --scope user</code></pre>
+<p>Feche e abra o PowerShell. Teste: <code>node --version</code></p></div>
+
+<div class="passo"><h2>Passo 2 - Instalar as bibliotecas do projeto</h2>
+<pre><code>cd ".\integracao\02_projeto"
+npm install</code></pre></div>
+
+<div class="passo"><h2>Passo 3 - Teste automatico (prova que tudo funciona)</h2>
+<pre><code>npm run teste</code></pre>
+<div class="ok">Deve terminar com: TUDO CERTO - a integracao funciona.</div></div>
+
+<div class="passo"><h2>Passo 4 - Janela 1: ligar o broker MQTT</h2>
+<pre><code>cd ".\integracao\02_projeto"
+npm run broker</code></pre></div>
+
+<div class="passo"><h2>Passo 5 - Janela 2: ligar a API + banco</h2>
+<pre><code>cd ".\integracao\02_projeto"
+npm run api</code></pre></div>
+
+<div class="passo"><h2>Passo 6 - Janela 3: ligar quem leva os dados ao banco</h2>
+<p>Escolha <b>uma</b> opcao (nunca as duas juntas):</p>
+<p><b>Opcao A - ingestor (codigo, mais simples):</b></p>
+<pre><code>cd ".\integracao\02_projeto"
+npm run ingestor</code></pre>
+<p><b>Opcao B - Node-RED (blocos visuais):</b></p>
+<pre><code>cd ".\integracao\02_projeto"
+npm run nodered</code></pre>
+<p>Abra <code>http://localhost:1880</code> e veja o fluxo "Estufa IoT" ja pronto. Clique em <b>Deploy</b> se aparecer.</p></div>
+
+<div class="passo"><h2>Passo 7 - Janela 4: ligar o simulador do ESP32</h2>
+<pre><code>cd ".\integracao\02_projeto"
+npm run simulador</code></pre></div>
+
+<div class="passo"><h2>Passo 8 - Abrir o app</h2>
+<pre><code>Start-Process http://localhost:3000</code></pre>
+<p>Voce ve temperatura, umidade, historico, e um botao para ligar/desligar o LED. Quando passa de 30 C aparece ALERTA.</p>
+<div class="dica">No celular (mesmo Wi-Fi): abra <code>http://IP-DO-PC:3000</code>. Descubra o IP com <code>ipconfig</code>.</div></div>
+
+<div class="passo"><h2>Passo 9 - Trocar o simulador pelo ESP32 real</h2>
+<ol>
+<li>Arduino IDE: instale a biblioteca <b>PubSubClient</b>.</li>
+<li>Abra <code>integracao\02_projeto\firmware\esp32_mqtt\esp32_mqtt.ino</code>.</li>
+<li>Edite <code>WIFI_SSID</code>, <code>WIFI_SENHA</code> e <code>MQTT_SERVIDOR</code> (IP do PC).</li>
+<li>Pare o simulador (Ctrl+C) e faca Upload.</li>
+<li>Se nada chegar, o Firewall do Windows pode estar bloqueando a porta 1883.</li>
+</ol></div>
+
+<h2>Problemas comuns</h2>
+<ul>
+<li><b>Porta em uso</b>: feche a janela antiga (Ctrl+C) e rode de novo.</li>
+<li><b>App vazio</b>: confira se as 4 janelas estao rodando.</li>
+<li><b>Dados duplicados</b>: voce ligou ingestor e Node-RED juntos.</li>
+</ul>
+</body></html>
+<!-- Executar: powershell -ExecutionPolicy Bypass -File ".\integracao\abrir.ps1" 01_passo_a_passo_completo -->

@@ -1,0 +1,49 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UX 06 - Acessibilidade</title>
+<link rel="stylesheet" href="../estilo_ux.css">
+</head>
+<body>
+<h1>Aula 6 - Acessibilidade</h1>
+<p>Acessibilidade e fazer o produto funcionar para <b>todas as pessoas</b>: visao baixa, daltonismo, surdez, deficiencia motora, idosos, e tambem quem esta com sol na tela ou uma mao ocupada.</p>
+
+<h2>Os 4 principios (POUR)</h2>
+<table>
+<tr><th>Principio</th><th>Significa</th><th>Como fazer</th></tr>
+<tr><td><b>P</b>ercebivel</td><td>Todos conseguem ver/ouvir</td><td>Contraste, texto alternativo (<code>alt</code>), legendas</td></tr>
+<tr><td><b>O</b>peravel</td><td>Todos conseguem usar</td><td>Funciona so com teclado, alvos de toque grandes</td></tr>
+<tr><td><b>U</b>nderstandable (Compreensivel)</td><td>Todos entendem</td><td>Linguagem simples, mensagens claras</td></tr>
+<tr><td><b>R</b>obusto</td><td>Funciona em varios aparelhos</td><td>HTML correto, leitores de tela</td></tr>
+</table>
+
+<h2>Checklist rapido em HTML</h2>
+<pre>&lt;img src="sensor.png" alt="Sensor de temperatura"&gt;      &lt;!-- texto alternativo --&gt;
+&lt;label for="email"&gt;E-mail&lt;/label&gt;&lt;input id="email"&gt;       &lt;!-- rotulo ligado ao campo --&gt;
+&lt;button aria-label="Ligar lampada"&gt;&#128161;&lt;/button&gt;        &lt;!-- botao so com icone --&gt;
+&lt;html lang="pt-BR"&gt;                                       &lt;!-- idioma da pagina --&gt;
+&lt;h1&gt; &lt;h2&gt; &lt;h3&gt;...                                    &lt;!-- titulos em ordem --&gt;</pre>
+
+<h2>Boas praticas</h2>
+<ul>
+<li>Use as tags certas: <code>&lt;button&gt;</code> para botao, <code>&lt;a&gt;</code> para link (nao <code>&lt;div&gt;</code> clicavel).</li>
+<li>Mostre o <b>foco</b> do teclado (nao remova o <code>outline</code>).</li>
+<li>Nao dependa so de cor, som ou vibracao.</li>
+<li>Permita aumentar o texto (use <code>rem</code>, nao so <code>px</code>).</li>
+<li>Evite animacoes piscando; respeite <code>prefers-reduced-motion</code>.</li>
+</ul>
+
+<div class="dica"><b>Teste facil:</b> tente usar sua pagina so com a tecla <b>Tab</b> e <b>Enter</b>. Se algum botao nao for alcancado, ha um problema.</div>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Pegue um botao que so tem icone e acrescente <code>aria-label</code>.</li>
+<li>Navegue em uma pagina so com o teclado e anote o que falhou.</li>
+</ol></div>
+<p class="navegacao"><a href="05_cores_contraste_tipografia.html">&larr; Anterior</a> | <a href="07_mobile_first_toque.html">Proxima: Mobile first e toque &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\ux_design\abrir.ps1" 06_acessibilidade -->

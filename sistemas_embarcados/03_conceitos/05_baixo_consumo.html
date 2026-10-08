@@ -1,0 +1,59 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aula 05 - Baixo consumo</title>
+<link rel="stylesheet" href="..\estilo_embarcados.css">
+</head>
+<body>
+<h1>Aula 05 - Baixo consumo de energia</h1>
+
+<p>Em dispositivos a bateria (sensores IoT, relogios), o segredo da duracao e <strong>dormir quase o tempo todo</strong> e acordar so para trabalhar.</p>
+
+<h2>Modos de sleep (ideia geral)</h2>
+<table>
+<tr><th>Modo</th><th>O que fica ligado</th><th>Consumo tipico</th><th>Como acorda</th></tr>
+<tr><td>Ativo</td><td>Tudo</td><td>~ 20 mA</td><td>-</td></tr>
+<tr><td>Idle / light sleep</td><td>CPU parada, perifericos e RAM ligados</td><td>~ 2 mA</td><td>Qualquer interrupcao</td></tr>
+<tr><td>Deep sleep</td><td>So RTC/RAM minima</td><td>~ 10 uA</td><td>Timer, botao (pino)</td></tr>
+<tr><td>Hibernacao</td><td>Quase nada</td><td>~ 1 uA</td><td>Pino ou reset</td></tr>
+</table>
+<p>Os valores variam por chip: consulte o <em>datasheet</em>.</p>
+
+<h2>Calculo de autonomia</h2>
+<p>Formula: <code>autonomia (h) = capacidade (mAh) / corrente media (mA)</code>, e a corrente media e a media ponderada pelo tempo em cada modo.</p>
+
+<div class="passo">
+<strong>Exemplo:</strong> bateria de 2000 mAh. O dispositivo fica ativo 1% do tempo (20 mA) e dorme 99% do tempo (10 uA = 0,01 mA).
+<pre>
+I_media = 0,01 x 20 + 0,99 x 0,01
+        = 0,2 + 0,0099
+        = 0,2099 mA
+
+autonomia = 2000 / 0,2099 = 9528 horas
+          = 9528 / 24     = 397 dias  (cerca de 13 meses)
+</pre>
+Sem dormir (sempre ativo): 2000 / 20 = 100 horas, ou cerca de 4 dias.
+</div>
+
+<div class="dica">Na pratica, conte com 70% a 80% disso: autodescarga da bateria, temperatura e picos de Wi-Fi reduzem a autonomia real.</div>
+
+<h2>Tecnicas</h2>
+<ul>
+<li>Entrar em deep sleep entre medicoes e acordar por timer ou interrupcao.</li>
+<li>Reduzir o clock e a tensao quando possivel.</li>
+<li>Desligar perifericos e radios (Wi-Fi/Bluetooth) quando nao usados; transmitir em lote.</li>
+<li>Evitar polling: use interrupcoes.</li>
+<li>Pinos nao usados como entrada com pull definido (evita corrente de fuga).</li>
+</ul>
+
+<div class="alerta">O pico do Wi-Fi (100 a 300 mA) pesa muito mais que o sleep. O que mais derruba a autonomia e quantas vezes e por quanto tempo voce transmite.</div>
+
+<div class="exercicio"><strong>Exercicio:</strong> bateria de 1000 mAh, ativo 2% do tempo a 30 mA, dorme a 0,02 mA. Calcule a autonomia em dias. (Resposta: I = 0,6 + 0,0196 = 0,6196 mA; 1000/0,6196 = 1614 h, ou 67 dias.)</div>
+
+<div class="navegacao"><a href="04_rtos_e_interrupcoes.html">&larr; Anterior</a> | <a href="06_depuracao_e_boas_praticas.html">Proxima: Depuracao e boas praticas &rarr;</a></div>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\sistemas_embarcados\abrir.ps1" 05_baixo_consumo -->

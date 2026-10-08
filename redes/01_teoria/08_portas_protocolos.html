@@ -1,0 +1,45 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Redes 08 - Portas e protocolos</title>
+<link rel="stylesheet" href="estilo_redes.css">
+</head>
+<body>
+<h1>Aula 8 - Portas e protocolos</h1>
+<p>O IP leva o pacote ate a maquina; a <b>porta</b> (0 a 65535) indica qual programa recebe. Um <b>socket</b> = IP + porta.</p>
+
+<table>
+<tr><th>Porta</th><th>Protocolo</th><th>Transporte</th><th>Para que serve</th></tr>
+<tr><td>20/21</td><td>FTP</td><td>TCP</td><td>Transferencia de arquivos</td></tr>
+<tr><td>22</td><td>SSH</td><td>TCP</td><td>Acesso remoto seguro</td></tr>
+<tr><td>23</td><td>Telnet</td><td>TCP</td><td>Acesso remoto (inseguro)</td></tr>
+<tr><td>25</td><td>SMTP</td><td>TCP</td><td>Envio de e-mail</td></tr>
+<tr><td>53</td><td>DNS</td><td>UDP/TCP</td><td>Nomes &rarr; IP</td></tr>
+<tr><td>67/68</td><td>DHCP</td><td>UDP</td><td>IP automatico</td></tr>
+<tr><td>80</td><td>HTTP</td><td>TCP</td><td>Web</td></tr>
+<tr><td>110</td><td>POP3</td><td>TCP</td><td>Receber e-mail</td></tr>
+<tr><td>143</td><td>IMAP</td><td>TCP</td><td>Receber e-mail</td></tr>
+<tr><td>443</td><td>HTTPS</td><td>TCP</td><td>Web segura</td></tr>
+<tr><td>3389</td><td>RDP</td><td>TCP</td><td>Area de trabalho remota</td></tr>
+</table>
+
+<h2>TCP x UDP</h2>
+<table>
+<tr><th>TCP</th><th>UDP</th></tr>
+<tr><td>Orientado a conexao (3-way handshake)</td><td>Sem conexao</td></tr>
+<tr><td>Confiavel, ordena e retransmite</td><td>Rapido, sem garantia</td></tr>
+<tr><td>Web, e-mail, arquivos</td><td>Voz, video, jogos, DNS</td></tr>
+</table>
+<p>Faixas: 0-1023 conhecidas; 1024-49151 registradas; 49152-65535 dinamicas.</p>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Qual porta e protocolo usa o navegador ao abrir https://...?</li>
+<li>Por que videochamada prefere UDP?</li>
+</ol></div>
+<p><a href="07_vlsm.html">&larr; Anterior</a> | <a href="09_comandos_windows.html">Proxima: Comandos do Windows &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\redes\abrir.ps1" 08_portas_protocolos -->

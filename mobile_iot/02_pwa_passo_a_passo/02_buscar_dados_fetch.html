@@ -1,0 +1,54 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PWA 02 - Buscar dados com fetch</title>
+<link rel="stylesheet" href="../estilo_mobile.css">
+</head>
+<body>
+<h1>Aula 2 (PWA) - Buscar dados com fetch</h1>
+<p><code>fetch</code> faz um pedido HTTP. Como e assincrono, usamos <code>async/await</code>: "espere a resposta sem travar a tela".</p>
+
+<div class="passo"><b>Passo 1 - o codigo basico:</b></div>
+<pre>async function lerDados(endereco) {
+  var resposta = await fetch(endereco + "/dados");
+  if (!resposta.ok) throw new Error("HTTP " + resposta.status);
+  return resposta.json();            // JSON -> objeto
+}</pre>
+
+<div class="passo"><b>Passo 2 - nunca esqueca o erro:</b> o celular pode estar sem rede.</div>
+<pre>try {
+  var dados = await lerDados("http://192.168.0.50");
+  mostrar(dados);
+} catch (erro) {
+  mostrarErro("Sem conexao com o dispositivo.");
+}</pre>
+
+<div class="passo"><b>Passo 3 - limite de tempo:</b> se o dispositivo nao responde, o app nao pode ficar esperando para sempre. O arquivo <code>03_projetos\logica.js</code> usa <code>AbortController</code> (limite de 4 s).</div>
+
+<h2>Teste agora (simulador)</h2>
+<p>Sem ESP32, o simulador devolve leituras falsas, no mesmo formato JSON que o firmware envia.</p>
+<button onclick="ler()">Ler dados (simulador)</button>
+<pre id="saida">-</pre>
+
+<script src="../03_projetos/logica.js"></script>
+<script>
+// Elaborado pelo Prof. Vagner Cordeiro
+async function ler() {
+  var dados = await lerDados("", Date.now());
+  document.getElementById("saida").textContent = JSON.stringify(dados, null, 2) +
+    "\nUmidade em palavras: " + traduzirUmidade(dados.umidade);
+}
+</script>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Clique varias vezes. Os numeros mudam? Por que (veja <code>gerarDadosSimulados</code>)?</li>
+<li>Altere os limites de <code>traduzirUmidade</code> em <code>logica.js</code> e teste de novo.</li>
+</ol></div>
+<p class="navegacao"><a href="01_pagina_mobile.html">&larr; Anterior</a> | <a href="03_estados_da_tela.html">Proxima: Estados da tela &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\mobile_iot\abrir.ps1" 02_buscar_dados_fetch -->

@@ -1,0 +1,47 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>JS - arrays e objetos</title>
+</head>
+<body>
+  <h1>Arrays e objetos</h1>
+  <pre id="saida"></pre>
+
+  <script>
+    const saida = document.getElementById("saida");
+    function mostrar(texto) { saida.textContent += texto + "\n"; }
+
+    // AULA 05 - Arrays (listas) e objetos (grupos de dados com nome)
+    const sensores = ["LDR", "LM35", "HC-SR04"];
+    sensores.push("DHT11");                   // adiciona no final
+    mostrar("Quantidade: " + sensores.length);
+    mostrar("Primeiro: " + sensores[0]);
+
+    for (const s of sensores) {               // percorre cada item
+      mostrar("- " + s);
+    }
+
+    const aluno = { nome: "Ana", nota: 8.5, ativo: true };
+    mostrar(`${aluno.nome} tirou ${aluno.nota}`);
+    aluno.nota = 9;
+
+    const turma = [
+      { nome: "Ana", nota: 9 },
+      { nome: "Bruno", nota: 5 },
+      { nome: "Carla", nota: 7.5 }
+    ];
+    const aprovados = turma.filter(a => a.nota >= 6);       // filtra
+    mostrar("Aprovados: " + aprovados.map(a => a.nome).join(", "));   // transforma
+    const soma = turma.reduce((total, a) => total + a.nota, 0);
+    mostrar("Media da turma: " + (soma / turma.length).toFixed(2));
+
+    // EXERCICIOS:
+    // 1. Adicione um quarto aluno na turma e veja a nova media.
+    // 2. Mostre o nome do aluno com a maior nota.
+    // 3. Crie um objeto "carro" com marca, modelo e ano.
+  </script>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 05_arrays_objetos -->

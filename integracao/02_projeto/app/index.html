@@ -1,0 +1,34 @@
+<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b7285">
+<title>Estufa IoT</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<header><h1>Estufa IoT</h1><p id="atualizacao">Carregando...</p></header>
+
+<main>
+  <div id="alerta" class="alerta" hidden>Temperatura alta! Verifique a ventilacao.</div>
+
+  <section class="cartoes">
+    <div class="cartao"><span>Temperatura</span><strong id="temperatura">--</strong></div>
+    <div class="cartao"><span>Umidade</span><strong id="umidade">--</strong></div>
+  </section>
+
+  <button id="botaoLed" type="button">LED: ...</button>
+  <p id="mensagem" role="status" aria-live="polite"></p>
+
+  <h2>Historico (banco de dados)</h2>
+  <table>
+    <thead><tr><th>Hora</th><th>Temp.</th><th>Umid.</th></tr></thead>
+    <tbody id="historico"></tbody>
+  </table>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
+<!-- Executar: inicie o projeto (veja integracao\README) e abra http://localhost:3000 -->

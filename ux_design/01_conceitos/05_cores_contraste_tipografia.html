@@ -1,0 +1,71 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UX 05 - Cores, contraste e tipografia</title>
+<link rel="stylesheet" href="../estilo_ux.css">
+</head>
+<body>
+<h1>Aula 5 - Cores, contraste e tipografia</h1>
+
+<h2>Cores</h2>
+<ul>
+<li><b>Regra 60-30-10</b>: 60% cor neutra (fundo), 30% cor secundaria, 10% cor de destaque (botoes).</li>
+<li>Use <b>uma cor de acao</b> principal. Muitas cores confundem.</li>
+<li>Cores tem significado: <span style="color:#2f9e44"><b>verde</b></span> = ok/ligado, <span style="color:#f08c00"><b>amarelo</b></span> = atencao, <span style="color:#e03131"><b>vermelho</b></span> = erro/perigo.</li>
+<li><b>Nunca use so a cor</b> para informar (8% dos homens tem daltonismo). Some texto ou icone: "&#10003; Ligado".</li>
+</ul>
+
+<h2>Contraste (legibilidade)</h2>
+<p>E a diferenca entre cor do texto e do fundo. A norma WCAG pede:</p>
+<table>
+<tr><th>Nivel</th><th>Texto normal</th><th>Texto grande (&ge; 24px)</th></tr>
+<tr><td>AA (minimo)</td><td>4,5 : 1</td><td>3 : 1</td></tr>
+<tr><td>AAA (ideal)</td><td>7 : 1</td><td>4,5 : 1</td></tr>
+</table>
+
+<h2>Teste agora</h2>
+<p>Escolha cores e veja a razao de contraste:</p>
+<label>Texto: <input type="color" id="cTexto" value="#777777"></label>
+<label>Fundo: <input type="color" id="cFundo" value="#ffffff"></label>
+<button onclick="testar()">Testar</button>
+<div id="amostra" style="padding:16px; margin:10px 0; font-size:20px; border:1px solid #ccc">Temperatura: 27 graus</div>
+<p id="resultado"></p>
+
+<h2>Tipografia</h2>
+<ul>
+<li>Use no maximo <b>2 fontes</b>.</li>
+<li>Texto de leitura: <b>16px ou mais</b> no celular; linhas de 45 a 75 caracteres.</li>
+<li>Entrelinha de <b>1,4 a 1,6</b>.</li>
+<li>Prefira fontes sem serifa na tela (Arial, Roboto, Segoe UI).</li>
+<li>Mostre hierarquia: titulo (24-32), subtitulo (18-20), texto (16), legenda (12-14).</li>
+<li>Evite TUDO EM MAIUSCULO em frases longas.</li>
+</ul>
+
+<script src="contraste.js"></script>
+<script>
+// Elaborado pelo Prof. Vagner Cordeiro
+function testar() {
+  var t = document.getElementById("cTexto").value;
+  var f = document.getElementById("cFundo").value;
+  var a = document.getElementById("amostra");
+  a.style.color = t;
+  a.style.background = f;
+  var r = razaoContraste(t, f);
+  var nivel = r >= 7 ? "AAA (excelente)" : r >= 4.5 ? "AA (bom)" : r >= 3 ? "so serve para texto grande" : "REPROVADO";
+  document.getElementById("resultado").textContent = "Contraste: " + r.toFixed(2) + " : 1 - " + nivel;
+}
+testar();
+</script>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Teste o cinza <code>#777777</code> sobre branco. Passa em AA? Qual cinza mais escuro passa?</li>
+<li>Monte uma paleta 60-30-10 para um app de estufa.</li>
+</ol></div>
+<p class="navegacao"><a href="04_hierarquia_visual_layout.html">&larr; Anterior</a> | <a href="06_acessibilidade.html">Proxima: Acessibilidade &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\ux_design\abrir.ps1" 05_cores_contraste_tipografia -->

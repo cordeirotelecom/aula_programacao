@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10213a">
+  <meta name="description" content="Portal de aprendizagem em programação elaborado pelo Prof. Vagner Cordeiro. Teoria, aulas, redes, programação e projetos práticos.">
+  <title>Curso de Programação | Prof. Vagner Cordeiro</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/tema.css">
+  <script src="/app.js" defer></script>
+  <script src="/extras.js" defer></script>
+</head>
+<body>
+  <header class="topo">
+    <div class="largura topo-conteudo">
+      <a class="marca" href="/" aria-label="Página inicial do laboratório">
+        <span class="marca-icone" aria-hidden="true">&lt;/&gt;</span>
+        <span>Portal <b>do Curso</b></span>
+      </a>
+      <span class="sinal"><span class="ponto"></span> Ambiente local · seus arquivos ficam no computador</span>
+    </div>
+  </header>
+
+  <main class="largura">
+    <section class="introducao">
+      <p class="sobretitulo">APRENDER · PRATICAR · CONSTRUIR</p>
+      <h1>Programação que <span>faz sentido.</span></h1>
+      <p>Estude os conceitos, acompanhe as aulas e coloque o conhecimento em prática com programas, redes, eletrônica e projetos conectados.</p>
+      <div id="resumo" class="resumo">
+        <span><b id="total-programas">—</b> programas C/C++</span>
+        <span><b id="total-aulas">—</b> aulas e materiais</span>
+        <span><b>6</b> trilhas de aprendizagem</span>
+      </div>
+      <p class="credito">Uma página elaborada pelo <strong>Prof. Vagner Cordeiro</strong></p>
+    </section>
+
+    <nav id="navegacao" class="navegacao" aria-label="Seções do laboratório">
+      <button class="aba ativa" data-pagina="inicio" type="button">Visão geral</button>
+      <button class="aba" data-pagina="programar" type="button">C e C++</button>
+      <button class="aba" data-pagina="teoria" type="button">Teoria</button>
+      <button class="aba" data-pagina="aulas" type="button">Aulas e projetos</button>
+      <button class="aba" data-pagina="redes" type="button">Redes</button>
+      <button class="aba" data-pagina="iot" type="button">Projeto IoT</button>
+      <button class="aba" data-pagina="hardware" type="button">Eletrônica e embarcados</button>
+      <button class="aba" data-pagina="plataformas" type="button">Plataformas</button>
+      <button class="aba" data-pagina="referencias" type="button">Referências</button>
+      <button class="aba" data-pagina="guia" type="button">Como usar</button>
+    </nav>
+
+    <section id="pagina-inicio" class="pagina">
+      <div class="cartoes-areas">
+        <button class="cartao-area" data-ir="programar" type="button">
+          <span class="area-icone azul">C</span><span><b>C e C++</b><small>Fundamentos, prática e embarcados. Execute pelo navegador.</small></span><span class="seta">→</span>
+        </button>
+        <button class="cartao-area" data-ir="aulas" type="button">
+          <span class="area-icone roxo">WEB</span><span><b>Web, UX e projetos</b><small>Aulas e páginas interativas abertas dentro do portal.</small></span><span class="seta">→</span>
+        </button>
+        <button class="cartao-area" data-ir="teoria" type="button">
+          <span class="area-icone azul">Aa</span><span><b>Teoria da programação</b><small>Entenda algoritmos, dados, decisões, repetições e funções.</small></span><span class="seta">→</span>
+        </button>
+        <button class="cartao-area" data-ir="redes" type="button">
+          <span class="area-icone ciano">IP</span><span><b>Redes de computadores</b><small>Estude endereçamento, sub-redes, protocolos e cálculos.</small></span><span class="seta">→</span>
+        </button>
+        <button class="cartao-area" data-ir="hardware" type="button">
+          <span class="area-icone laranja">IoT</span><span><b>Arduino, ESP32 e VHDL</b><small>Consulte exemplos e simule VHDL se o GHDL estiver instalado.</small></span><span class="seta">→</span>
+        </button>
+        <button class="cartao-area" data-ir="iot" type="button">
+          <span class="area-icone verde">MQTT</span><span><b>Projeto de integração</b><small>Inicie o broker, a API, o ingestor e sensores simulados.</small></span><span class="seta">→</span>
+        </button>
+      </div>
+      <section class="boas-vindas">
+        <div><p class="sobretitulo">UMA JORNADA, UM PASSO DE CADA VEZ</p><h2>Da ideia ao programa funcionando</h2><p>Comece pela teoria, avance pelas aulas e experimente os exemplos. Para executar C/C++, instale GCC e G++; a simulação IoT requer Node.js e as dependências do projeto.</p></div>
+        <div class="passos"><span><b>1</b> Escolha uma aula ou programa</span><span><b>2</b> Clique para abrir ou executar</span><span><b>3</b> Acompanhe o resultado aqui</span></div>
+      </section>
+    </section>
+
+    <section id="pagina-programar" class="pagina" hidden>
+      <div class="secao-cabecalho"><div><p class="sobretitulo">PRÁTICA COM C E C++</p><h2>Programas executáveis</h2><p>O portal compila ao executar e salva o `.exe` ao lado do código-fonte.</p></div></div>
+      <section class="painel">
+        <div class="lista-coluna">
+          <div class="titulo-lista"><div><h2>Exemplos</h2><p id="contagem">Carregando...</p></div><label class="busca"><span class="sr-only">Buscar programa</span><span aria-hidden="true">⌕</span><input id="busca-programa" type="search" placeholder="Buscar programa..." autocomplete="off"></label></div>
+          <nav id="filtros-programas" class="filtros" aria-label="Filtrar programas"></nav>
+          <div id="lista-programas" class="lista" aria-live="polite"><p class="vazio">Carregando programas...</p></div>
+        </div>
+        <section class="terminal-coluna" aria-label="Terminal">
+          <div class="terminal-topo"><div><h2>Terminal</h2><p id="status"><span class="status-ponto"></span> Pronto para executar</p></div><button id="parar" class="botao-parar" type="button" disabled>Parar</button></div>
+          <div class="janela-terminal"><div class="barra-terminal"><span></span><span></span><span></span><span class="terminal-titulo">saída do programa</span></div><pre id="saida" role="log" aria-live="polite">Selecione um exemplo e clique em Executar. As mensagens e os pedidos de entrada aparecerão aqui.</pre></div>
+          <form id="form-entrada" class="entrada" autocomplete="off"><label for="texto-entrada">Sua entrada</label><div class="entrada-linha"><span aria-hidden="true">&gt;</span><input id="texto-entrada" type="text" maxlength="1000" placeholder="Ex.: 7 ou 8 * 3" disabled><button id="enviar" type="submit" disabled>Enviar</button></div><p id="ajuda-entrada">A caixa é ativada enquanto um programa está rodando.</p></form>
+        </section>
+      </section>
+    </section>
+
+    <section id="pagina-teoria" class="pagina" hidden>
+      <div class="secao-cabecalho"><div><p class="sobretitulo">CONSTRUA UMA BASE SÓLIDA</p><h2>Teoria da programação</h2><p>Antes de escrever código, entenda como transformar um problema em passos claros. Abra cada tópico para estudar o conceito e ver um exemplo.</p></div></div>
+      <div class="conceitos">
+        <details class="conceito" open>
+          <summary><span class="conceito-numero">01</span><span><b>Algoritmos e sequência</b><small>Uma solução é uma sequência ordenada de instruções.</small></span></summary>
+          <div class="conceito-conteudo"><p>Um <strong>algoritmo</strong> descreve, em passos finitos e compreensíveis, como resolver um problema. A sequência importa: primeiro obtemos os dados, depois processamos e, por fim, apresentamos o resultado.</p><pre>ler largura
+ler altura
+area = largura * altura
+mostrar area</pre><p>Esse raciocínio funciona antes de escolher a linguagem. O programa em C ou C++ traduz cada passo em instruções que o computador pode executar.</p></div>
+        </details>
+        <details class="conceito">
+          <summary><span class="conceito-numero">02</span><span><b>Variáveis, tipos e memória</b><small>Dados têm significado, representação e espaço reservado.</small></span></summary>
+          <div class="conceito-conteudo"><p>Uma variável é um nome associado a um valor guardado durante a execução. O tipo informa quais valores são esperados e quais operações fazem sentido: inteiros para contagens, números decimais para medidas e texto para palavras.</p><pre>int quantidade = 3;
+double temperatura = 24.5;</pre><p>Escolher tipos adequados deixa o programa mais claro e ajuda a evitar conversões e resultados inesperados.</p></div>
+        </details>
+        <details class="conceito">
+          <summary><span class="conceito-numero">03</span><span><b>Decisões e condições</b><small>O programa pode escolher caminhos diferentes.</small></span></summary>
+          <div class="conceito-conteudo"><p>Uma condição é uma expressão que resulta em verdadeiro ou falso. Estruturas como <code>if</code> e <code>else</code> usam esse resultado para decidir qual bloco executar.</p><pre>if (temperatura &gt;= 30) {
+    printf("Ligar ventilacao");
+} else {
+    printf("Temperatura normal");
+}</pre><p>Compare os limites com atenção: incluir ou não o valor-limite muda o comportamento do programa.</p></div>
+        </details>
+        <details class="conceito">
+          <summary><span class="conceito-numero">04</span><span><b>Repetições e laços</b><small>Automatize tarefas sem copiar as mesmas instruções.</small></span></summary>
+          <div class="conceito-conteudo"><p>Um laço repete um bloco enquanto uma condição é satisfeita ou por uma quantidade definida de vezes. Em qualquer repetição, identifique como ela começa, quando termina e o que muda a cada passo para evitar um laço infinito.</p><pre>for (int i = 0; i &lt; 5; i++) {
+    printf("%d\\n", i);
+}</pre><p>Use <code>for</code> quando a contagem é conhecida; <code>while</code> é útil quando a repetição depende de uma condição.</p></div>
+        </details>
+        <details class="conceito">
+          <summary><span class="conceito-numero">05</span><span><b>Funções e organização</b><small>Divida problemas grandes em partes menores e reutilizáveis.</small></span></summary>
+          <div class="conceito-conteudo"><p>Uma função recebe dados de entrada, executa uma responsabilidade e pode devolver um resultado. Nomes claros e responsabilidades bem definidas facilitam a leitura, os testes e a manutenção.</p><pre>double calcular_area(double largura, double altura) {
+    return largura * altura;
+}</pre><p>Parâmetros são os dados recebidos; o valor de retorno é o resultado entregue ao código que chamou a função.</p></div>
+        </details>
+        <details class="conceito">
+          <summary><span class="conceito-numero">06</span><span><b>Vetores, endereços e ponteiros</b><small>Aprenda a agrupar valores e como C representa a memória.</small></span></summary>
+          <div class="conceito-conteudo"><p>Um vetor guarda vários elementos do mesmo tipo em posições numeradas a partir do índice zero. Em C, um ponteiro guarda um endereço de memória; usá-lo requer cuidado com inicialização, limites e tempo de vida dos dados.</p><pre>int notas[3] = {8, 9, 10};
+int *primeira_nota = &amp;notas[0];</pre><p>C++ oferece ferramentas de nível mais alto, como <code>std::vector</code>, que gerenciam coleções com mais segurança. Entenda primeiro o conceito, depois escolha a ferramenta apropriada.</p></div>
+        </details>
+      </div>
+      <section class="convite-pratica"><div><p class="sobretitulo">AGORA, COLOQUE EM PRÁTICA</p><h2>Teoria e código caminham juntos</h2><p>Execute exemplos de C e C++ no laboratório e observe cada conceito acontecendo.</p></div><button class="botao-principal" data-ir="programar" type="button">Explorar programas de C e C++ →</button></section>
+    </section>
+
+    <section id="pagina-aulas" class="pagina" hidden>
+      <div class="secao-cabecalho"><div><p class="sobretitulo">APRENDA EXPLORANDO</p><h2>Aulas e projetos</h2><p>Conteúdos de Web, UX, ESP32 e outras áreas — Redes tem uma seção dedicada.</p></div><label class="busca busca-larga"><span class="sr-only">Buscar aula</span><span aria-hidden="true">⌕</span><input id="busca-aula" type="search" placeholder="Buscar por assunto ou nome..." autocomplete="off"></label></div>
+      <section class="painel materiais-painel">
+        <div class="lista-coluna">
+          <div class="titulo-lista"><div><h2>Biblioteca</h2><p id="contagem-aulas">Carregando...</p></div></div>
+          <nav id="filtros-aulas" class="filtros" aria-label="Filtrar aulas"></nav>
+          <div id="lista-aulas" class="lista lista-materiais" aria-live="polite"><p class="vazio">Carregando materiais...</p></div>
+        </div>
+        <section class="visualizador"><div class="visualizador-topo"><h2 id="titulo-aula">Visualização da aula</h2><a id="abrir-aula" href="#" target="_blank" rel="noopener" hidden>Abrir em nova aba ↗</a></div><div id="placeholder-aula" class="placeholder"><span>▤</span><b>Escolha uma aula ou projeto na lista</b><small>O conteúdo será carregado nesta área.</small></div><iframe id="visualizador-aula" title="Conteúdo da aula selecionada" hidden></iframe></section>
+      </section>
+    </section>
+
+    <section id="pagina-redes" class="pagina" hidden>
+      <div class="secao-cabecalho"><div><p class="sobretitulo">CONECTANDO DISPOSITIVOS</p><h2>Redes de computadores</h2><p>Uma trilha independente, da teoria dos protocolos aos cálculos de endereçamento e sub-redes.</p></div><label class="busca busca-larga"><span class="sr-only">Buscar conteúdo de redes</span><span aria-hidden="true">⌕</span><input id="busca-redes" type="search" placeholder="Buscar IP, máscara, protocolo..." autocomplete="off"></label></div>
+      <section class="painel materiais-painel">
+        <div class="lista-coluna">
+          <div class="titulo-lista"><div><h2>Biblioteca de Redes</h2><p id="contagem-redes">Carregando...</p></div></div>
+          <nav id="filtros-redes" class="filtros" aria-label="Filtrar conteúdo de redes"></nav>
+          <div id="lista-redes" class="lista lista-materiais" aria-live="polite"><p class="vazio">Carregando conteúdo de redes...</p></div>
+        </div>
+        <section class="visualizador"><div class="visualizador-topo"><h2 id="titulo-redes">Teoria e exercícios de Redes</h2><a id="abrir-redes" href="#" target="_blank" rel="noopener" hidden>Abrir em nova aba ↗</a></div><div id="placeholder-redes" class="placeholder"><span>⌁</span><b>Uma trilha organizada de redes</b><small>Escolha uma teoria, cálculo ou exercício para estudar aqui.</small></div><iframe id="visualizador-redes" title="Conteúdo de redes selecionado" hidden></iframe></section>
+      </section>
+      <section class="nota-teoria"><b>Roteiro sugerido</b><span>Conceitos básicos → modelo OSI e TCP/IP → endereços e máscaras → sub-redes e VLSM → exercícios e calculadora.</span></section>
+    </section>
+
+    <section id="pagina-iot" class="pagina" hidden>
+      <div class="secao-cabecalho"><div><p class="sobretitulo">PROJETO COMPLETO</p><h2>Integração IoT simulada</h2><p>Um clique inicia os serviços locais e gera leituras de sensores sem precisar da placa.</p></div><div class="acoes-iot"><button id="iniciar-iot" class="botao-principal" type="button">▶ Iniciar simulação</button><button id="parar-iot" class="botao-secundario" type="button" disabled>Parar serviços</button></div></div>
+      <div class="fluxo-iot"><span>Simulador ESP32</span><b>→</b><span>Broker MQTT</span><b>→</b><span>Ingestor</span><b>→</b><span>API + banco</span><b>→</b><span>Dashboard</span></div>
+      <div id="status-iot" class="servicos" aria-live="polite"><p class="placeholder">Inicie a simulação para ver o estado dos serviços.</p></div>
+      <section id="painel-iot" class="dashboard-iot" hidden><div class="visualizador-topo"><div><h2>Dashboard da estufa</h2><p>O painel recebe dados do simulador local em tempo real.</p></div><a href="http://127.0.0.1:3000/" target="_blank" rel="noopener">Abrir separado ↗</a></div><iframe id="iframe-iot" title="Dashboard de sensores da integração IoT" src="about:blank"></iframe></section>
+      <aside class="aviso"><b>Se não iniciar:</b> confira se Node.js está instalado, execute `npm install` dentro de `integracao\02_projeto` e verifique se as portas 1883 (MQTT) e 3000 (API) estão livres.</aside>
+    </section>
+
+    <section id="pagina-hardware" class="pagina" hidden>
+      <div class="secao-cabecalho"><div><p class="sobretitulo">MICROCONTROLADORES E LÓGICA DIGITAL</p><h2>Arduino, ESP32 e VHDL</h2><p>Consulte os códigos. Para simular os circuitos VHDL, selecione uma aula e clique em Simular.</p></div></div>
+      <section class="painel materiais-painel">
+        <div class="lista-coluna">
+          <div class="titulo-lista"><div><h2>Exemplos e aulas</h2><p id="contagem-hardware">Carregando...</p></div><label class="busca"><span class="sr-only">Buscar exemplo hardware</span><span aria-hidden="true">⌕</span><input id="busca-hardware" type="search" placeholder="Buscar..." autocomplete="off"></label></div>
+          <nav id="filtros-hardware" class="filtros" aria-label="Filtrar exemplos hardware"></nav>
+          <div id="lista-hardware" class="lista lista-materiais" aria-live="polite"><p class="vazio">Carregando exemplos...</p></div>
+        </div>
+        <section class="visualizador"><div class="visualizador-topo"><h2 id="titulo-hardware">Código ou aula</h2><div class="acoes-codigo"><button id="simular-vhdl" class="botao-secundario" type="button" hidden>▶ Simular VHDL</button><button id="copiar-codigo" class="botao-secundario" type="button" hidden>Copiar código</button></div></div><div id="placeholder-hardware" class="placeholder"><span>⌘</span><b>Selecione um exemplo</b><small>O código-fonte aparecerá nesta área.</small></div><pre id="codigo-hardware" class="codigo-fonte" hidden></pre><pre id="saida-vhdl" class="saida-vhdl" aria-live="polite" hidden></pre></section>
+      </section>
+      <aside class="aviso"><b>Limite do navegador:</b> carregar um programa em uma placa requer Arduino IDE ou Arduino CLI, placa conectada por USB e configuração da porta. Esta página mostra os exemplos; não finge executar hardware desconectado.</aside>
+    </section>
+    <section id="pagina-plataformas" class="pagina" hidden>
+      <div class="secao-cabecalho"><div><p class="sobretitulo">PLATAFORMAS COMPLEMENTARES</p><h2>Plataformas online do Prof. Vagner Cordeiro</h2><p>Escolha uma plataforma e ela abre ao lado. Se o conteúdo não carregar na moldura, use <b>Abrir em nova aba</b>.</p></div></div>
+      <section class="painel materiais-painel">
+        <div class="lista-coluna">
+          <div class="titulo-lista"><div><h2>Plataformas</h2><p>9 links organizados por tema</p></div></div>
+          <div id="lista-plataformas" class="lista lista-materiais"></div>
+        </div>
+        <section class="visualizador"><div class="visualizador-topo"><h2 id="titulo-plataformas">Plataforma</h2><div class="acoes-codigo"><a id="abrir-plataformas" class="botao-secundario" href="#" target="_blank" rel="noopener noreferrer" hidden>Abrir em nova aba</a></div></div><div id="placeholder-plataformas" class="placeholder"><span>🌐</span><b>Selecione uma plataforma</b><small>O conteúdo aparecerá nesta área.</small></div><iframe id="visualizador-plataformas" class="aula-frame" title="Plataforma externa" referrerpolicy="no-referrer" hidden></iframe></section>
+      </section>
+    </section>
+
+    <section id="pagina-referencias" class="pagina" hidden>
+      <div class="secao-cabecalho"><div><p class="sobretitulo">GUIA ACADÊMICO</p><h2>Referências bibliográficas (ABNT NBR 6023)</h2><p>Como citar livros, artigos, sites e documentações nos seus trabalhos, com modelos, gerador e bibliografia recomendada do curso.</p></div></div>
+      <div class="grade-guia">
+        <article class="cartao-guia"><h3>1. Por que referenciar?</h3><p>Referenciar dá crédito aos autores, permite que o leitor confira a fonte e evita plágio. Toda ideia, trecho de código ou figura que não seja sua deve ser citada no texto (ex.: KERNIGHAN; RITCHIE, 1989) e listada ao final em ordem alfabética.</p></article>
+        <article class="cartao-guia"><h3>2. Regras de ouro</h3><ul><li>Sobrenome do autor em MAIÚSCULAS, seguido do prenome.</li><li>Título do livro em <b>negrito</b> (ou itálico, sempre o mesmo padrão).</li><li>Alinhamento à esquerda, espaçamento simples, uma linha em branco entre referências.</li><li>Para sites: inclua URL e "Acesso em: dia mês ano".</li></ul></article>
+        <article class="cartao-guia"><h3>3. Modelos</h3>
+          <p><b>Livro:</b></p><pre class="modelo">SOBRENOME, Prenome. <b>Título</b>: subtítulo. Edição. Local: Editora, ano.</pre>
+          <p><b>Artigo:</b></p><pre class="modelo">SOBRENOME, Prenome. Título do artigo. <b>Revista</b>, local, v. 1, n. 2, p. 10-20, ano.</pre>
+          <p><b>Site / documentação:</b></p><pre class="modelo">AUTOR OU ENTIDADE. <b>Título da página</b>. Ano. Disponível em: URL. Acesso em: 1 jan. 2025.</pre>
+        </article>
+      </div>
+      <section class="painel gerador-ref">
+        <h3>Gerador de referência</h3>
+        <form id="form-ref" class="form-ref">
+          <label>Tipo<select id="ref-tipo"><option value="livro">Livro</option><option value="site">Site / documentação</option><option value="artigo">Artigo</option></select></label>
+          <label>Autor (Sobrenome, Prenome)<input id="ref-autor" placeholder="Ex.: Kernighan, Brian"></label>
+          <label>Título<input id="ref-titulo" placeholder="Ex.: C: a linguagem de programação"></label>
+          <label data-so="livro,artigo">Local / Revista<input id="ref-local" placeholder="Ex.: Rio de Janeiro"></label>
+          <label data-so="livro">Editora<input id="ref-editora" placeholder="Ex.: Campus"></label>
+          <label data-so="livro">Edição<input id="ref-edicao" placeholder="Ex.: 2. ed."></label>
+          <label>Ano<input id="ref-ano" inputmode="numeric" placeholder="Ex.: 1989"></label>
+          <label data-so="site">URL<input id="ref-url" type="url" placeholder="https://..."></label>
+        </form>
+        <div class="resultado-ref"><p id="ref-saida" aria-live="polite">Preencha os campos acima.</p><button id="ref-copiar" class="botao-secundario" type="button">Copiar referência</button></div>
+      </section>
+      <section class="painel">
+        <h3>Bibliografia recomendada</h3>
+        <ol class="lista-ref">
+          <li>KERNIGHAN, Brian W.; RITCHIE, Dennis M. <b>C: a linguagem de programação</b>. 2. ed. Rio de Janeiro: Campus, 1989.</li>
+          <li>STROUSTRUP, Bjarne. <b>The C++ programming language</b>. 4. ed. Upper Saddle River: Addison-Wesley, 2013.</li>
+          <li>TANENBAUM, Andrew S.; WETHERALL, David J. <b>Redes de computadores</b>. 5. ed. São Paulo: Pearson, 2011.</li>
+          <li>KUROSE, James F.; ROSS, Keith W. <b>Redes de computadores e a internet</b>: uma abordagem top-down. 8. ed. São Paulo: Pearson, 2021.</li>
+          <li>MOZILLA. <b>MDN Web Docs</b>. Disponível em: https://developer.mozilla.org. Acesso em: 1 jan. 2025.</li>
+          <li>CPPREFERENCE. <b>C and C++ reference</b>. Disponível em: https://en.cppreference.com. Acesso em: 1 jan. 2025.</li>
+          <li>ARDUINO. <b>Arduino documentation</b>. Disponível em: https://docs.arduino.cc. Acesso em: 1 jan. 2025.</li>
+          <li>ESPRESSIF SYSTEMS. <b>ESP32 documentation</b>. Disponível em: https://docs.espressif.com. Acesso em: 1 jan. 2025.</li>
+          <li>OASIS. <b>MQTT version 5.0</b>. Disponível em: https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html. Acesso em: 1 jan. 2025.</li>
+          <li>NODE-RED. <b>Node-RED documentation</b>. Disponível em: https://nodered.org/docs. Acesso em: 1 jan. 2025.</li>
+          <li>ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. <b>ABNT NBR 6023</b>: informação e documentação: referências: elaboração. Rio de Janeiro: ABNT, 2018.</li>
+        </ol>
+        <p class="nota-teoria">Ajuste a data de acesso para o dia em que você consultou a fonte. Confira edição e ano na ficha catalográfica do exemplar que você usou.</p>
+      </section>
+    </section>
+
+    <section id="pagina-guia" class="pagina" hidden>
+      <div class="secao-cabecalho"><div><p class="sobretitulo">PASSO A PASSO</p><h2>Como usar esta página</h2><p>Siga as etapas na ordem. Em poucos minutos você estará rodando seu primeiro programa.</p></div></div>
+      <ol class="passos">
+        <li><h3>Instale as ferramentas</h3><p>Instale o compilador <b>GCC/G++</b> (MSYS2 ou MinGW) e o <b>Node.js</b>. O script <code>instalar_professor.ps1</code> faz isso para você (baixe na seção Downloads abaixo).</p></li>
+        <li><h3>Abra o laboratório</h3><p>Dê duplo clique em <code>abrir_laboratorio.bat</code>. O navegador abrirá em <code>http://127.0.0.1:47831</code>. A página funciona apenas no seu computador.</p></li>
+        <li><h3>Estude a Teoria</h3><p>Na aba <b>Teoria</b>, abra cada conceito, leia a explicação e estude o código de exemplo antes de executar.</p></li>
+        <li><h3>Execute um programa</h3><p>Na aba <b>C e C++</b>, escolha um exemplo, clique em <b>Executar</b>, digite os dados pedidos no campo de entrada e acompanhe a saída. Depois altere o código no seu editor e rode de novo.</p></li>
+        <li><h3>Leia as aulas e projetos</h3><p>As abas <b>Aulas e projetos</b> e <b>Redes</b> trazem aulas em HTML, cálculos e exercícios. Use a busca e os filtros para encontrar o tema.</p></li>
+        <li><h3>Rode o Projeto IoT</h3><p>Na aba <b>Projeto IoT</b>, clique em Iniciar serviços (MQTT na porta 1883 e API na 3000). Ao terminar, clique em Parar serviços.</p></li>
+        <li><h3>Explore Eletrônica e embarcados</h3><p>Veja códigos de Arduino, ESP32 e VHDL; simule os circuitos VHDL com o botão Simular.</p></li>
+        <li><h3>Aprofunde nas Plataformas e Referências</h3><p>Use a aba <b>Plataformas</b> para conteúdos complementares e <b>Referências</b> para citar fontes corretamente.</p></li>
+      </ol>
+      <section class="painel">
+        <h3>Aplicação prática: exercícios sugeridos</h3>
+        <ul class="lista-exercicios">
+          <li><b>Calculadora de média:</b> leia 3 notas e mostre a média e a situação (aprovado/reprovado). Conceitos: variáveis, decisões.</li>
+          <li><b>Tabuada:</b> imprima a tabuada de um número lido. Conceito: repetições.</li>
+          <li><b>Maior de um vetor:</b> leia 5 números e mostre o maior. Conceitos: vetores, laços.</li>
+          <li><b>Conversor de temperatura:</b> crie uma função celsius_para_fahrenheit. Conceito: funções.</li>
+          <li><b>Sensor simulado:</b> envie leituras por MQTT no Projeto IoT. Conceito: redes e IoT.</li>
+        </ul>
+      </section>
+      <section class="painel">
+        <h3>Downloads</h3>
+        <p>Baixe o curso completo ou apenas os arquivos de apoio:</p>
+        <div class="grade-downloads">
+          <a class="botao-principal" href="https://github.com/cordeirotelecom/aula_programacao/archive/refs/heads/main.zip" target="_blank" rel="noopener noreferrer">⬇ Curso completo (ZIP)</a>
+          <a class="botao-secundario" href="/baixar/instalar_professor.ps1" download>instalar_professor.ps1</a>
+          <a class="botao-secundario" href="/baixar/preparar_aluno.ps1" download>preparar_aluno.ps1</a>
+          <a class="botao-secundario" href="/baixar/executar.ps1" download>executar.ps1</a>
+          <a class="botao-secundario" href="/baixar/abrir_laboratorio.bat" download>abrir_laboratorio.bat</a>
+          <a class="botao-secundario" href="/baixar/README.md" download>README.md</a>
+          <a class="botao-secundario" href="/baixar/LEIA-ME.txt" download>LEIA-ME.txt</a>
+        </div>
+      </section>
+      <section class="painel">
+        <h3>Problemas comuns</h3>
+        <ul>
+          <li><b>"gcc não encontrado":</b> instale o GCC e reabra o terminal.</li>
+          <li><b>Porta ocupada:</b> feche outro laboratório aberto ou serviços MQTT/API em execução.</li>
+          <li><b>Plataforma externa em branco:</b> use "Abrir em nova aba" e verifique sua internet.</li>
+        </ul>
+      </section>
+    </section>
+    <footer><b>Curso de Programação</b><span>Página elaborada pelo Prof. Vagner Cordeiro</span><small>Laboratório local · a execução de programas acontece no seu computador.</small></footer>
+  </main>
+</body>
+</html>

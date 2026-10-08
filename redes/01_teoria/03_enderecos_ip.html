@@ -1,0 +1,43 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Redes 03 - Enderecos IP</title>
+<link rel="stylesheet" href="estilo_redes.css">
+</head>
+<body>
+<h1>Aula 3 - Enderecos IPv4</h1>
+<p>Um IPv4 tem <b>32 bits</b>, escritos em 4 octetos: <code>192.168.10.25</code>. Ele identifica a maquina (<i>host</i>) e a rede onde ela esta.</p>
+
+<h2>Classes</h2>
+<table>
+<tr><th>Classe</th><th>1o octeto</th><th>Mascara padrao</th><th>Uso</th></tr>
+<tr><td>A</td><td>1 - 126</td><td>255.0.0.0 (/8)</td><td>Redes enormes</td></tr>
+<tr><td>B</td><td>128 - 191</td><td>255.255.0.0 (/16)</td><td>Redes medias</td></tr>
+<tr><td>C</td><td>192 - 223</td><td>255.255.255.0 (/24)</td><td>Redes pequenas</td></tr>
+<tr><td>D</td><td>224 - 239</td><td>-</td><td>Multicast</td></tr>
+<tr><td>E</td><td>240 - 255</td><td>-</td><td>Reservada</td></tr>
+</table>
+
+<h2>Enderecos especiais</h2>
+<table>
+<tr><th>Faixa</th><th>Tipo</th></tr>
+<tr><td>10.0.0.0/8</td><td>Privado</td></tr>
+<tr><td>172.16.0.0/12 (172.16 a 172.31)</td><td>Privado</td></tr>
+<tr><td>192.168.0.0/16</td><td>Privado</td></tr>
+<tr><td>127.0.0.0/8</td><td>Loopback (a propria maquina)</td></tr>
+<tr><td>169.254.0.0/16</td><td>APIPA (sem DHCP)</td></tr>
+<tr><td>255.255.255.255</td><td>Broadcast geral</td></tr>
+</table>
+<p class="dica">Enderecos privados nao sao roteados na Internet; o roteador usa NAT para sair.</p>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Classe e tipo de 8.8.8.8, 10.20.30.40, 172.31.0.1, 172.32.0.1 e 192.168.0.1?</li>
+<li>Confira com o programa: <code>executar.ps1 c rede_07_classe_tipo_ip</code>.</li>
+</ol></div>
+<p><a href="02_binario_decimal.html">&larr; Anterior</a> | <a href="04_mascara_cidr.html">Proxima: Mascara e CIDR &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\redes\abrir.ps1" 03_enderecos_ip -->

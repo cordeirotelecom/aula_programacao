@@ -1,0 +1,42 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pinagem e cuidados</title>
+<link rel="stylesheet" href="../estilo_esp32.css">
+</head>
+<body>
+<h1>Pinagem e cuidados</h1>
+
+<div class="alerta"><b>Regra de ouro:</b> os pinos do ESP32 trabalham em 3,3 V e NAO toleram 5 V. Nunca ligue 5 V direto em um GPIO. Cada pino aguenta pouca corrente: use resistor de 220 ohm em LEDs.</div>
+
+<h2>ESP32 classico</h2>
+<table>
+<tr><th>Pinos</th><th>Cuidado</th></tr>
+<tr><td>GPIO 34, 35, 36, 39</td><td>So entrada (sem pull-up interno e sem saida). Bons para sensores analogicos.</td></tr>
+<tr><td>GPIO 6 a 11</td><td>Ligados a memoria flash. NAO use.</td></tr>
+<tr><td>GPIO 0, 2, 5, 12, 15</td><td>Pinos de strapping: o nivel deles no boot define o modo de inicio. Se algo estiver ligado e a placa nao iniciar, desconecte.</td></tr>
+<tr><td>ADC2 (GPIO 0, 2, 4, 12-15, 25-27)</td><td>Nao funciona enquanto o WiFi esta ligado. Use ADC1 (GPIO 32-39) com WiFi.</td></tr>
+</table>
+
+<h2>ESP32-S3</h2>
+<table>
+<tr><th>Pinos</th><th>Cuidado</th></tr>
+<tr><td>GPIO 19 e 20</td><td>Sao o USB nativo (D- e D+). Nao use se for usar USB.</td></tr>
+<tr><td>GPIO 26 a 32</td><td>Flash/PSRAM. NAO use.</td></tr>
+<tr><td>GPIO 33 a 37</td><td>Usados pela PSRAM octal em modulos R8. Evite.</td></tr>
+<tr><td>GPIO 0, 3, 45, 46</td><td>Pinos de strapping.</td></tr>
+<tr><td>LED RGB onboard</td><td>Varia por versao da placa (GPIO 48 ou 38). Use <code>RGB_BUILTIN</code> com <code>neopixelWrite</code> ou, melhor, um LED externo.</td></tr>
+</table>
+
+<div class="dica">Duvida sobre o LED da sua placa? Ligue um LED externo com resistor de 220 ohm no pino escolhido e GND. Funciona em qualquer placa.</div>
+
+<div class="navegacao">
+<a href="03_quando_usar_cada_um.html">Anterior: Quando usar</a>
+<a href="05_instalar_arduino_ide.html">Proxima: Instalar Arduino IDE</a>
+</div>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\esp32\abrir.ps1" 04_pinagem_e_cuidados -->

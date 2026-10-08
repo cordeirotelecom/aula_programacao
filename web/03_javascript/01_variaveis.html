@@ -1,0 +1,41 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>JS - variaveis</title>
+</head>
+<body>
+  <h1>Variaveis em JavaScript</h1>
+  <pre id="saida"></pre>
+
+  <script>
+    // AULA 01 - Variaveis
+    // let: valor que pode mudar; const: valor fixo.
+    // Tipos: number (numeros), string (textos), boolean (true/false).
+    const saida = document.getElementById("saida");
+    function mostrar(texto) { saida.textContent += texto + "\n"; }
+
+    let nome = "Ana";
+    let idade = 17;
+    const PI = 3.14159;
+    let estudante = true;
+
+    mostrar("Nome: " + nome);
+    mostrar("Idade: " + idade);
+    mostrar(`Ano que vem: ${idade + 1} anos`);   // `crase` permite ${expressao}
+    mostrar("Estudante? " + estudante);
+    mostrar("Tipo de PI: " + typeof PI);
+
+    idade = 18;                                   // let pode ser alterado
+    mostrar("Idade agora: " + idade);
+    console.log("Tambem aparece no console (F12)");
+
+    // EXERCICIOS:
+    // 1. Troque nome e idade pelos seus dados.
+    // 2. Crie a variavel altura e mostre na tela.
+    // 3. Tente alterar PI e veja o erro no console (F12).
+  </script>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 01_variaveis -->

@@ -1,0 +1,57 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercicios ESP32</title>
+<link rel="stylesheet" href="../estilo_esp32.css">
+</head>
+<body>
+<h1>Exercicios ESP32</h1>
+<p>Tente responder antes de abrir a resposta.</p>
+
+<div class="exercicio"><b>1. (Conceitual)</b> Voce quer fazer um teclado USB. Qual chip escolher: ESP32 classico ou S3?
+<details><summary>Resposta</summary>ESP32-S3, porque tem USB OTG nativo e pode funcionar como dispositivo HID. O classico usa chip conversor e nao faz isso.</details></div>
+
+<div class="exercicio"><b>2. (Conceitual)</b> Preciso de audio Bluetooth (A2DP). Posso usar o S3?
+<details><summary>Resposta</summary>Nao. O S3 so tem BLE; Bluetooth Classic existe no ESP32 classico.</details></div>
+
+<div class="exercicio"><b>3. (Pinos)</b> Quais pinos do ESP32 classico nao devem ser usados por estarem ligados a flash?
+<details><summary>Resposta</summary>GPIO 6 a 11.</details></div>
+
+<div class="exercicio"><b>4. (Pinos)</b> Por que o GPIO 34 nao serve para ligar um LED?
+<details><summary>Resposta</summary>Os GPIO 34 a 39 sao somente entrada: nao tem saida digital.</details></div>
+
+<div class="exercicio"><b>5. (Pinos)</b> Voce usa WiFi e precisa ler um sensor analogico. Qual ADC usar?
+<details><summary>Resposta</summary>ADC1 (GPIO 32 a 39 no classico). O ADC2 nao funciona com o WiFi ligado.</details></div>
+
+<div class="exercicio"><b>6. (Pinos S3)</b> Quais pinos do S3 sao do USB nativo?
+<details><summary>Resposta</summary>GPIO 19 e 20.</details></div>
+
+<div class="exercicio"><b>7. (Seguranca)</b> Posso ligar um sensor de 5 V direto num GPIO do ESP32?
+<details><summary>Resposta</summary>Nao. Os GPIO sao 3,3 V e nao toleram 5 V. Use divisor de tensao ou conversor de nivel.</details></div>
+
+<div class="exercicio"><b>8. (Codigo)</b> Qual a funcao que configura PWM no core 3.x?
+<details><summary>Resposta</summary><code>ledcAttach(pino, frequencia, resolucao)</code>, depois <code>ledcWrite(pino, duty)</code>. Exige core 3.0 ou superior.</details></div>
+
+<div class="exercicio"><b>9. (Codigo)</b> Por que a variavel usada numa interrupcao deve ser <code>volatile</code>?
+<details><summary>Resposta</summary>Para o compilador nao guardar uma copia antiga dela: ela pode mudar a qualquer momento dentro da interrupcao.</details></div>
+
+<div class="exercicio"><b>10. (Codigo)</b> Escreva o trecho que dorme 20 segundos em deep sleep.
+<details><summary>Resposta</summary><pre>esp_sleep_enable_timer_wakeup(20 * 1000000ULL);
+esp_deep_sleep_start();</pre></details></div>
+
+<div class="exercicio"><b>11. (Pratica)</b> Modifique o projeto 1 para o verde durar no minimo 10 s antes de aceitar o botao.
+<details><summary>Resposta</summary>No <code>case VERDE</code>, troque <code>decorrido &gt; 3000</code> por <code>decorrido &gt; 10000</code>.</details></div>
+
+<div class="exercicio"><b>12. (Pratica)</b> Para que serve o modo Access Point do projeto 2?
+<details><summary>Resposta</summary>O ESP32 cria a propria rede WiFi; o celular conecta direto, sem roteador. Util onde nao ha WiFi.</details></div>
+
+<div class="navegacao">
+<a href="../03_projetos/projetos_esp32.html">Anterior: Projetos</a>
+<span>Fim do curso</span>
+</div>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\esp32\abrir.ps1" exercicios_esp32 -->

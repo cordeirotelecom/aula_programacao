@@ -1,0 +1,73 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Redes 00 - Para que serve?</title>
+<link rel="stylesheet" href="estilo_redes.css">
+</head>
+<body>
+<h1>Aula 0 - Para que serve cada coisa?</h1>
+<p>Antes de calcular, entenda <b>por que</b> cada conceito existe. Use a analogia: <b>o IP e o endereco de uma casa</b>.</p>
+
+<h2>1. Endereco IP - "quem e voce"</h2>
+<p>Identifica cada dispositivo (PC, celular, impressora, ESP32) para os pacotes saberem para onde ir. Exemplo: <code>192.168.10.77</code>.</p>
+
+<h2>2. Mascara de rede - "qual e a minha rua"</h2>
+<p>O IP sozinho nao diz onde termina a rede e comeca a maquina. A <b>mascara</b> separa as duas partes:</p>
+<pre>192.168.10 . 77
+ ^ REDE (rua)   ^ HOST (numero da casa)</pre>
+<p><b>Para que serve na pratica:</b> o computador usa a mascara para decidir <b>sozinho</b>:</p>
+<ul>
+<li>Destino na <b>mesma rede</b> &rarr; fala direto (via switch).</li>
+<li>Destino em <b>outra rede</b> &rarr; manda para o <b>gateway</b> (roteador).</li>
+</ul>
+<p>Sem mascara certa, a maquina acha que um vizinho esta "fora" (ou o contrario) e a comunicacao falha.</p>
+
+<h2>3. CIDR (/24, /26...) - a mascara escrita de forma curta</h2>
+<p>E so o numero de bits da rede. <code>/26</code> = <code>255.255.255.192</code>. Define o <b>tamanho</b> da rede: quanto maior o numero, menor a rede.</p>
+
+<h2>4. Endereco de rede - "o nome da rua"</h2>
+<p>Primeiro endereco do bloco. Identifica a rede inteira (usado em rotas e firewalls). <b>Nao e dado a nenhuma maquina.</b></p>
+
+<h2>5. Broadcast - "gritar para toda a rua"</h2>
+<p>Ultimo endereco do bloco. Um pacote enviado para ele chega a <b>todas</b> as maquinas da rede (usado por ARP, DHCP). <b>Tambem nao e dado a maquina.</b></p>
+
+<h2>6. Faixa de hosts - "as casas que existem"</h2>
+<p>Entre a rede e o broadcast: sao os enderecos que voce <b>pode atribuir</b> aos dispositivos. Serve para planejar quantas maquinas cabem (ex.: /26 &rarr; 62).</p>
+
+<h2>7. Classe (A, B, C) - sistema antigo de tamanho</h2>
+<p>Antigamente o <b>1o octeto</b> definia o tamanho da rede (A grande, B media, C pequena). Hoje o que vale e o <b>CIDR</b> (rede sem classes), mas a classe ainda e cobrada em provas e ajuda a reconhecer a mascara padrao.</p>
+
+<h2>8. Faixas privadas, publicas, loopback</h2>
+<ul>
+<li><b>Privadas</b> (10.x, 172.16-31.x, 192.168.x): usadas dentro de casa/empresa; podem se repetir em milhoes de redes. O roteador usa <b>NAT</b> para sair para a Internet.</li>
+<li><b>Publicas</b>: unicas no mundo, acessiveis pela Internet.</li>
+<li><b>Loopback</b> (127.0.0.1): a propria maquina, para testes.</li>
+</ul>
+
+<h2>9. Sub-redes - "dividir o bairro em ruas"</h2>
+<p>Separar a rede em partes (Vendas, TI, Visitantes) para <b>seguranca</b>, <b>organizacao</b> e <b>menos broadcast</b> (desempenho).</p>
+
+<h2>Resumo</h2>
+<table>
+<tr><th>Conceito</th><th>Responde a pergunta</th></tr>
+<tr><td>IP</td><td>Quem e esta maquina?</td></tr>
+<tr><td>Mascara/CIDR</td><td>Quais IPs estao na minha rede?</td></tr>
+<tr><td>Rede</td><td>Qual e o nome da rede?</td></tr>
+<tr><td>Broadcast</td><td>Como falo com todos?</td></tr>
+<tr><td>Faixa de hosts</td><td>Que IPs posso usar? Quantos?</td></tr>
+<tr><td>Classe</td><td>Qual o tamanho "tradicional"?</td></tr>
+<tr><td>Gateway</td><td>Por onde saio da minha rede?</td></tr>
+</table>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>PC1 = 192.168.1.10/24 e PC2 = 192.168.2.20/24. Conversam direto? Por que?</li>
+<li>Por que um escritorio com 50 maquinas nao deve usar /30?</li>
+<li>Por que o primeiro e o ultimo enderecos nao podem ser usados em um PC?</li>
+</ol></div>
+<p><a href="01_modelo_osi_tcpip.html">Proxima: Modelo OSI e TCP/IP &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\redes\abrir.ps1" 00_para_que_serve -->

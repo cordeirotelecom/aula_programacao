@@ -1,0 +1,50 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS - display e posicao</title>
+  <style>
+    /* AULA 04 - display e position
+       block ocupa a linha toda; inline fica no meio do texto;
+       inline-block fica na linha mas aceita largura e altura. */
+    .caixa { background: #ffcc80; padding: 10px; margin: 5px; }
+    .bloco { display: block; }
+    .linha { display: inline-block; width: 80px; }
+
+    /* position: relative cria uma referencia; absolute posiciona dentro dela */
+    .moldura {
+      position: relative;
+      width: 250px;
+      height: 120px;
+      border: 2px solid #333;
+      margin-top: 20px;
+    }
+    .selo {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: crimson;
+      color: white;
+      padding: 4px 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="caixa bloco">Bloco 1</div>
+  <div class="caixa bloco">Bloco 2</div>
+  <span class="caixa linha">A</span>
+  <span class="caixa linha">B</span>
+  <span class="caixa linha">C</span>
+
+  <div class="moldura">
+    Moldura
+    <span class="selo">NOVO</span>
+  </div>
+
+  <!-- EXERCICIOS:
+       1. Mova o selo para o canto inferior esquerdo (bottom e left).
+       2. Mude os blocos para display: inline-block. -->
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 04_display_posicao -->

@@ -1,0 +1,51 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PWA 05 - Service worker e offline</title>
+<link rel="stylesheet" href="../estilo_mobile.css">
+</head>
+<body>
+<h1>Aula 5 (PWA) - Service worker: funcionar sem internet</h1>
+<p>O <b>service worker</b> e um script que fica entre o app e a rede. Ele pode guardar arquivos (cache) e responder quando nao ha conexao.</p>
+
+<div class="passo"><b>Passo 1 - registrar</b> (no <code>script.js</code>):</div>
+<pre>if ("serviceWorker" in navigator &amp;&amp; location.protocol !== "file:") {
+  navigator.serviceWorker.register("sw.js");
+}</pre>
+
+<div class="passo"><b>Passo 2 - guardar os arquivos na instalacao</b> (<code>sw.js</code>):</div>
+<pre>var NOME_CACHE = "painel-sensores-v1";
+var ARQUIVOS = ["./", "index.html", "estilo.css", "script.js"];
+
+self.addEventListener("install", function (e) {
+  e.waitUntil(caches.open(NOME_CACHE).then(function (c) { return c.addAll(ARQUIVOS); }));
+});</pre>
+
+<div class="passo"><b>Passo 3 - responder do cache quando a rede falhar:</b></div>
+<pre>self.addEventListener("fetch", function (e) {
+  if (new URL(e.request.url).origin !== location.origin) return;  // ESP32 passa direto
+  e.respondWith(fetch(e.request).catch(function () { return caches.match(e.request); }));
+});</pre>
+
+<div class="alerta"><b>Importante:</b> os dados do dispositivo (<code>/dados</code>) <b>nao</b> devem ir para o cache de arquivos; senao o app mostraria uma temperatura velha como se fosse atual. Por isso o <code>sw.js</code> ignora pedidos a outro endereco e o app guarda a ultima leitura no <code>localStorage</code> (com horario).</div>
+
+<h2>Testar</h2>
+<ol>
+<li>Rode o servidor (aula 6) e abra <code>http://localhost:8080/03_projetos/painel_sensores/index.html</code>.</li>
+<li>F12 &rarr; aba <b>Application</b> &rarr; Service Workers: deve aparecer "activated".</li>
+<li>Marque <b>Offline</b> e recarregue a pagina: o app ainda abre.</li>
+</ol>
+<div class="dica">Ao mudar um arquivo, aumente o numero de <code>NOME_CACHE</code> (v1 &rarr; v2) para atualizar o cache dos usuarios.</div>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Teste o modo Offline do navegador e descreva o que o app mostra.</li>
+<li>Acrescente um arquivo novo a lista <code>ARQUIVOS</code> e mude a versao do cache.</li>
+</ol></div>
+<p class="navegacao"><a href="04_manifest_instalar.html">&larr; Anterior</a> | <a href="06_testar_no_celular.html">Proxima: Testar no celular &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\mobile_iot\abrir.ps1" 05_service_worker_offline -->

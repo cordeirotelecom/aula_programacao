@@ -1,0 +1,63 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aula 04 - RTOS e interrupcoes</title>
+<link rel="stylesheet" href="..\estilo_embarcados.css">
+</head>
+<body>
+<h1>Aula 04 - RTOS e interrupcoes</h1>
+
+<h2>Interrupcao (ISR)</h2>
+<p>Em vez de ficar perguntando toda hora "chegou dado?" (<em>polling</em>), o hardware <strong>interrompe</strong> a CPU quando algo acontece. A CPU pausa o que fazia, executa a <strong>ISR</strong> (Interrupt Service Routine) e volta de onde parou.</p>
+<table>
+<tr><th>Polling</th><th>Interrupcao</th></tr>
+<tr><td>Simples</td><td>Mais eficiente e rapida de responder</td></tr>
+<tr><td>Gasta CPU perguntando</td><td>CPU livre (ou dormindo) ate o evento</td></tr>
+<tr><td>Pode perder evento rapido</td><td>Nao perde</td></tr>
+</table>
+
+<div class="passo"><strong>Regras de ouro da ISR:</strong>
+<ol>
+<li>Seja <strong>curta</strong>: marque uma flag ou guarde o dado e saia.</li>
+<li>Sem <code>printf</code>, sem esperas, sem lacos longos.</li>
+<li>Variaveis compartilhadas com o <code>main</code> devem ser <code>volatile</code>.</li>
+</ol></div>
+<p>Veja em <code>sim_03_timer_interrupcao</code> e <code>sim_09_fila_circular</code>.</p>
+
+<h2>O que e um RTOS?</h2>
+<p><strong>RTOS</strong> = Real-Time Operating System. Um mini sistema operacional que divide a CPU entre varias <strong>tarefas</strong> e garante que as mais importantes cumpram seus prazos. Exemplos: FreeRTOS, Zephyr, ThreadX.</p>
+
+<h2>Conceitos</h2>
+<table>
+<tr><th>Termo</th><th>Significado</th></tr>
+<tr><td>Tarefa (task)</td><td>Funcao com laco proprio, como um "mini programa"</td></tr>
+<tr><td>Escalonador</td><td>Decide qual tarefa roda agora</td></tr>
+<tr><td>Prioridade</td><td>Tarefa mais importante ganha a CPU</td></tr>
+<tr><td>Preempcao</td><td>Tarefa de maior prioridade interrompe a atual</td></tr>
+<tr><td>Round robin</td><td>Cada tarefa recebe uma fatia de tempo, em rodizio</td></tr>
+<tr><td>Fila (queue)</td><td>Forma segura de passar dados entre tarefas/ISR</td></tr>
+<tr><td>Semaforo / mutex</td><td>Protege um recurso usado por mais de uma tarefa</td></tr>
+</table>
+
+<h2>Exemplo de linha do tempo (sim_04)</h2>
+<pre>
+tempo     012345678901234567890123
+Sensor  : #...#...#...#...#...#...     (prioridade 3, periodo 4)
+Display : .###.....###.....###....     (prioridade 2, periodo 8)
+Log     : .....###.....###.....##.     (prioridade 1, periodo 12)
+</pre>
+<p>O Sensor, de maior prioridade, sempre interrompe as outras (<em>preempcao</em>).</p>
+
+<div class="alerta"><strong>Inversao de prioridade:</strong> uma tarefa de baixa prioridade segura um mutex que a de alta precisa. Solucao: heranca de prioridade (oferecida pelos RTOS).</div>
+
+<div class="dica">Utilizacao da CPU = soma de (custo / periodo) de cada tarefa. Se passar de 100%, algum prazo sera perdido.</div>
+
+<div class="exercicio"><strong>Exercicio:</strong> calcule a utilizacao do sim_04: 1/4 + 3/8 + 4/12. (Resposta: 0,25 + 0,375 + 0,333 = 0,958, ou 95,8%.)</div>
+
+<div class="navegacao"><a href="03_perifericos_e_protocolos.html">&larr; Anterior</a> | <a href="05_baixo_consumo.html">Proxima: Baixo consumo &rarr;</a></div>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\sistemas_embarcados\abrir.ps1" 04_rtos_e_interrupcoes -->

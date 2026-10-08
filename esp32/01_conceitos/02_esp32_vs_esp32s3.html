@@ -1,0 +1,39 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ESP32 vs ESP32-S3</title>
+<link rel="stylesheet" href="../estilo_esp32.css">
+</head>
+<body>
+<h1>ESP32 classico vs ESP32-S3</h1>
+<p>Os dois sao da Espressif e usam a mesma Arduino IDE, mas tem diferencas importantes.</p>
+
+<table>
+<tr><th>Caracteristica</th><th>ESP32 classico</th><th>ESP32-S3</th></tr>
+<tr><td>CPU</td><td>Xtensa LX6 dual-core 240 MHz</td><td>Xtensa LX7 dual-core 240 MHz</td></tr>
+<tr><td>SRAM</td><td>520 KB</td><td>512 KB</td></tr>
+<tr><td>WiFi</td><td>2,4 GHz</td><td>2,4 GHz</td></tr>
+<tr><td>Bluetooth</td><td>Classic + BLE 4.2</td><td>Somente BLE 5 (sem Bluetooth Classic)</td></tr>
+<tr><td>GPIO</td><td>~34</td><td>45</td></tr>
+<tr><td>USB</td><td>Sem USB nativo; usa chip CP2102 ou CH340</td><td>USB OTG nativo (pode virar teclado, mouse, pendrive)</td></tr>
+<tr><td>DAC (saida analogica)</td><td>2 canais</td><td>Nao tem</td></tr>
+<tr><td>Toque capacitivo</td><td>10 pinos</td><td>14 pinos</td></tr>
+<tr><td>ADC</td><td>18 canais (ADC2 conflita com WiFi)</td><td>20 canais</td></tr>
+<tr><td>IA / vetores</td><td>Nao</td><td>Instrucoes vetoriais para IA</td></tr>
+<tr><td>Camera e LCD</td><td>Limitado</td><td>Interfaces dedicadas de camera e LCD</td></tr>
+<tr><td>PSRAM</td><td>Depende do modulo</td><td>Octal, conforme o modulo (ex.: N16R8)</td></tr>
+</table>
+
+<div class="dica">Resumo: o S3 ganha em USB, IA, camera e mais pinos. O classico ganha em Bluetooth Classic (audio, SPP) e DAC.</div>
+<div class="alerta">Ao comprar, leia a sigla do modulo (ex.: N8R8): N = flash em MB, R = PSRAM em MB.</div>
+
+<div class="navegacao">
+<a href="01_comparacao_microcontroladores.html">Anterior: Comparacao</a>
+<a href="03_quando_usar_cada_um.html">Proxima: Quando usar cada um</a>
+</div>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\esp32\abrir.ps1" 02_esp32_vs_esp32s3 -->

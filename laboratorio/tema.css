@@ -1,0 +1,47 @@
+/* Segunda passada de design: tipografia maior, contraste e código colorido */
+html { font-size: 112.5%; }
+body { font-size: 1rem; line-height: 1.7; color: #1b2433; }
+h2 { font-size: clamp(1.7rem, 3vw, 2.2rem); }
+h3 { font-size: 1.25rem; }
+.aba { font-size: 1rem; padding: 0.8rem 1.1rem; }
+.lista .item-material small, .placeholder small { font-size: 0.95rem; }
+
+pre, code { font-family: "Cascadia Code", Consolas, "Courier New", monospace; }
+pre.codigo-fonte, .conceito-conteudo pre, .saida-vhdl {
+  background: #0f1b2d; color: #e6edf7; font-size: 1.02rem; line-height: 1.65;
+  padding: 1.1rem 1.25rem; border-radius: 10px; border: 1px solid #243651; overflow: auto;
+}
+.tk-kw { color: #7cc4ff; font-weight: 600; }
+.tk-str { color: #ffcf7a; }
+.tk-num { color: #ff9e80; }
+.tk-com { color: #8ba3c0; font-style: italic; }
+.tk-pre { color: #c4a7ff; }
+.tk-fn { color: #7fe3b0; }
+code { background: #e8eff9; color: #12376b; padding: 0.1em 0.4em; border-radius: 5px; font-size: 0.92em; }
+pre code { background: none; color: inherit; padding: 0; }
+
+.grupo-titulo { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: #1858a8; margin: 1rem 0 0.4rem; }
+
+.grade-guia { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; margin-bottom: 1.5rem; }
+.cartao-guia, .painel { background: #fff; border: 1px solid #d5dfec; border-radius: 12px; padding: 1.3rem 1.5rem; }
+.painel { margin-bottom: 1.5rem; }
+.cartao-guia ul, .painel ul { padding-left: 1.3rem; }
+.modelo { background: #f1f5fb; border-left: 4px solid #1858a8; color: #14263f; padding: 0.7rem 0.9rem; border-radius: 6px; white-space: pre-wrap; font-size: 0.92rem; }
+
+.form-ref { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.9rem; }
+.form-ref label { display: grid; gap: 0.3rem; font-weight: 600; font-size: 0.95rem; }
+.form-ref label[hidden] { display: none; }
+.form-ref input, .form-ref select { font: inherit; padding: 0.6rem 0.7rem; border: 1px solid #b9c7da; border-radius: 8px; }
+.resultado-ref { margin-top: 1rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; background: #eef4fc; border-radius: 10px; padding: 1rem; }
+.resultado-ref p { flex: 1 1 320px; margin: 0; }
+.lista-ref li { margin-bottom: 0.8rem; }
+
+.passos { counter-reset: passo; list-style: none; padding: 0; display: grid; gap: 1rem; margin-bottom: 1.5rem; }
+.passos li { counter-increment: passo; position: relative; background: #fff; border: 1px solid #d5dfec; border-radius: 12px; padding: 1.1rem 1.3rem 1.1rem 4.2rem; }
+.passos li::before { content: counter(passo); position: absolute; left: 1.1rem; top: 1.1rem; width: 2.3rem; height: 2.3rem; border-radius: 50%; background: #1858a8; color: #fff; display: grid; place-items: center; font-weight: 700; }
+.passos h3 { margin: 0 0 0.3rem; }
+.passos p { margin: 0; }
+.grade-downloads { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+.grade-downloads a { text-decoration: none; display: inline-block; }
+a.botao-secundario { text-decoration: none; display: inline-block; }
+.aula-frame { width: 100%; min-height: 70vh; border: 0; }

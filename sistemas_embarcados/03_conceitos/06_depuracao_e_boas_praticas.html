@@ -1,0 +1,40 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aula 06 - Depuracao e boas praticas</title>
+<link rel="stylesheet" href="../estilo_embarcados.css">
+</head>
+<body>
+<h1>Aula 06 - Depuracao e boas praticas</h1>
+
+<h2>Como depurar sem debugger</h2>
+<ul>
+<li><strong>Serial/printf</strong>: imprima valores e o estado. Simples e muito eficaz.</li>
+<li><strong>LED de estado</strong>: piscadas diferentes indicam fases ou erros.</li>
+<li><strong>Simular antes</strong>: rode a logica em C no PC (pasta <code>02_simulacoes_c</code>) ou em VHDL no GHDL.</li>
+<li><strong>Analisador logico / osciloscópio</strong>: confirme sinais reais (I2C, UART, PWM).</li>
+</ul>
+
+<h2>Boas praticas</h2>
+<div class="passo">
+<ol>
+<li>Divida em funcoes pequenas, uma tarefa por funcao.</li>
+<li>Use maquinas de estados em vez de varios <code>delay()</code> aninhados.</li>
+<li>Nunca use <code>delay()</code> longo quando precisa reagir a eventos: use <code>millis()</code> ou timers.</li>
+<li>Faca debounce de botoes.</li>
+<li>Use watchdog para se recuperar de travamentos.</li>
+<li>Valide todo dado recebido (tamanho, faixa, checksum/CRC).</li>
+<li>Nao deixe senhas no codigo publicado.</li>
+<li>Teste com valores extremos (zero, maximo, sensor desconectado).</li>
+</ol>
+</div>
+
+<div class="dica">Regra de ouro: mude uma coisa por vez e teste. Se quebrou, a ultima mudanca e a suspeita.</div>
+
+<div class="navegacao"><a href="05_baixo_consumo.html">&larr; Anterior</a></div>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\sistemas_embarcados\abrir.ps1" 06_depuracao_e_boas_praticas -->

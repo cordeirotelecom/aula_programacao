@@ -1,0 +1,19 @@
+{
+  "name": "estufa-integracao",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Elaborado pelo Prof. Vagner Cordeiro - ESP32 + MQTT + Node-RED + SQLite + App",
+  "scripts": {
+    "broker": "node broker.js",
+    "api": "node --experimental-sqlite --no-warnings api.js",
+    "ingestor": "node ingestor.js",
+    "simulador": "node simulador.js",
+    "nodered": "node node_modules/node-red/red.js -u node-red",
+    "teste": "node --experimental-sqlite --no-warnings teste_integracao.js"
+  },
+  "dependencies": {
+    "aedes": "^1.2.0",
+    "mqtt": "^5.16.0",
+    "node-red": "^5.0.7"
+  }
+}

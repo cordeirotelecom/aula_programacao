@@ -1,0 +1,40 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2b8a3e">
+  <title>Controle do Dispositivo</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <header>
+    <h1>Controle</h1>
+    <p id="status" class="status" aria-live="polite">Pronto.</p>
+  </header>
+
+  <main>
+    <section class="cartao">
+      <h2>Lampada da sala</h2>
+      <p class="estado" id="estadoLed">Desligada</p>
+      <button id="btnLed" type="button" class="grande">Ligar lampada</button>
+    </section>
+
+    <section class="cartao">
+      <h2>Bomba de irrigacao</h2>
+      <p class="estado" id="estadoBomba">Desligada</p>
+      <button id="btnBomba" type="button" class="grande perigo">Ligar bomba</button>
+      <p class="ajuda">Acao com risco: pede confirmacao antes de enviar.</p>
+    </section>
+
+    <label for="endereco">Endereco do dispositivo</label>
+    <input id="endereco" inputmode="decimal" placeholder="Vazio = simulador">
+    <p class="erro" id="erro"></p>
+  </main>
+
+  <script src="../logica.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\mobile_iot\abrir.ps1" controle_dispositivo -->

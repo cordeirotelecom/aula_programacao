@@ -1,0 +1,39 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Redes 06 - Sub-redes</title>
+<link rel="stylesheet" href="estilo_redes.css">
+</head>
+<body>
+<h1>Aula 6 - Sub-redes (subnetting)</h1>
+<p>Dividir uma rede grande em redes menores organiza, aumenta a seguranca e reduz o trafego de broadcast.</p>
+<p>Voce <b>empresta bits</b> da parte de host e os transforma em bits de rede.</p>
+<ul>
+<li>Sub-redes = <b>2<sup>N</sup></b> (N = bits emprestados)</li>
+<li>Hosts por sub-rede = <b>2<sup>H</sup> - 2</b> (H = bits de host que sobraram)</li>
+</ul>
+
+<h2>Exemplo: 192.168.10.0/24 em 4 sub-redes</h2>
+<p>4 = 2<sup>2</sup>, entao N = 2 e o novo prefixo e /26 (64 enderecos, 62 hosts).</p>
+<table>
+<tr><th>#</th><th>Rede</th><th>Hosts</th><th>Broadcast</th></tr>
+<tr><td>1</td><td>192.168.10.0/26</td><td>.1 a .62</td><td>.63</td></tr>
+<tr><td>2</td><td>192.168.10.64/26</td><td>.65 a .126</td><td>.127</td></tr>
+<tr><td>3</td><td>192.168.10.128/26</td><td>.129 a .190</td><td>.191</td></tr>
+<tr><td>4</td><td>192.168.10.192/26</td><td>.193 a .254</td><td>.255</td></tr>
+</table>
+
+<p class="dica">Passo a passo: 1) quantas sub-redes? 2) N = log2; 3) novo CIDR = CIDR + N; 4) tamanho do bloco = 2<sup>32-CIDR</sup>; 5) some o bloco para achar cada rede.</p>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Divida 192.168.10.0/24 em 8 sub-redes. Qual o novo CIDR e quantos hosts?</li>
+<li>Divida 172.16.0.0/16 em 5 sub-redes (arredonde para cima).</li>
+<li>Confira: <code>executar.ps1 c rede_06_dividir_sub_redes</code> ou a <a href="../03_calculadora_web/index.html">calculadora web</a>.</li>
+</ol></div>
+<p><a href="05_rede_broadcast.html">&larr; Anterior</a> | <a href="07_vlsm.html">Proxima: VLSM &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\redes\abrir.ps1" 06_subredes -->

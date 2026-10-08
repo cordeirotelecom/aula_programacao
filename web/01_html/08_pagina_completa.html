@@ -1,0 +1,54 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pagina pessoal</title>
+</head>
+<body>
+  <!-- AULA 08 - Pagina completa (junta tudo da pasta 01_html)
+       Ainda sem estilo: o CSS vem na pasta 02_css. -->
+  <header>
+    <h1>Prof. Vagner Cordeiro</h1>
+    <nav><a href="#sobre">Sobre</a> | <a href="#disciplinas">Disciplinas</a> | <a href="#contato">Contato</a></nav>
+  </header>
+
+  <main>
+    <section id="sobre">
+      <h2>Sobre</h2>
+      <p>Professor de <strong>programacao de sistemas embarcados</strong>.</p>
+    </section>
+
+    <section id="disciplinas">
+      <h2>Disciplinas</h2>
+      <ul>
+        <li>Linguagem C</li>
+        <li>Linguagem C++</li>
+        <li>Arduino</li>
+      </ul>
+      <table border="1">
+        <tr><th>Disciplina</th><th>Carga horaria</th></tr>
+        <tr><td>C</td><td>40 h</td></tr>
+        <tr><td>Arduino</td><td>30 h</td></tr>
+      </table>
+    </section>
+
+    <section id="contato">
+      <h2>Contato</h2>
+      <form>
+        <label for="msg">Mensagem:</label><br>
+        <textarea id="msg" rows="3" cols="30"></textarea><br>
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer><p>Elaborado pelo Prof. Vagner Cordeiro</p></footer>
+
+  <!-- EXERCICIOS:
+       1. Troque os dados pelos seus e crie uma pagina sobre voce.
+       2. Adicione uma imagem e um link para seu perfil. -->
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 08_pagina_completa -->

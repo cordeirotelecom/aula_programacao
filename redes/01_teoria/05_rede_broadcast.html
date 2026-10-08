@@ -1,0 +1,63 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Redes 05 - Rede e broadcast</title>
+<link rel="stylesheet" href="estilo_redes.css">
+</head>
+<body>
+<h1>Aula 5 - Endereco de rede e broadcast</h1>
+<ul>
+<li><b>Rede</b> = IP <b>AND</b> mascara (zera os bits de host)</li>
+<li><b>Broadcast</b> = Rede <b>OR</b> wildcard (todos os bits de host = 1)</li>
+<li><b>Primeiro host</b> = Rede + 1; <b>Ultimo host</b> = Broadcast - 1</li>
+</ul>
+
+<h2>Exemplo passo a passo: 192.168.10.77/26</h2>
+<pre>IP        11000000.10101000.00001010.01001101   192.168.10.77
+Mascara   11111111.11111111.11111111.11000000   255.255.255.192
+AND       11000000.10101000.00001010.01000000   192.168.10.64  (rede)
+Broadcast 11000000.10101000.00001010.01111111   192.168.10.127
+Hosts: 192.168.10.65 ate 192.168.10.126 (62 hosts)</pre>
+
+<h2>Atalho (bloco)</h2>
+<p>/26 tem blocos de 64 (256 - 192). As redes comecam em 0, 64, 128, 192. O 77 esta no bloco que comeca em 64; o broadcast e o fim do bloco (127).</p>
+
+<h2>Experimente</h2>
+<label>IP: <input id="ip" value="192.168.10.77"></label>
+<label>CIDR: <input id="cidr" type="number" min="0" max="32" value="26" style="width:60px"></label>
+<button onclick="calc()">Calcular</button>
+<pre id="saida">-</pre>
+
+<script>
+// Elaborado pelo Prof. Vagner Cordeiro
+function bin(n) { return (n >>> 0).toString(2).padStart(32, "0").match(/.{8}/g).join("."); }
+function dec(n) { return [(n >>> 24) & 255, (n >>> 16) & 255, (n >>> 8) & 255, n & 255].join("."); }
+function calc() {
+  var p = document.getElementById("ip").value.trim().split(".");
+  var c = Number(document.getElementById("cidr").value);
+  var ok = p.length === 4 && p.every(function (x) { return /^\d{1,3}$/.test(x) && Number(x) <= 255; }) && c >= 0 && c <= 32;
+  if (!ok) { document.getElementById("saida").textContent = "IP ou CIDR invalido"; return; }
+  var ip = ((+p[0] << 24) | (+p[1] << 16) | (+p[2] << 8) | +p[3]) >>> 0;
+  var m = c === 0 ? 0 : (0xFFFFFFFF << (32 - c)) >>> 0;
+  var rede = (ip & m) >>> 0, bc = (rede | ~m) >>> 0;
+  document.getElementById("saida").textContent =
+    "IP        " + bin(ip) + "  " + dec(ip) + "\n" +
+    "Mascara   " + bin(m) + "  " + dec(m) + "\n" +
+    "Rede      " + bin(rede) + "  " + dec(rede) + "\n" +
+    "Broadcast " + bin(bc) + "  " + dec(bc);
+}
+calc();
+</script>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Rede e broadcast de 10.1.2.3/8 e de 172.16.50.9/20.</li>
+<li>192.168.1.130/25: qual a rede?</li>
+<li>Confira: <code>executar.ps1 c rede_03_rede_broadcast</code>.</li>
+</ol></div>
+<p><a href="04_mascara_cidr.html">&larr; Anterior</a> | <a href="06_subredes.html">Proxima: Sub-redes &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\redes\abrir.ps1" 05_rede_broadcast -->

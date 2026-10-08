@@ -1,0 +1,41 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>JS - funcoes</title>
+</head>
+<body>
+  <h1>Funcoes</h1>
+  <pre id="saida"></pre>
+
+  <script>
+    const saida = document.getElementById("saida");
+    function mostrar(texto) { saida.textContent += texto + "\n"; }
+
+    // AULA 04 - Funcoes: blocos de codigo reutilizaveis.
+    // Recebem parametros e podem devolver um valor com return.
+    function saudar(nome) {
+      return "Ola, " + nome + "!";
+    }
+
+    function celsiusParaFahrenheit(c) {
+      return c * 9 / 5 + 32;
+    }
+
+    // Arrow function: forma curta de escrever
+    const dobro = (n) => n * 2;
+
+    mostrar(saudar("Ana"));
+    mostrar(saudar("Bruno"));
+    mostrar("25 C = " + celsiusParaFahrenheit(25) + " F");
+    mostrar("Dobro de 21: " + dobro(21));
+
+    // EXERCICIOS:
+    // 1. Crie a funcao area(base, altura) que retorna a area de um retangulo.
+    // 2. Crie a funcao ehPar(n) que retorna true ou false.
+    // 3. Reescreva ehPar como arrow function.
+  </script>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 04_funcoes -->

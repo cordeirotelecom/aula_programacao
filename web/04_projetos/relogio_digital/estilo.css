@@ -1,0 +1,8 @@
+/* Elaborado pelo Prof. Vagner Cordeiro */
+body { margin: 0; height: 100vh; display: flex; align-items: center; justify-content: center; background: #0d1117; font-family: "Courier New", monospace; transition: background 1s; }
+body.dia { background: #0d47a1; }
+.relogio { text-align: center; color: #00e676; }
+#hora { font-size: 72px; text-shadow: 0 0 15px #00e676; }
+#data { font-size: 22px; margin-top: 10px; color: #b2dfdb; text-transform: capitalize; }
+#saudacao { font-size: 20px; margin-top: 18px; color: white; }
+/* EXERCICIOS: mude a cor do relogio; use uma fonte maior em telas grandes (@media). */

@@ -1,0 +1,13 @@
+{
+  "name": "Painel de Sensores IoT",
+  "short_name": "Estufa",
+  "description": "Monitora temperatura e umidade do solo (curso do Prof. Vagner Cordeiro)",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f1f3f5",
+  "theme_color": "#5f3dc4",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "icone.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

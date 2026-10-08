@@ -1,0 +1,68 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UX 04 - Hierarquia visual e layout</title>
+<link rel="stylesheet" href="../estilo_ux.css">
+<style>
+/* Elaborado pelo Prof. Vagner Cordeiro */
+.demo { border: 1px solid #ccc; padding: 12px; border-radius: 6px; }
+.demo .titulo { font-size: 24px; font-weight: bold; }
+.demo .sub { font-size: 14px; color: #555; }
+.demo .valor { font-size: 40px; font-weight: bold; color: #2f9e44; }
+.plano p { font-size: 16px; margin: 4px 0; }
+.grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.grade div { background: #e5dbff; padding: 12px; text-align: center; border-radius: 4px; }
+</style>
+</head>
+<body>
+<h1>Aula 4 - Hierarquia visual e layout</h1>
+<p>Hierarquia visual e <b>guiar o olho</b>: o mais importante deve ser visto primeiro.</p>
+
+<h2>Ferramentas da hierarquia</h2>
+<ul>
+<li><b>Tamanho</b>: maior chama mais atencao.</li>
+<li><b>Peso/cor</b>: negrito e cor forte destacam.</li>
+<li><b>Espaco em branco</b>: separa grupos e deixa respirar.</li>
+<li><b>Posicao</b>: topo e esquerda sao lidos primeiro (no Ocidente).</li>
+</ul>
+
+<div class="lado-a-lado">
+<div>
+<p><b>Sem hierarquia</b></p>
+<div class="demo plano"><p>Temperatura da estufa</p><p>Atualizado agora</p><p>27.5 graus</p><p>Estado: normal</p></div>
+</div>
+<div>
+<p><b>Com hierarquia</b></p>
+<div class="demo"><div class="sub">Temperatura da estufa</div><div class="valor">27,5 &deg;C</div><div class="sub">Normal &bull; atualizado agora</div></div>
+</div>
+</div>
+
+<h2>Regras de layout</h2>
+<table>
+<tr><th>Regra</th><th>O que fazer</th></tr>
+<tr><td>Proximidade</td><td>Itens relacionados ficam juntos; separe grupos diferentes.</td></tr>
+<tr><td>Alinhamento</td><td>Alinhe tudo a uma mesma linha invisivel.</td></tr>
+<tr><td>Repeticao</td><td>Use o mesmo estilo para elementos iguais.</td></tr>
+<tr><td>Contraste</td><td>O que e importante deve ser bem diferente do resto.</td></tr>
+<tr><td>Grade (grid)</td><td>Organize em colunas, ex.: 4 colunas no celular, 12 no desktop.</td></tr>
+<tr><td>Escala de espacos</td><td>Use multiplos de 8px (8, 16, 24, 32).</td></tr>
+</table>
+
+<h2>Exemplo de grade</h2>
+<div class="grade"><div>Sensor 1</div><div>Sensor 2</div><div>Sensor 3</div></div>
+<pre>.grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }</pre>
+
+<div class="dica"><b>Teste do apertar de olhos:</b> afaste-se da tela e aperte os olhos. O que ainda aparece e o que seu design destaca. E o certo?</div>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Altere o tamanho do <code>.valor</code> e veja o efeito.</li>
+<li>Desenhe no papel uma tela de painel com 1 dado principal e 3 secundarios.</li>
+</ol></div>
+<p class="navegacao"><a href="03_principios_usabilidade.html">&larr; Anterior</a> | <a href="05_cores_contraste_tipografia.html">Proxima: Cores e tipografia &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\ux_design\abrir.ps1" 04_hierarquia_visual_layout -->

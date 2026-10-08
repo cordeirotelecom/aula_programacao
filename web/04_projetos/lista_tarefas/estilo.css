@@ -1,0 +1,14 @@
+/* Elaborado pelo Prof. Vagner Cordeiro */
+body { font-family: Arial, sans-serif; background: #eceff1; margin: 0; }
+.app { max-width: 420px; margin: 40px auto; background: white; padding: 24px; border-radius: 12px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15); }
+h1 { margin-top: 0; color: #37474f; }
+form { display: flex; gap: 8px; }
+input { flex: 1; padding: 10px; border: 1px solid #b0bec5; border-radius: 6px; }
+button { padding: 10px 14px; border: none; background: #1e88e5; color: white; border-radius: 6px; cursor: pointer; }
+button:hover { background: #1565c0; }
+ul { list-style: none; padding: 0; }
+li { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #eceff1; cursor: pointer; }
+li.feita span { text-decoration: line-through; color: #90a4ae; }
+li button { background: crimson; padding: 4px 8px; }
+#resumo { color: #607d8b; font-size: 14px; }
+/* EXERCICIOS: troque as cores do tema; destaque a tarefa ao passar o mouse. */

@@ -1,0 +1,38 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Tags semanticas</title>
+</head>
+<body>
+  <!-- AULA 07 - Tags semanticas
+       Dao significado a cada parte da pagina (bom para buscadores e leitores de tela). -->
+  <header>
+    <h1>Blog de Eletronica</h1>
+    <nav>
+      <a href="#artigos">Artigos</a> |
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="artigos">
+      <h2>Artigos</h2>
+      <article>
+        <h3>Como acender um LED</h3>
+        <p>Ligue o LED com um resistor de 220 ohms.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer id="contato">
+    <p>Contato: professor@exemplo.com</p>
+  </footer>
+
+  <!-- EXERCICIOS:
+       1. Adicione outro <article> sobre o seu projeto.
+       2. Adicione uma <aside> com dicas. -->
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 07_semantica -->

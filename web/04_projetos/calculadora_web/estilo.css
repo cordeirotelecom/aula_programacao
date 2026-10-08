@@ -1,0 +1,11 @@
+/* Elaborado pelo Prof. Vagner Cordeiro */
+body { font-family: Arial, sans-serif; background: #263238; display: flex; justify-content: center; padding-top: 40px; }
+.calculadora { background: #37474f; padding: 16px; border-radius: 14px; width: 280px; }
+#visor { background: #cfd8dc; color: #212121; font-size: 32px; text-align: right; padding: 14px; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.teclas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+button { font-size: 20px; padding: 14px 0; border: none; border-radius: 8px; background: #eceff1; cursor: pointer; }
+button:hover { filter: brightness(0.9); }
+.op { background: #ffb74d; }
+.limpar { background: #e57373; }
+.igual { grid-column: span 4; background: #81c784; }
+/* EXERCICIOS: mude o tema para claro; aumente o tamanho das teclas. */

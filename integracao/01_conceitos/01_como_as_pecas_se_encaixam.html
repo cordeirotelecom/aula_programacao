@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Integracao - Como as pecas se encaixam</title><link rel="stylesheet" href="../estilo_integracao.css"></head><body>
+<nav><a href="../03_passo_a_passo/01_passo_a_passo_completo.html">Passo a passo</a> <a href="../04_exercicios/exercicios_integracao.html">Exercicios</a></nav>
+<h1>Como as pecas se encaixam</h1>
+<p>Projeto: uma <b>estufa inteligente</b>. Um ESP32 mede temperatura e umidade, manda para a rede, os dados vao para um banco, aparecem num app, e voce liga um LED pelo app.</p>
+<pre><code>ESP32 (ou simulador)
+   | MQTT  topico estufa/sala1/dados
+   v
+BROKER MQTT (broker.js)  &lt;-- o "correio" que entrega mensagens
+   |
+   v
+NODE-RED (ou ingestor.js)  calcula alerta (temp &gt; 30)
+   | HTTP POST
+   v
+API (api.js, porta 3000) --&gt; BANCO SQLite (dados.db)
+   |
+   v
+APP (navegador / celular) http://localhost:3000
+   | botao LED --&gt; POST /api/comando --&gt; MQTT estufa/sala1/comando --&gt; ESP32 acende o LED</code></pre>
+<h2>O que e cada peca</h2>
+<ul>
+<li><b>MQTT</b>: protocolo leve de publicar/assinar. Quem publica nao conhece quem assina.</li>
+<li><b>Broker</b>: servidor que recebe e distribui as mensagens por <i>topico</i>.</li>
+<li><b>Node-RED</b>: programacao visual por blocos que liga as pecas sem muito codigo.</li>
+<li><b>API</b>: porta de entrada HTTP para gravar e consultar dados.</li>
+<li><b>SQLite</b>: banco em um unico arquivo, sem instalar servidor.</li>
+<li><b>App</b>: pagina HTML/JS que consulta a API a cada poucos segundos.</li>
+</ul>
+<div class="dica">Voce nao precisa da placa: o <code>simulador.js</code> faz o papel do ESP32.</div>
+</body></html>
+<!-- Executar: powershell -ExecutionPolicy Bypass -File ".\integracao\abrir.ps1" 01_como_as_pecas_se_encaixam -->

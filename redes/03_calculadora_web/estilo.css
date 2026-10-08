@@ -1,0 +1,15 @@
+/* Elaborado pelo Prof. Vagner Cordeiro */
+body { font-family: Arial, sans-serif; background: #eef2f7; margin: 0; }
+main { max-width: 760px; margin: 0 auto; padding: 20px; }
+h1 { color: #1d3557; }
+.cartao { background: #fff; border-radius: 8px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.15); }
+label { margin-right: 12px; }
+input { padding: 6px; border: 1px solid #aaa; border-radius: 4px; }
+button { background: #1d3557; color: #fff; border: 0; padding: 8px 14px; border-radius: 4px; cursor: pointer; }
+button:hover { background: #457b9d; }
+table { border-collapse: collapse; margin-top: 12px; width: 100%; }
+th, td { border: 1px solid #ccc; padding: 6px 8px; text-align: left; font-family: Consolas, monospace; font-size: 14px; }
+th { background: #a8dadc; }
+.erro { color: #c1121f; min-height: 1em; }
+
+/* Executar (PowerShell): powershell -ExecutionPolicy Bypass -File "$([Environment]::GetFolderPath('MyDocuments'))\programacao\curso_programacao\redes\abrir.ps1" calculadora_web */

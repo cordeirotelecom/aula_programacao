@@ -1,0 +1,38 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instalar a Arduino IDE para ESP32</title>
+<link rel="stylesheet" href="../estilo_esp32.css">
+</head>
+<body>
+<h1>Instalar a Arduino IDE para ESP32 (Windows)</h1>
+<p>Nao precisa de administrador se voce usar a versao "Windows ZIP file" ou instalar so para o seu usuario.</p>
+
+<div class="passo"><b>Passo 1 - Baixar:</b> acesse <code>arduino.cc/en/software</code> e baixe a <b>Arduino IDE 2</b> para Windows. Instale ou extraia o ZIP e abra.</div>
+
+<div class="passo"><b>Passo 2 - URL de placas:</b> menu <i>Arquivo &gt; Preferencias</i>. No campo <i>URLs adicionais para Gerenciador de Placas</i> cole:
+<pre>https://espressif.github.io/arduino-esp32/package_esp32_index.json</pre>
+Clique OK.</div>
+
+<div class="passo"><b>Passo 3 - Instalar o pacote:</b> abra o <i>Gerenciador de Placas</i> (icone da lateral esquerda), pesquise <code>esp32</code> e instale <b>esp32 by Espressif Systems</b>, versao <b>3.x</b>. Demora (baixa varios arquivos). Os exemplos deste curso usam o core 3.x.</div>
+
+<div class="passo"><b>Passo 4 - Driver USB:</b> se o Windows nao reconhecer a placa, instale o driver do chip: <b>CP210x</b> (Silicon Labs) ou <b>CH340</b> (WCH). Veja a escrita no chip da placa. Placas S3 com porta USB "nativa" geralmente nao precisam.</div>
+
+<div class="passo"><b>Passo 5 - Escolher placa e porta:</b> menu <i>Ferramentas &gt; Placa &gt; esp32</i>: escolha <b>ESP32 Dev Module</b> (ou <b>ESP32S3 Dev Module</b>). Depois <i>Ferramentas &gt; Porta</i> e marque a COM da placa.</div>
+
+<div class="passo"><b>Passo 6 - S3 com USB nativo:</b> em <i>Ferramentas</i> ligue <b>USB CDC On Boot: Enabled</b> para o <code>Serial</code> funcionar pela porta USB nativa.</div>
+
+<div class="passo"><b>Passo 7 - Monitor Serial:</b> abra <i>Ferramentas &gt; Monitor Serial</i> e escolha <b>115200 baud</b>, o mesmo valor do <code>Serial.begin(115200)</code>.</div>
+
+<div class="dica">Se aparecer "Failed to connect... Wrong boot mode": segure o botao <b>BOOT</b> da placa, clique em Carregar e solte o botao quando aparecer "Connecting...". Se a porta nao aparece, troque o cabo (alguns so carregam, nao transmitem dados).</div>
+
+<div class="navegacao">
+<a href="04_pinagem_e_cuidados.html">Anterior: Pinagem</a>
+<a href="06_escolhedor.html">Proxima: Escolhedor</a>
+</div>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\esp32\abrir.ps1" 05_instalar_arduino_ide -->

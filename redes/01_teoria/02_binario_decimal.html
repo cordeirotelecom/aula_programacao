@@ -1,0 +1,49 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Redes 02 - Binario e decimal</title>
+<link rel="stylesheet" href="estilo_redes.css">
+</head>
+<body>
+<h1>Aula 2 - Binario e decimal</h1>
+<p>Computadores usam bits (0 e 1). Cada posicao vale uma potencia de 2. Em um octeto (8 bits):</p>
+<table>
+<tr><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+<tr><th>Valor</th><td>128</td><td>64</td><td>32</td><td>16</td><td>8</td><td>4</td><td>2</td><td>1</td></tr>
+</table>
+<p>Exemplo: <code>11000000</code> = 128 + 64 = <b>192</b>. Para converter decimal em binario, subtraia os maiores valores possiveis: 25 = 16 + 8 + 1 = <code>00011001</code>.</p>
+<p class="dica">Valores de mascara mais comuns: 128, 192, 224, 240, 248, 252, 254, 255.</p>
+
+<h2>Conversor interativo</h2>
+<label>Decimal (0-255): <input id="dec" type="number" min="0" max="255" value="25"></label>
+<button onclick="paraBin()">Converter</button>
+<p>Binario: <code id="saidaBin">-</code></p>
+<label>Binario (8 bits): <input id="bin" value="11000000"></label>
+<button onclick="paraDec()">Converter</button>
+<p>Decimal: <code id="saidaDec">-</code></p>
+
+<script>
+// Elaborado pelo Prof. Vagner Cordeiro
+function paraBin() {
+  var n = Number(document.getElementById("dec").value);
+  document.getElementById("saidaBin").textContent =
+    (n >= 0 && n <= 255) ? n.toString(2).padStart(8, "0") : "valor invalido";
+}
+function paraDec() {
+  var t = document.getElementById("bin").value.trim();
+  document.getElementById("saidaDec").textContent =
+    /^[01]{1,8}$/.test(t) ? parseInt(t, 2) : "use apenas 0 e 1 (ate 8 bits)";
+}
+</script>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Converta para binario: 10, 172, 255, 64.</li>
+<li>Converta para decimal: 11111000, 00001111, 10101010.</li>
+</ol></div>
+<p><a href="01_modelo_osi_tcpip.html">&larr; Anterior</a> | <a href="03_enderecos_ip.html">Proxima: Enderecos IP &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\redes\abrir.ps1" 02_binario_decimal -->

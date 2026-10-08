@@ -1,0 +1,43 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Redes 04 - Mascara e CIDR</title>
+<link rel="stylesheet" href="estilo_redes.css">
+</head>
+<body>
+<h1>Aula 4 - Mascara de rede e CIDR</h1>
+<p>A mascara diz quantos bits do IP sao <b>rede</b> (bits 1) e quantos sao <b>host</b> (bits 0).</p>
+<pre>/24  =  11111111.11111111.11111111.00000000  =  255.255.255.0</pre>
+<p>A notacao CIDR (<code>/24</code>) so conta quantos bits 1 existem.</p>
+
+<h2>Tabela de consulta</h2>
+<table>
+<tr><th>CIDR</th><th>Mascara</th><th>Enderecos</th><th>Hosts</th></tr>
+<tr><td>/8</td><td>255.0.0.0</td><td>16.777.216</td><td>16.777.214</td></tr>
+<tr><td>/16</td><td>255.255.0.0</td><td>65.536</td><td>65.534</td></tr>
+<tr><td>/24</td><td>255.255.255.0</td><td>256</td><td>254</td></tr>
+<tr><td>/25</td><td>255.255.255.128</td><td>128</td><td>126</td></tr>
+<tr><td>/26</td><td>255.255.255.192</td><td>64</td><td>62</td></tr>
+<tr><td>/27</td><td>255.255.255.224</td><td>32</td><td>30</td></tr>
+<tr><td>/28</td><td>255.255.255.240</td><td>16</td><td>14</td></tr>
+<tr><td>/29</td><td>255.255.255.248</td><td>8</td><td>6</td></tr>
+<tr><td>/30</td><td>255.255.255.252</td><td>4</td><td>2</td></tr>
+</table>
+
+<h2>Como calcular o octeto da mascara</h2>
+<p>Some os valores dos bits 1 do octeto: 128, 192 (128+64), 224, 240, 248, 252, 254, 255. Para /26: 8+8+8 = 24 bits, sobram 2 bits no 4o octeto = 128+64 = <b>192</b>.</p>
+<p><b>Hosts = 2<sup>(32 - CIDR)</sup> - 2</b>. Os dois enderecos retirados sao o da rede e o de broadcast.</p>
+<p class="dica">Wildcard = mascara invertida (255.255.255.192 &rarr; 0.0.0.63).</p>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Qual a mascara de /20? E de /27?</li>
+<li>Quantos hosts tem /22?</li>
+<li>Confira: <code>executar.ps1 c rede_02_mascara_cidr</code>.</li>
+</ol></div>
+<p><a href="03_enderecos_ip.html">&larr; Anterior</a> | <a href="05_rede_broadcast.html">Proxima: Rede e broadcast &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\redes\abrir.ps1" 04_mascara_cidr -->

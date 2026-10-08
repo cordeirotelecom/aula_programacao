@@ -1,0 +1,41 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mobile IoT 05 - Seguranca basica</title>
+<link rel="stylesheet" href="../estilo_mobile.css">
+</head>
+<body>
+<h1>Aula 5 - Seguranca basica em IoT</h1>
+<p>O projeto do curso e para <b>aprendizado em rede local</b>. Antes de usar em producao, entenda os riscos.</p>
+
+<table>
+<tr><th>Risco</th><th>Exemplo</th><th>O que fazer</th></tr>
+<tr><td>Sem autenticacao</td><td>Qualquer um na rede liga a bomba</td><td>Senha/token em cada pedido</td></tr>
+<tr><td>HTTP sem criptografia</td><td>Senha trafega em texto puro</td><td>HTTPS/TLS (ou MQTT com TLS)</td></tr>
+<tr><td>Senha fixa no codigo</td><td>Wi-Fi no <code>.ino</code> enviado ao GitHub</td><td>Nao publique; use arquivo separado ou NVS</td></tr>
+<tr><td>Exposto na Internet</td><td>Porta aberta no roteador</td><td>Nao abra portas; use broker/nuvem com login</td></tr>
+<tr><td>Firmware desatualizado</td><td>Falha conhecida</td><td>Atualizar (OTA assinado)</td></tr>
+<tr><td>Dados pessoais</td><td>Camera, localizacao</td><td>Colete so o necessario, explique ao usuario</td></tr>
+</table>
+
+<div class="alerta"><b>Regra:</b> nunca exponha o ESP32 direto na Internet (port forwarding) sem autenticacao e criptografia.</div>
+
+<h2>Boas praticas para o curso</h2>
+<ul>
+<li>Use o ESP32 apenas na sua rede local ou no modo Ponto de Acesso (AP) dele.</li>
+<li>Troque <code>SEU_WIFI</code> e <code>SUA_SENHA</code> so no seu computador; nao compartilhe o arquivo preenchido.</li>
+<li>Para acoes de risco (bomba, fechadura) peca confirmacao e, em producao, autenticacao.</li>
+</ul>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Liste 3 riscos do seu projeto IoT e uma mitigacao para cada.</li>
+<li>Pesquise: o que e TLS e por que o HTTPS o usa?</li>
+</ol></div>
+<p class="navegacao"><a href="04_json_e_api_rest.html">&larr; Anterior</a> | <a href="../02_pwa_passo_a_passo/01_pagina_mobile.html">Proxima: PWA passo a passo &rarr;</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\mobile_iot\abrir.ps1" 05_seguranca_basica -->

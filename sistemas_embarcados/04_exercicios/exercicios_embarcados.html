@@ -1,0 +1,29 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercicios - Sistemas Embarcados e VHDL</title>
+<link rel="stylesheet" href="../estilo_embarcados.css">
+</head>
+<body>
+<h1>Exercicios - Sistemas Embarcados e VHDL</h1>
+
+<h2>Simulacoes em C</h2>
+<div class="exercicio"><strong>1.</strong> Em <code>sim_09_fila_circular.c</code>, aumente o tamanho da fila e observe quando ela enche. Rode: <pre>powershell -ExecutionPolicy Bypass -File ".\executar.ps1" c sim_09_fila_circular</pre></div>
+<div class="exercicio"><strong>2.</strong> Em <code>sim_01_maquina_estados.c</code>, adicione um estado novo "ATENCAO" (amarelo piscando).</div>
+<div class="exercicio"><strong>3.</strong> Em <code>sim_05_pwm_ascii.c</code>, mude o duty cycle de 25% para 75% e veja o desenho.</div>
+<div class="exercicio"><strong>4.</strong> Em <code>sim_07_crc_checksum.c</code>, altere um bit da mensagem e confirme que o CRC detecta o erro.</div>
+
+<h2>VHDL (simulado no GHDL)</h2>
+<div class="exercicio"><strong>5.</strong> Em <code>01_porta_and.vhd</code>, troque AND por OR e rode: <pre>powershell -ExecutionPolicy Bypass -File ".\sistemas_embarcados\01_vhdl\simular.ps1" 01_porta_and</pre></div>
+<div class="exercicio"><strong>6.</strong> Em <code>03_contador.vhd</code>, faca o contador contar de 0 a 9 e reiniciar.</div>
+<div class="exercicio"><strong>7.</strong> Em <code>05_semaforo_fsm.vhd</code>, aumente o tempo do verde.</div>
+<div class="exercicio"><strong>8.</strong> Em <code>06_pwm.vhd</code>, mude o duty cycle e confira nas mensagens da simulacao.</div>
+
+<h2>Calculo</h2>
+<div class="exercicio"><strong>9.</strong> Bateria de 500 mAh, ativo 5% do tempo a 40 mA, dorme a 0,01 mA. Qual a autonomia? (Resposta: 2,0005 mA; cerca de 250 h, ou 10 dias.)</div>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\sistemas_embarcados\abrir.ps1" exercicios_embarcados -->

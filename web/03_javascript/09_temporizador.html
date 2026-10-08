@@ -1,0 +1,52 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>JS - temporizador</title>
+  <style>
+    #tempo { font-size: 60px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <h1>Temporizador</h1>
+  <p id="tempo">10</p>
+  <button id="iniciar">Iniciar</button>
+  <button id="parar">Parar</button>
+
+  <script>
+    // AULA 09 - Tempo: setTimeout (uma vez) e setInterval (repetido)
+    // Semelhante ao millis() do Arduino: o codigo continua rodando sem travar.
+    const tempo = document.getElementById("tempo");
+    let restante = 10;
+    let relogio = null;
+
+    document.getElementById("iniciar").addEventListener("click", () => {
+      if (relogio !== null) return;                  // ja esta rodando
+      relogio = setInterval(() => {
+        restante--;
+        tempo.textContent = restante;
+        if (restante <= 0) {
+          clearInterval(relogio);
+          relogio = null;
+          tempo.textContent = "Acabou!";
+          restante = 10;
+        }
+      }, 1000);                                      // a cada 1000 ms
+    });
+
+    document.getElementById("parar").addEventListener("click", () => {
+      clearInterval(relogio);
+      relogio = null;
+    });
+
+    setTimeout(() => console.log("Passaram 3 segundos (veja no F12)"), 3000);
+
+    // EXERCICIOS:
+    // 1. Comece a contagem em 20 segundos.
+    // 2. Adicione um botao "Reiniciar".
+    // 3. Mude a cor do numero para vermelho quando faltarem 3 segundos.
+  </script>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 09_temporizador -->

@@ -1,0 +1,43 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>JS - operadores e condicoes</title>
+</head>
+<body>
+  <h1>Operadores e condicoes</h1>
+  <pre id="saida"></pre>
+
+  <script>
+    const saida = document.getElementById("saida");
+    function mostrar(texto) { saida.textContent += texto + "\n"; }
+
+    // AULA 02 - Operadores e if/else
+    // Matematicos: + - * / %    Comparacao: == (ou ===) != > < >= <=
+    // Logicos: && (e)  || (ou)  ! (nao)
+    let a = 10, b = 3;
+    mostrar("Soma: " + (a + b));
+    mostrar("Divisao: " + (a / b).toFixed(2));
+    mostrar("Resto: " + (a % b));
+
+    let temperatura = 32;
+    if (temperatura > 30) {
+      mostrar("Ligar o ventilador");
+    } else if (temperatura < 15) {
+      mostrar("Ligar o aquecedor");
+    } else {
+      mostrar("Temperatura agradavel");
+    }
+
+    let nota = 7;
+    mostrar(nota >= 6 ? "Aprovado" : "Reprovado");   // operador ternario
+
+    // EXERCICIOS:
+    // 1. Mude a temperatura para 10 e depois 22.
+    // 2. Mostre "Reprovado" quando nota < 4, "Recuperacao" de 4 a 5.9 e "Aprovado" acima.
+    // 3. Use && para testar se um numero esta entre 1 e 10.
+  </script>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 02_operadores_condicoes -->

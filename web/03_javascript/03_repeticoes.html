@@ -1,0 +1,42 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>JS - repeticoes</title>
+</head>
+<body>
+  <h1>Repeticoes</h1>
+  <pre id="saida"></pre>
+
+  <script>
+    const saida = document.getElementById("saida");
+    function mostrar(texto) { saida.textContent += texto + "\n"; }
+
+    // AULA 03 - Lacos de repeticao
+    // for: quando sabemos quantas vezes; while: enquanto a condicao for verdadeira.
+    mostrar("--- for ---");
+    for (let i = 1; i <= 5; i++) {
+      mostrar("Contagem: " + i);
+    }
+
+    mostrar("--- while ---");
+    let bateria = 3;
+    while (bateria > 0) {
+      mostrar("Bateria: " + bateria);
+      bateria--;
+    }
+
+    mostrar("--- tabuada do 7 ---");
+    for (let i = 1; i <= 10; i++) {
+      mostrar(`7 x ${i} = ${7 * i}`);
+    }
+
+    // EXERCICIOS:
+    // 1. Mostre os numeros pares de 2 a 20.
+    // 2. Some os numeros de 1 a 100 e mostre o total.
+    // 3. Faca uma contagem regressiva de 10 a 1.
+  </script>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\web\abrir.ps1" 03_repeticoes -->

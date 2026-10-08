@@ -1,0 +1,35 @@
+﻿<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de Redes</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <main>
+    <h1>Calculadora de Redes IPv4</h1>
+
+    <section class="cartao">
+      <h2>Rede, broadcast e hosts</h2>
+      <label>IP <input id="ip" value="192.168.10.77"></label>
+      <label>CIDR <input id="cidr" type="number" min="0" max="32" value="26"></label>
+      <button id="btnCalcular">Calcular</button>
+      <p id="erro" class="erro"></p>
+      <table id="resultado"></table>
+    </section>
+
+    <section class="cartao">
+      <h2>Dividir em sub-redes</h2>
+      <label>Quantidade <input id="quantidade" type="number" min="1" max="1024" value="4"></label>
+      <button id="btnDividir">Dividir</button>
+      <table id="sub"></table>
+    </section>
+  </main>
+
+  <script src="calculo.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\redes\abrir.ps1" calculadora_web -->
