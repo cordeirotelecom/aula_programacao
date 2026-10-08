@@ -1,16 +1,43 @@
 /* Elaborado pelo Prof. Vagner Cordeiro */
-body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.5; color: #222; }
-h1 { color: #1d3557; }
-h2 { color: #457b9d; }
+:root { --azul: #1d3557; --azul2: #457b9d; --claro: #a8dadc; }
+* { box-sizing: border-box; }
+body { font-family: "Segoe UI", Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; color: #222; background: #fcfdff; }
+h1 { color: var(--azul); border-bottom: 3px solid var(--claro); padding-bottom: 6px; }
+h2 { color: var(--azul2); margin-top: 28px; }
+h3 { color: var(--azul); }
 code, pre { background: #f1f3f5; border-radius: 4px; font-family: Consolas, monospace; }
 code { padding: 1px 4px; }
 pre { padding: 10px; overflow-x: auto; }
-table { border-collapse: collapse; margin: 10px 0; }
+pre.term { background: #10202f; color: #e8f1fa; }
+table { border-collapse: collapse; margin: 10px 0; max-width: 100%; display: block; overflow-x: auto; }
 th, td { border: 1px solid #bbb; padding: 6px 10px; }
-th { background: #a8dadc; }
-.dica { background: #fff3bf; border-left: 4px solid #f59f00; padding: 8px 12px; }
-.exercicio { background: #e7f5ff; border-left: 4px solid #1c7ed6; padding: 8px 12px; }
-input, button { padding: 6px; margin: 4px 0; }
-button { background: #1d3557; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }
-
-/* Executar (PowerShell): powershell -ExecutionPolicy Bypass -File "$([Environment]::GetFolderPath('MyDocuments'))\programacao\curso_programacao\redes\abrir.ps1" 01_modelo_osi_tcpip */
+th { background: var(--claro); }
+.dica { background: #fff3bf; border-left: 4px solid #f59f00; padding: 8px 12px; border-radius: 0 6px 6px 0; }
+.analogia { background: #e6fcf5; border-left: 4px solid #12b886; padding: 8px 12px; border-radius: 0 6px 6px 0; }
+.cuidado { background: #ffe3e3; border-left: 4px solid #e03131; padding: 8px 12px; border-radius: 0 6px 6px 0; }
+.exercicio { background: #e7f5ff; border-left: 4px solid #1c7ed6; padding: 8px 12px; border-radius: 0 6px 6px 0; }
+.objetivo { background: #f3f0ff; border-left: 4px solid #7048e8; padding: 8px 12px; border-radius: 0 6px 6px 0; }
+.analogia::before { content: "Analogia: "; font-weight: bold; }
+.dica::before { content: "Dica: "; font-weight: bold; }
+.cuidado::before { content: "Cuidado: "; font-weight: bold; }
+.objetivo::before { content: "Voce vai aprender: "; font-weight: bold; }
+input, button, select { padding: 6px 10px; margin: 4px 0; font-size: 1rem; }
+button { background: var(--azul); color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
+button:hover { background: var(--azul2); }
+nav.trilha { display: flex; justify-content: space-between; gap: 8px; margin: 28px 0 8px; padding-top: 12px; border-top: 1px solid #ddd; flex-wrap: wrap; }
+nav.trilha a { background: var(--azul); color: #fff; padding: 8px 14px; border-radius: 6px; text-decoration: none; }
+nav.trilha a.sec { background: #dee2e6; color: #222; }
+.bits { display: inline-flex; gap: 3px; flex-wrap: wrap; }
+.bit { width: 34px; height: 44px; border: 2px solid var(--azul); border-radius: 6px; text-align: center; font: bold 18px Consolas, monospace; line-height: 30px; cursor: pointer; user-select: none; background: #fff; }
+.bit.on { background: var(--azul); color: #fff; }
+.bit small { display: block; font-size: 10px; line-height: 10px; color: #888; }
+.bit.on small { color: #cde; }
+.cartao { background: #fff; border: 1px solid #dde; border-radius: 10px; padding: 12px 16px; margin: 14px 0; box-shadow: 0 1px 4px #0001; }
+.ok { color: #2b8a3e; font-weight: bold; }
+.erro { color: #c92a2a; font-weight: bold; }
+.mapa { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
+.mapa a { display: block; background: #fff; border: 1px solid #dde; border-left: 5px solid var(--azul2); border-radius: 8px; padding: 10px 14px; text-decoration: none; color: #222; }
+.mapa a:hover { background: #f1f8ff; }
+.mapa a b { color: var(--azul); }
+.mapa small { color: #555; }
+@media (max-width: 600px) { body { padding: 12px; } .bit { width: 28px; } }

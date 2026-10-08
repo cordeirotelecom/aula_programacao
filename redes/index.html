@@ -1,0 +1,77 @@
+<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Curso de Redes - Mapa</title>
+<link rel="stylesheet" href="01_teoria/estilo_redes.css">
+</head>
+<body>
+<h1>Curso de Redes de Computadores</h1>
+<p>Do zero ao projeto de uma rede. Siga a trilha na ordem: <b>entenda</b> (teoria), <b>calcule</b> (exercicios e ferramentas) e <b>pratique</b> (comandos e programas).</p>
+
+<div class="objetivo">ao final voce sabe calcular rede, broadcast e sub-redes, planejar enderecamento com VLSM, diagnosticar problemas com ping/tracert e escrever programas que usam a rede.</div>
+
+<h2>Trilha 1 - Entenda (teoria)</h2>
+<div class="mapa">
+<a href="01_teoria/00_para_que_serve.html"><b>00 Para que serve?</b><br><small>Mascara, classe e faixa na pratica</small></a>
+<a href="01_teoria/01_modelo_osi_tcpip.html"><b>01 Modelo OSI e TCP/IP</b><br><small>As camadas da rede</small></a>
+<a href="01_teoria/02_binario_decimal.html"><b>02 Binario e decimal</b><br><small>A base de todo calculo</small></a>
+<a href="01_teoria/03_enderecos_ip.html"><b>03 Enderecos IP</b><br><small>Classes, privados e especiais</small></a>
+<a href="01_teoria/04_mascara_cidr.html"><b>04 Mascara e CIDR</b><br><small>/24, /26, /30...</small></a>
+<a href="01_teoria/05_rede_broadcast.html"><b>05 Rede e broadcast</b><br><small>Primeiro e ultimo endereco</small></a>
+<a href="01_teoria/06_subredes.html"><b>06 Sub-redes</b><br><small>Dividir uma rede em partes</small></a>
+<a href="01_teoria/07_vlsm.html"><b>07 VLSM</b><br><small>Sub-redes de tamanhos diferentes</small></a>
+<a href="01_teoria/08_portas_protocolos.html"><b>08 Portas e protocolos</b><br><small>TCP, UDP, HTTP, DNS...</small></a>
+<a href="01_teoria/09_comandos_windows.html"><b>09 Comandos do Windows</b><br><small>ipconfig, ping, tracert</small></a>
+<a href="01_teoria/10_passo_a_passo_calculo.html"><b>10 Calculo passo a passo</b><br><small>Sem calculadora</small></a>
+<a href="01_teoria/11_gateway_dhcp_dns_nat.html"><b>11 Gateway, DHCP, DNS, NAT</b><br><small>O que acontece ao abrir um site</small></a>
+<a href="01_teoria/12_arp_mac_switch.html"><b>12 ARP, MAC e switch</b><br><small>Camada 2</small></a>
+<a href="01_teoria/13_roteamento.html"><b>13 Roteamento</b><br><small>Tabela de rotas e TTL</small></a>
+<a href="01_teoria/14_ipv6.html"><b>14 IPv6</b><br><small>O futuro dos enderecos</small></a>
+<a href="01_teoria/15_seguranca_firewall.html"><b>15 Seguranca basica</b><br><small>Firewall e ACL</small></a>
+<a href="01_teoria/16_projeto_rede_escola.html"><b>16 Projeto: rede de escola</b><br><small>VLSM completo</small></a>
+</div>
+
+<h2>Trilha 2 - Calcule e treine</h2>
+<div class="mapa">
+<a href="05_laboratorio/index.html"><b>Laboratorio interativo</b><br><small>Bits, calculadora, VLSM, rotas e quiz</small></a>
+<a href="03_calculadora_web/index.html"><b>Calculadora de redes</b><br><small>Rede, broadcast e sub-redes</small></a>
+<a href="04_exercicios/exercicios_sub_redes.html"><b>Exercicios com resposta</b><br><small>3 niveis</small></a>
+</div>
+
+<h2>Trilha 3 - Pratique</h2>
+<div class="mapa">
+<a href="01_teoria/17_laboratorio_comandos.html"><b>17 Laboratorio de comandos</b><br><small>Investigue a sua rede, passo a passo</small></a>
+</div>
+<h3>Programas em Python (06_python)</h3>
+<p>Execute no VS Code com <b>Ctrl+Shift+B</b> ou no terminal: <code>.\rodar.ps1 NOME</code></p>
+<table>
+<tr><th>Programa</th><th>O que faz</th></tr>
+<tr><td><code>01_mesma_rede</code></td><td>Duas maquinas conversam direto?</td></tr>
+<tr><td><code>02_vlsm</code></td><td>Divide uma rede por setor (VLSM)</td></tr>
+<tr><td><code>03_scanner_portas</code></td><td>Portas abertas do seu PC (so local)</td></tr>
+<tr><td><code>04_diagnostico_rede</code></td><td>Testa placa, Internet e DNS</td></tr>
+<tr><td><code>05_ipv6</code></td><td>Expande, abrevia e classifica IPv6</td></tr>
+<tr><td><code>06_plano_enderecamento</code></td><td>Gera o plano da escola em CSV</td></tr>
+<tr><td><code>07_tabela_de_rotas</code></td><td>Simula o roteamento</td></tr>
+<tr><td><code>08_servidor_cliente_tcp</code></td><td>Servidor e cliente com sockets</td></tr>
+</table>
+<h3>Programas em C (02_calculos_em_c)</h3>
+<p>Os mesmos calculos em C, <code>.\rodar.ps1 rede_08_passo_a_passo</code>. Comece por <code>rede_01_ip_binario</code>.</p>
+
+<h2>Sugestao de aulas</h2>
+<table>
+<tr><th>Encontro</th><th>Teoria</th><th>Pratica</th></tr>
+<tr><td>1</td><td>00 a 03</td><td>Bits e quiz no laboratorio; aula 17 (passos 1 e 2)</td></tr>
+<tr><td>2</td><td>04 a 06</td><td>Calculadora; exercicios nivel 1 e 2; <code>01_mesma_rede</code></td></tr>
+<tr><td>3</td><td>07 e 10</td><td>VLSM no laboratorio e <code>02_vlsm</code></td></tr>
+<tr><td>4</td><td>08, 09 e 11</td><td>Aula 17 completa; <code>04_diagnostico_rede</code></td></tr>
+<tr><td>5</td><td>12 a 15</td><td><code>03_scanner_portas</code>, <code>07_tabela_de_rotas</code>, <code>08_servidor_cliente_tcp</code></td></tr>
+<tr><td>6</td><td>16</td><td>Projeto final: plano da escola + CSV</td></tr>
+</table>
+<p><a href="../index.html">&larr; Pagina inicial do curso</a></p>
+</body>
+</html>
+<!-- Executar (PowerShell): .\rodar.ps1 redes\index.html -->

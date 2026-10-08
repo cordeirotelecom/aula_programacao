@@ -1,0 +1,57 @@
+<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redes 13 - Roteamento</title>
+<link rel="stylesheet" href="estilo_redes.css">
+</head>
+<body>
+<h1>Aula 13 - Roteamento e tabela de rotas</h1>
+<p class="objetivo">como um roteador escolhe por onde enviar um pacote e como ler uma tabela de rotas.</p>
+
+<h2>A ideia</h2>
+<p>O roteador recebe um pacote, olha o <b>IP de destino</b>, procura na tabela de rotas a linha mais especifica que combina e envia ao <b>proximo salto</b> (<i>next hop</i>).</p>
+<div class="analogia">e o carteiro da central dos Correios: ele nao entrega na sua casa, so decide para qual agencia mandar a carta.</div>
+
+<h2>Exemplo de tabela</h2>
+<table>
+<tr><th>Destino</th><th>Mascara</th><th>Proximo salto</th><th>Interface</th></tr>
+<tr><td>192.168.10.0</td><td>/24</td><td>direto</td><td>eth0</td></tr>
+<tr><td>192.168.20.0</td><td>/24</td><td>direto</td><td>eth1</td></tr>
+<tr><td>10.0.0.0</td><td>/8</td><td>192.168.20.254</td><td>eth1</td></tr>
+<tr><td>0.0.0.0</td><td>/0</td><td>200.10.20.1</td><td>eth2</td></tr>
+</table>
+<p><code>0.0.0.0/0</code> e a <b>rota padrao</b>: serve para "todo o resto" (a saida para a Internet).</p>
+
+<h2>Regra do prefixo mais longo</h2>
+<p>Se mais de uma rota combina, vence a de <b>maior prefixo</b> (mais especifica). Exemplo: destino 10.1.2.3, com as rotas <code>10.0.0.0/8</code> e <code>10.1.2.0/24</code> &rarr; usa a /24.</p>
+<p class="dica">Veja isso funcionando: Python na aula pratica (<code>06_python/07_tabela_de_rotas.py</code>) e o simulador no laboratorio.</p>
+
+<h2>Rota estatica x dinamica</h2>
+<table>
+<tr><th></th><th>Estatica</th><th>Dinamica (RIP, OSPF, BGP)</th></tr>
+<tr><th>Quem configura</th><td>Administrador, a mao</td><td>Os roteadores trocam informacoes entre si</td></tr>
+<tr><th>Bom para</th><td>Redes pequenas</td><td>Redes grandes; se adapta a falhas</td></tr>
+<tr><th>Exemplo</th><td>Rota padrao da sua casa</td><td>BGP liga as operadoras da Internet</td></tr>
+</table>
+
+<h2>TTL - por que o pacote nao viaja para sempre</h2>
+<p>Cada roteador diminui o <b>TTL</b> em 1. Se chegar a 0, o pacote e descartado. E assim que o <code>tracert</code> descobre cada salto do caminho.</p>
+
+<h2>Ver no Windows</h2>
+<pre class="term">route print
+tracert 8.8.8.8</pre>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Na tabela acima, para onde vai um pacote para 192.168.20.77? E para 10.5.5.5? E para 8.8.8.8?</li>
+<li>Rotas 172.16.0.0/16 e 172.16.5.0/24: qual e usada para 172.16.5.9?</li>
+<li>Pratica: rode <code>tracert</code> para um site e conte os saltos.</li>
+</ol></div>
+<details><summary>Respostas</summary>1) 192.168.20.77: direto por eth1. 10.5.5.5: via 192.168.20.254. 8.8.8.8: rota padrao via 200.10.20.1. 2) A /24 (prefixo mais longo).</details>
+<nav class="trilha"><a class="sec" href="12_arp_mac_switch.html">&larr; Anterior</a><a href="14_ipv6.html">Proxima: IPv6 &rarr;</a></nav>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\rodar.ps1" 13_roteamento -->

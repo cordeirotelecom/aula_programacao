@@ -1,0 +1,58 @@
+<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redes 15 - Seguranca basica</title>
+<link rel="stylesheet" href="estilo_redes.css">
+</head>
+<body>
+<h1>Aula 15 - Seguranca basica de redes</h1>
+<p class="objetivo">o que e firewall, como funciona uma regra de acesso (ACL) e os cuidados minimos em uma rede.</p>
+
+<h2>Firewall</h2>
+<p>E o "porteiro" que decide, pacote a pacote, o que entra e sai da rede, com base em <b>IP de origem, IP de destino, protocolo e porta</b>.</p>
+<div class="analogia">o porteiro tem uma lista: "visitante com convite para o apartamento 12: pode subir. Sem convite: nao entra".</div>
+
+<h2>Regras (ACL) - a primeira que combina vale</h2>
+<table>
+<tr><th>#</th><th>Acao</th><th>Origem</th><th>Destino</th><th>Protocolo/porta</th></tr>
+<tr><td>1</td><td>Permitir</td><td>192.168.10.0/24 (alunos)</td><td>Qualquer</td><td>TCP 80, 443 (web)</td></tr>
+<tr><td>2</td><td>Negar</td><td>192.168.10.0/24 (alunos)</td><td>192.168.20.0/24 (professores)</td><td>Qualquer</td></tr>
+<tr><td>3</td><td>Permitir</td><td>192.168.20.0/24</td><td>Qualquer</td><td>Qualquer</td></tr>
+<tr><td>4</td><td>Negar</td><td>Qualquer</td><td>Qualquer</td><td>Qualquer (regra implicita)</td></tr>
+</table>
+<p class="cuidado">a <b>ordem importa</b>. Se a regra "permitir tudo" ficar em primeiro lugar, as seguintes nunca sao lidas. Teste com o simulador de ACL no laboratorio.</p>
+
+<h2>Portas que voce deve conhecer</h2>
+<table>
+<tr><th>Porta</th><th>Servico</th><th>Observacao</th></tr>
+<tr><td>22</td><td>SSH</td><td>Acesso remoto seguro</td></tr>
+<tr><td>23</td><td>Telnet</td><td>Inseguro (texto puro). Evite</td></tr>
+<tr><td>80 / 443</td><td>HTTP / HTTPS</td><td>Web</td></tr>
+<tr><td>53</td><td>DNS</td><td>Nomes</td></tr>
+<tr><td>3389</td><td>Area de trabalho remota</td><td>Alvo frequente de ataques: nao exponha na Internet</td></tr>
+<tr><td>1883 / 8883</td><td>MQTT / MQTT seguro</td><td>Usado em IoT (ESP32)</td></tr>
+</table>
+
+<h2>Boas praticas essenciais</h2>
+<ul>
+<li>Troque a senha padrao do roteador e do Wi-Fi (WPA2 ou WPA3).</li>
+<li>Mantenha o sistema e o firmware atualizados.</li>
+<li>Separe visitantes e dispositivos IoT em uma rede/VLAN propria.</li>
+<li>Libere so as portas necessarias (principio do <i>menor privilegio</i>).</li>
+<li>Prefira protocolos cifrados: HTTPS, SSH, MQTT com TLS.</li>
+</ul>
+<p class="cuidado">Teste portas, ping e varreduras <b>somente em redes e equipamentos seus ou autorizados</b>. Varrer redes alheias pode ser crime. Nos exemplos do curso usamos apenas o proprio computador (127.0.0.1).</p>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Escreva regras para: alunos so navegam; professores acessam tudo; ninguem de fora entra.</li>
+<li>Por que o Telnet e considerado inseguro?</li>
+<li>Pratica: <code>.\rodar.ps1 03_scanner_portas.py</code> verifica portas do seu proprio PC.</li>
+</ol></div>
+<nav class="trilha"><a class="sec" href="14_ipv6.html">&larr; Anterior</a><a href="16_projeto_rede_escola.html">Proxima: Projeto de rede &rarr;</a></nav>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\rodar.ps1" 15_seguranca_firewall -->

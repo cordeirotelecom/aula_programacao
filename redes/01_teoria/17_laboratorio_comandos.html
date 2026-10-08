@@ -1,0 +1,68 @@
+<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redes 17 - Laboratorio pratico no seu computador</title>
+<link rel="stylesheet" href="estilo_redes.css">
+</head>
+<body>
+<h1>Aula 17 - Laboratorio pratico: investigue a sua rede</h1>
+<p class="objetivo">usar os comandos do Windows para ver na pratica IP, gateway, DNS, MAC, rotas e portas. Cada passo tem o que digitar e o que observar.</p>
+<p class="cuidado">Todos os comandos abaixo apenas leem informacoes do seu computador. Execute no PowerShell (Menu Iniciar &rarr; PowerShell).</p>
+
+<h2>Passo 1 - Quem sou eu na rede? (ipconfig)</h2>
+<pre class="term">ipconfig /all</pre>
+<p>Anote: <b>Endereco IPv4</b>, <b>Mascara</b>, <b>Gateway padrao</b>, <b>Servidores DNS</b>, <b>Endereco fisico</b> (MAC) e <b>DHCP habilitado</b>.</p>
+<p>Agora calcule no papel: qual e o endereco de rede e o broadcast da sua maquina? Confira na calculadora do laboratorio.</p>
+
+<h2>Passo 2 - Estou na mesma rede do gateway? (ping)</h2>
+<pre class="term">ping SEU_GATEWAY</pre>
+<p>Resposta esperada: <code>Resposta de 192.168.0.1: bytes=32 tempo=2ms TTL=64</code>. O <b>tempo</b> e a latencia; o <b>TTL</b> ajuda a adivinhar o sistema do outro lado (64 = Linux/roteador, 128 = Windows).</p>
+
+<h2>Passo 3 - Tem Internet? Isole o problema</h2>
+<pre class="term">ping 127.0.0.1        # 1. placa de rede/pilha TCP-IP do proprio PC
+ping SEU_GATEWAY      # 2. rede local
+ping 8.8.8.8          # 3. Internet (por IP)
+ping google.com       # 4. DNS funcionando</pre>
+<table>
+<tr><th>Falhou no passo</th><th>Provavel causa</th></tr>
+<tr><td>1</td><td>Problema na configuracao TCP/IP do PC</td></tr>
+<tr><td>2</td><td>Cabo, Wi-Fi, IP/mascara errados ou switch</td></tr>
+<tr><td>3</td><td>Gateway, roteador ou operadora</td></tr>
+<tr><td>4 (3 funcionou)</td><td>Servidor DNS</td></tr>
+</table>
+
+<h2>Passo 4 - O caminho ate o destino (tracert)</h2>
+<pre class="term">tracert -d 8.8.8.8</pre>
+<p>Cada linha e um roteador (um salto). O primeiro e o seu gateway. Linhas com <code>*</code> sao roteadores que nao respondem (normal).</p>
+
+<h2>Passo 5 - Traduzindo nomes (nslookup)</h2>
+<pre class="term">nslookup google.com</pre>
+<p>Mostra o servidor DNS usado e o(s) IP(s) do nome.</p>
+
+<h2>Passo 6 - Vizinhos conhecidos (arp)</h2>
+<pre class="term">arp -a</pre>
+<p>Lista IP &harr; MAC. O MAC do gateway deve estar la depois do ping do passo 2.</p>
+
+<h2>Passo 7 - Conexoes e portas abertas (netstat)</h2>
+<pre class="term">netstat -ano | Select-String LISTENING</pre>
+<p>Mostra portas em que o seu PC esta "escutando" (ex.: 135, 445). Compare com a tabela de portas da aula 15.</p>
+
+<h2>Passo 8 - Tabela de rotas</h2>
+<pre class="term">route print</pre>
+<p>Procure a linha <code>0.0.0.0  0.0.0.0  SEU_GATEWAY</code>: e a rota padrao da aula 13.</p>
+
+<h2>Relatorio do aluno (entregar)</h2>
+<div class="exercicio"><ol>
+<li>Tabela com IP, mascara, CIDR, rede, broadcast, gateway, DNS e MAC do seu PC.</li>
+<li>Resultado dos 4 pings do passo 3 e o que cada um prova.</li>
+<li>Numero de saltos ate 8.8.8.8 e o IP do 1o salto.</li>
+<li>O IP de google.com e o tipo de registro DNS (A ou AAAA).</li>
+</ol></div>
+<p class="dica">Para automatizar esse diagnostico, rode <code>.\rodar.ps1 04_diagnostico_rede.py</code> (Python): ele faz os passos 1 a 3 e mostra o resultado em portugues.</p>
+<nav class="trilha"><a class="sec" href="16_projeto_rede_escola.html">&larr; Anterior</a><a href="../05_laboratorio/index.html">Ir ao laboratorio interativo &rarr;</a></nav>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\rodar.ps1" 17_laboratorio_comandos -->

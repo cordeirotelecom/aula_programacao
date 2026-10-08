@@ -1,0 +1,52 @@
+<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redes 16 - Projeto: rede de uma escola</title>
+<link rel="stylesheet" href="estilo_redes.css">
+</head>
+<body>
+<h1>Aula 16 - Projeto: planejando a rede de uma escola</h1>
+<p class="objetivo">juntar tudo: dividir uma rede por departamento com VLSM, escolher gateways e documentar o plano de enderecamento.</p>
+
+<h2>O problema</h2>
+<p>Uma escola recebeu a rede <code>192.168.0.0/24</code> e precisa atender:</p>
+<table>
+<tr><th>Setor</th><th>Maquinas</th></tr>
+<tr><td>Laboratorio de informatica</td><td>60</td></tr>
+<tr><td>Secretaria e direcao</td><td>25</td></tr>
+<tr><td>Professores (Wi-Fi)</td><td>12</td></tr>
+<tr><td>Link entre roteadores</td><td>2</td></tr>
+</table>
+
+<h2>Passo a passo (VLSM)</h2>
+<ol>
+<li><b>Ordene do maior para o menor</b>: 60, 25, 12, 2.</li>
+<li><b>Descubra a mascara de cada um</b> (hosts + 2 &le; 2<sup>n</sup>): 60+2 = 62 &rarr; 64 (/26); 25+2 = 27 &rarr; 32 (/27); 12+2 = 14 &rarr; 16 (/28); 2+2 = 4 (/30).</li>
+<li><b>Aloque em sequencia</b>, sem sobrepor, cada bloco comecando num multiplo do seu tamanho.</li>
+</ol>
+<table>
+<tr><th>Setor</th><th>Rede</th><th>Mascara</th><th>Gateway (1o host)</th><th>Faixa de hosts</th><th>Broadcast</th></tr>
+<tr><td>Laboratorio</td><td>192.168.0.0/26</td><td>255.255.255.192</td><td>192.168.0.1</td><td>.1 a .62</td><td>192.168.0.63</td></tr>
+<tr><td>Secretaria</td><td>192.168.0.64/27</td><td>255.255.255.224</td><td>192.168.0.65</td><td>.65 a .94</td><td>192.168.0.95</td></tr>
+<tr><td>Professores</td><td>192.168.0.96/28</td><td>255.255.255.240</td><td>192.168.0.97</td><td>.97 a .110</td><td>192.168.0.111</td></tr>
+<tr><td>Link</td><td>192.168.0.112/30</td><td>255.255.255.252</td><td>-</td><td>.113 a .114</td><td>192.168.0.115</td></tr>
+</table>
+<p class="dica">Sobrou de 192.168.0.116 ate .255 para crescer. Sempre deixe folga: planeje 20% a 30% a mais de hosts.</p>
+
+<h2>Confirme com o computador</h2>
+<p>O programa <code>06_python/06_plano_enderecamento.py</code> faz este calculo sozinho e o laboratorio (aba VLSM) tambem. Compare com a sua conta no papel.</p>
+
+<h2>Desafio</h2>
+<div class="exercicio"><ol>
+<li>Refaca o plano com a rede 10.10.0.0/22 e 4 setores: 300, 120, 50 e 10 maquinas.</li>
+<li>Desenhe a topologia: roteador, switches, subredes e o gateway de cada uma.</li>
+<li>Escreva 4 regras de firewall para o plano (aula 15).</li>
+<li>Exporte o plano em CSV com o script Python e abra no Excel.</li>
+</ol></div>
+<nav class="trilha"><a class="sec" href="15_seguranca_firewall.html">&larr; Anterior</a><a href="17_laboratorio_comandos.html">Proxima: Laboratorio pratico &rarr;</a></nav>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\rodar.ps1" 16_projeto_rede_escola -->

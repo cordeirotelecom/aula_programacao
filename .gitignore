@@ -7,3 +7,4 @@ integracao/02_projeto/node-red/*
 !integracao/02_projeto/node-red/flows.json
 .ghdl/
 *.cf
+redes/06_python/*.csv

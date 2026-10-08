@@ -1,0 +1,54 @@
+<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redes 12 - ARP, MAC e switch</title>
+<link rel="stylesheet" href="estilo_redes.css">
+</head>
+<body>
+<h1>Aula 12 - Camada 2: MAC, ARP e switch</h1>
+<p class="objetivo">a diferenca entre endereco IP e endereco MAC, como um PC descobre o MAC do vizinho e o que faz um switch.</p>
+
+<h2>IP x MAC</h2>
+<table>
+<tr><th></th><th>MAC</th><th>IP</th></tr>
+<tr><th>Camada</th><td>2 (enlace)</td><td>3 (rede)</td></tr>
+<tr><th>Tamanho</th><td>48 bits, ex.: A4-5E-60-1B-22-9C</td><td>32 bits, ex.: 192.168.0.25</td></tr>
+<tr><th>Quem define</th><td>Fabricante da placa</td><td>Administrador ou DHCP</td></tr>
+<tr><th>Alcance</th><td>So dentro da rede local</td><td>Atravessa redes (roteado)</td></tr>
+</table>
+<div class="analogia">o MAC e o seu CPF (fica com a placa); o IP e o seu endereco de moradia (muda conforme voce muda de rede).</div>
+
+<h2>ARP - "quem tem este IP?"</h2>
+<p>Para enviar um quadro dentro da rede, o PC precisa do <b>MAC</b> do destino, mas so conhece o <b>IP</b>. Entao ele grita (broadcast) e o dono responde:</p>
+<pre>PC1: "Quem tem 192.168.0.40? Responda para 192.168.0.25"      (broadcast)
+PC2: "Sou eu! Meu MAC e A4-5E-60-1B-22-9C"                    (resposta direta)</pre>
+<p>O resultado fica guardado na <b>tabela ARP</b>. Veja com <code>arp -a</code>.</p>
+<p class="dica">Para sair da rede, o PC faz o ARP do <b>gateway</b>, nao do site de destino. O MAC muda a cada salto; o IP de destino permanece o mesmo.</p>
+
+<h2>Switch x Hub x Roteador</h2>
+<table>
+<tr><th>Equipamento</th><th>Camada</th><th>Como decide</th></tr>
+<tr><td>Hub (antigo)</td><td>1</td><td>Repete tudo para todas as portas. Pouco inteligente e inseguro.</td></tr>
+<tr><td>Switch</td><td>2</td><td>Aprende o MAC de cada porta e envia o quadro so para a porta certa.</td></tr>
+<tr><td>Roteador</td><td>3</td><td>Olha o IP de destino e escolhe o proximo salto. Liga redes diferentes.</td></tr>
+</table>
+<p>Um <b>dominio de broadcast</b> e o conjunto de maquinas que ouvem o mesmo broadcast. Um switch mantem tudo no mesmo dominio; o roteador separa. Por isso cada sub-rede (aula 6) e um dominio de broadcast diferente.</p>
+
+<h2>VLAN em uma frase</h2>
+<p>VLAN e um switch dividido em "switches virtuais": portas de VLANs diferentes nao se enxergam, mesmo no mesmo aparelho. Cada VLAN costuma ter a sua sub-rede (ex.: VLAN 10 = alunos 192.168.10.0/24; VLAN 20 = professores 192.168.20.0/24).</p>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>O IP muda quando voce troca a placa de rede? E o MAC?</li>
+<li>Um PC quer falar com um site na Internet. O ARP pergunta o MAC de quem?</li>
+<li>Por que um hub e menos seguro que um switch?</li>
+<li>Pratica: rode <code>ping</code> para o gateway e depois <code>arp -a</code>. Qual MAC apareceu?</li>
+</ol></div>
+<details><summary>Respostas</summary>1) O MAC muda (placa nova); o IP depende da rede/DHCP. 2) Do gateway. 3) O hub entrega tudo a todos; no switch cada porta so recebe o que e dela.</details>
+<nav class="trilha"><a class="sec" href="11_gateway_dhcp_dns_nat.html">&larr; Anterior</a><a href="13_roteamento.html">Proxima: Roteamento &rarr;</a></nav>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\rodar.ps1" 12_arp_mac_switch -->

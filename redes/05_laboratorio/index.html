@@ -1,0 +1,103 @@
+<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laboratorio interativo de Redes</title>
+<link rel="stylesheet" href="../01_teoria/estilo_redes.css">
+<style>
+.abas { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+.abas button { background: #dee2e6; color: #222; }
+.abas button.on { background: #1d3557; color: #fff; }
+.painel { display: none; }
+.painel.on { display: block; }
+.res td:first-child { font-weight: bold; background: #f1f8ff; }
+.passos li { margin: 4px 0; }
+.mono { font-family: Consolas, monospace; }
+</style>
+</head>
+<body>
+<h1>Laboratorio interativo de Redes</h1>
+<p>Experimente, mude os valores e veja o resultado na hora. Cada aba tem uma explicacao curta do que esta acontecendo.</p>
+<div class="abas" id="abas"></div>
+
+<!-- 1 BINARIO -->
+<section class="painel" id="p-bin" data-titulo="1. Binario">
+<h2>Binario e decimal: clique nos bits</h2>
+<p>Cada bit vale uma potencia de 2. Clique em um bit para ligar/desligar e veja o numero mudar. Um octeto de IP vai de 0 a 255.</p>
+<div class="bits" id="bits"></div>
+<p>Valor decimal: <b id="bin-dec" style="font-size:1.6rem">0</b> &nbsp; <button id="bin-zero">Zerar</button> <button id="bin-tudo">Ligar tudo</button></p>
+<p class="dica">Soma dos valores dos bits ligados. Exemplo: 128 + 64 + 8 + 1 = 201.</p>
+<h3>IP completo</h3>
+<input id="bin-ip" value="192.168.10.77" size="16"> <span class="mono" id="bin-saida"></span>
+</section>
+
+<!-- 2 CALCULADORA -->
+<section class="painel" id="p-calc" data-titulo="2. Rede, broadcast e hosts">
+<h2>Calculadora passo a passo</h2>
+<label>IP <input id="c-ip" value="192.168.10.77"></label> /
+<label><input id="c-cidr" type="number" min="0" max="32" value="26" style="width:70px"></label>
+<button id="c-btn">Calcular</button>
+<p id="c-erro" class="erro"></p>
+<table class="res" id="c-res"></table>
+<h3>Como se chega ao resultado</h3>
+<ol class="passos" id="c-passos"></ol>
+</section>
+
+<!-- 3 MESMA REDE -->
+<section class="painel" id="p-mesma" data-titulo="3. Mesma rede?">
+<h2>Duas maquinas conversam direto?</h2>
+<p>Se IP AND mascara der o mesmo resultado, elas estao na mesma rede. Caso contrario, precisam do gateway.</p>
+<label>PC 1 <input id="m-ip1" value="192.168.1.10"></label>
+<label>PC 2 <input id="m-ip2" value="192.168.2.20"></label>
+<label>/<input id="m-cidr" type="number" min="0" max="32" value="24" style="width:70px"></label>
+<button id="m-btn">Verificar</button>
+<div id="m-res" class="cartao"></div>
+<h3>Classificar um IP</h3>
+<input id="k-ip" value="172.20.5.9"> <button id="k-btn">Classificar</button>
+<div id="k-res" class="cartao"></div>
+</section>
+
+<!-- 4 VLSM -->
+<section class="painel" id="p-vlsm" data-titulo="4. VLSM">
+<h2>Planejador VLSM</h2>
+<p>Informe a rede e os setores (um por linha, <code>nome:hosts</code>).</p>
+<label>Rede <input id="v-rede" value="192.168.0.0"></label> /<input id="v-cidr" type="number" value="24" style="width:70px">
+<br><textarea id="v-setores" rows="5" cols="30">Laboratorio:60
+Secretaria:25
+Professores:12
+Link:2</textarea><br>
+<button id="v-btn">Gerar plano</button> <button id="v-csv">Baixar CSV</button>
+<p id="v-erro" class="erro"></p>
+<table id="v-res"></table>
+</section>
+
+<!-- 5 ROTAS -->
+<section class="painel" id="p-rotas" data-titulo="5. Rotas">
+<h2>Simulador de tabela de rotas</h2>
+<p>Um roteador escolhe a rota de <b>prefixo mais longo</b> que combina com o destino.</p>
+<textarea id="r-tab" rows="6" cols="50">192.168.10.0/24 direto
+192.168.20.0/24 direto
+10.0.0.0/8 192.168.20.254
+10.1.2.0/24 192.168.20.100
+0.0.0.0/0 200.10.20.1</textarea><br>
+<label>Destino <input id="r-dest" value="10.1.2.3"></label> <button id="r-btn">Rotear</button>
+<div id="r-res" class="cartao"></div>
+</section>
+
+<!-- 6 QUIZ -->
+<section class="painel" id="p-quiz" data-titulo="6. Quiz">
+<h2>Quiz infinito</h2>
+<p>Placar: <b id="q-acertos">0</b> acertos em <b id="q-total">0</b> perguntas.</p>
+<div class="cartao"><p id="q-pergunta" style="font-size:1.15rem"></p>
+<input id="q-resp" size="20"> <button id="q-btn">Responder</button> <button id="q-prox">Outra pergunta</button>
+<p id="q-fb"></p></div>
+</section>
+
+<nav class="trilha"><a class="sec" href="../index.html">&larr; Mapa do curso de redes</a><a href="../01_teoria/17_laboratorio_comandos.html">Laboratorio de comandos &rarr;</a></nav>
+<script src="../03_calculadora_web/calculo.js"></script>
+<script src="lab.js"></script>
+</body>
+</html>
+<!-- Executar (PowerShell): .\rodar.ps1 redes\05_laboratorio\index.html -->

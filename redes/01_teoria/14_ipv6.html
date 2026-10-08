@@ -1,0 +1,51 @@
+<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redes 14 - IPv6</title>
+<link rel="stylesheet" href="estilo_redes.css">
+</head>
+<body>
+<h1>Aula 14 - Introducao ao IPv6</h1>
+<p class="objetivo">por que o IPv6 existe, como ler e abreviar um endereco e os tipos principais.</p>
+
+<h2>Por que IPv6?</h2>
+<p>O IPv4 tem 2<sup>32</sup> = cerca de 4,3 bilhoes de enderecos, e eles acabaram. O IPv6 tem 128 bits: 2<sup>128</sup> &asymp; 3,4 x 10<sup>38</sup> enderecos, o bastante para dar milhoes de IPs a cada grao de areia do planeta.</p>
+
+<h2>Como se escreve</h2>
+<p>8 grupos de 16 bits, em hexadecimal, separados por <code>:</code></p>
+<pre>2001:0db8:0000:0000:0000:0000:0000:0001</pre>
+<p><b>Regras para abreviar</b></p>
+<ol>
+<li>Tire os zeros a esquerda de cada grupo: <code>2001:db8:0:0:0:0:0:1</code></li>
+<li>Troque a maior sequencia de grupos zero por <code>::</code> (uma unica vez): <code>2001:db8::1</code></li>
+</ol>
+<p class="dica">O prefixo funciona como o CIDR: <code>2001:db8:abcd:1::/64</code>. Quase toda LAN usa /64.</p>
+
+<h2>Tipos principais</h2>
+<table>
+<tr><th>Prefixo</th><th>Tipo</th><th>Equivale no IPv4</th></tr>
+<tr><td>::1</td><td>Loopback</td><td>127.0.0.1</td></tr>
+<tr><td>fe80::/10</td><td>Link-local (so na rede local, automatico)</td><td>169.254.x.x</td></tr>
+<tr><td>fc00::/7</td><td>Unique local (privado)</td><td>192.168.x.x</td></tr>
+<tr><td>2000::/3</td><td>Global unicast (publico)</td><td>IP publico</td></tr>
+<tr><td>ff00::/8</td><td>Multicast</td><td>224.0.0.0/4</td></tr>
+</table>
+<p>O IPv6 <b>nao tem broadcast</b> (usa multicast) e dispensa o NAT na maioria dos casos.</p>
+
+<h2>Convivencia com o IPv4</h2>
+<p>Hoje os dois funcionam juntos (<i>dual stack</i>): o computador tem um IPv4 e um IPv6. Veja com <code>ipconfig</code>.</p>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Abrevie: <code>2001:0db8:0000:0000:00a0:0000:0000:0005</code></li>
+<li>O que e fe80::1c2d:3e4f:5a6b:7c8d?</li>
+<li>Pratica: <code>.\rodar.ps1 05_ipv6.py</code> mostra expansao e abreviacao automaticas.</li>
+</ol></div>
+<details><summary>Respostas</summary>1) <code>2001:db8::a0:0:0:5</code> (usa :: na primeira sequencia mais longa; empate: a primeira). 2) Link-local (so funciona na rede local).</details>
+<nav class="trilha"><a class="sec" href="13_roteamento.html">&larr; Anterior</a><a href="15_seguranca_firewall.html">Proxima: Seguranca &rarr;</a></nav>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\rodar.ps1" 14_ipv6 -->

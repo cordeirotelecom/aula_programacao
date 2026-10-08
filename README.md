@@ -301,7 +301,9 @@ Os projetos tem tres arquivos (`index.html`, `estilo.css`, `script.js`): abra-os
 
 ## 6. Redes de computadores (pasta `redes`)
 
-Ensina IP, mascara, CIDR, rede, broadcast, faixa de hosts, classes, sub-redes e VLSM. **Comece pela aula `00_para_que_serve`** e depois `10_passo_a_passo_calculo` (metodo no papel).
+Ensina IP, mascara, CIDR, rede, broadcast, faixa de hosts, classes, sub-redes e VLSM. **Comece pelo mapa do curso `redes\index.html`** (trilha de 18 aulas, laboratorio e programas) ou pela aula `00_para_que_serve` e depois `10_passo_a_passo_calculo` (metodo no papel).
+
+Novidades: aulas 11-17 (gateway/DHCP/DNS/NAT, ARP/MAC/switch, roteamento, IPv6, seguranca, projeto da rede de uma escola e laboratorio de comandos), o **laboratorio interativo** (`redes\05_laboratorio\index.html`: bits, calculadora passo a passo, VLSM com CSV, rotas e quiz) e 8 programas Python em `redes\06_python` (`.\rodar.ps1 02_vlsm`).
 
 **Aulas e exercicios (abrem no navegador)** - copie e cole (troque o nome final):
 

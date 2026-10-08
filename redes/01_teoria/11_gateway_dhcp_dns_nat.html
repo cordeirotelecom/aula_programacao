@@ -1,0 +1,71 @@
+<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redes 11 - Gateway, DHCP, DNS e NAT</title>
+<link rel="stylesheet" href="estilo_redes.css">
+</head>
+<body>
+<h1>Aula 11 - Gateway, DHCP, DNS e NAT</h1>
+<p class="objetivo">entender o que acontece quando voce abre um site: quem entrega o IP, quem traduz o nome e quem leva o pacote para a Internet.</p>
+
+<h2>As 4 configuracoes de um computador</h2>
+<table>
+<tr><th>Item</th><th>Exemplo</th><th>Para que serve</th></tr>
+<tr><td>Endereco IP</td><td>192.168.0.25</td><td>Identifica a maquina na rede</td></tr>
+<tr><td>Mascara</td><td>255.255.255.0</td><td>Diz quem esta na mesma rede</td></tr>
+<tr><td>Gateway padrao</td><td>192.168.0.1</td><td>A "porta de saida": para onde mandar o que e de fora</td></tr>
+<tr><td>DNS</td><td>8.8.8.8</td><td>Traduz nomes (google.com) em IPs</td></tr>
+</table>
+<div class="analogia">o gateway e a portaria do predio. Para falar com um vizinho voce vai direto; para falar com outra cidade, entrega a carta na portaria.</div>
+
+<h2>Como o PC decide: mandar direto ou para o gateway?</h2>
+<ol>
+<li>O PC faz o calculo <b>IP AND mascara</b> do destino e compara com a propria rede.</li>
+<li>Mesma rede &rarr; envia direto (descobre o MAC com ARP, aula 12).</li>
+<li>Rede diferente &rarr; envia ao <b>gateway</b>, que encaminha.</li>
+</ol>
+<p>Exemplo: PC 192.168.0.25/24 quer falar com 192.168.0.40 (direto) e com 8.8.8.8 (gateway 192.168.0.1).</p>
+
+<h2>DHCP - IP automatico</h2>
+<p>Ninguem configura IP na mao em casa ou na escola: o <b>DHCP</b> faz isso. A conversa tem 4 passos, conhecidos como <b>DORA</b>:</p>
+<table>
+<tr><th>Passo</th><th>Quem fala</th><th>Mensagem</th></tr>
+<tr><td>D - Discover</td><td>PC</td><td>"Tem algum servidor DHCP ai?" (broadcast)</td></tr>
+<tr><td>O - Offer</td><td>Servidor</td><td>"Ofereco o IP 192.168.0.25"</td></tr>
+<tr><td>R - Request</td><td>PC</td><td>"Aceito esse IP"</td></tr>
+<tr><td>A - Acknowledge</td><td>Servidor</td><td>"Confirmado por 24 horas (lease)"</td></tr>
+</table>
+<p>O servidor entrega IP, mascara, gateway e DNS juntos. Se o DHCP falha, o Windows se auto-atribui <code>169.254.x.x</code> (APIPA): sinal de que o DHCP nao respondeu.</p>
+
+<h2>DNS - a agenda de telefones da Internet</h2>
+<p>Voce digita <code>google.com</code>; o PC pergunta ao DNS e recebe o IP. Registros mais comuns:</p>
+<table>
+<tr><th>Tipo</th><th>Funcao</th></tr>
+<tr><td>A</td><td>Nome para IPv4</td></tr>
+<tr><td>AAAA</td><td>Nome para IPv6</td></tr>
+<tr><td>CNAME</td><td>Apelido de outro nome</td></tr>
+<tr><td>MX</td><td>Servidor de e-mail do dominio</td></tr>
+</table>
+<p class="dica">"A Internet caiu" muitas vezes e so o DNS: <code>ping 8.8.8.8</code> funciona mas <code>ping google.com</code> nao.</p>
+
+<h2>NAT - muitos PCs, um IP publico</h2>
+<p>Os IPs privados (10.x, 172.16-31.x, 192.168.x) nao existem na Internet. O roteador faz <b>NAT</b>: troca o IP privado pelo IP publico da operadora e guarda uma tabela para devolver a resposta ao PC certo.</p>
+<pre>PC 192.168.0.25:50001  --->  [Roteador NAT]  --->  200.10.20.30:40001  --->  site
+PC 192.168.0.26:50002  --->  [Roteador NAT]  --->  200.10.20.30:40002  --->  site</pre>
+<p>Por isso, de fora, ninguem alcanca seu PC diretamente (e uma protecao natural) e por isso hospedar um servidor em casa exige <i>redirecionamento de portas</i>.</p>
+
+<div class="exercicio"><b>Exercicios</b>
+<ol>
+<li>Um PC tem IP 192.168.0.25/24 e gateway 10.0.0.1. O que acontece? (Dica: o gateway esta na mesma rede?)</li>
+<li>O PC recebeu 169.254.10.5. Qual servico falhou?</li>
+<li>O ping para 8.8.8.8 funciona, mas para google.com nao. Qual configuracao voce confere?</li>
+<li>Pratica: rode <code>ipconfig /all</code> e identifique IP, mascara, gateway, DNS e se o DHCP esta ativo. (Aula pratica 17)</li>
+</ol></div>
+<details><summary>Respostas</summary>1) O gateway precisa estar na mesma rede do PC; 10.0.0.1 nao esta, entao o PC nao consegue sair. 2) O DHCP. 3) O DNS.</details>
+<nav class="trilha"><a class="sec" href="10_passo_a_passo_calculo.html">&larr; Anterior</a><a href="12_arp_mac_switch.html">Proxima: ARP, MAC e switch &rarr;</a></nav>
+</body>
+</html>
+<!-- Executar (PowerShell): powershell -ExecutionPolicy Bypass -File ".\rodar.ps1" 11_gateway_dhcp_dns_nat -->
