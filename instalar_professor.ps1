@@ -73,8 +73,18 @@ npm install
 Pop-Location
 
 Write-Host ''
+Write-Host '== Python ==' -ForegroundColor Cyan
+if ((Get-Command python -ErrorAction SilentlyContinue) -or (Get-Command py -ErrorAction SilentlyContinue)) {
+    Write-Host 'Python ja instalado.'
+} elseif (Get-Command winget -ErrorAction SilentlyContinue) {
+    winget install --id Python.Python.3.12 -e --silent --accept-package-agreements --accept-source-agreements
+} else {
+    Write-Host 'Instale o Python em https://www.python.org/downloads (marque "Add python.exe to PATH").' -ForegroundColor Yellow
+}
+
+Write-Host ''
 Write-Host 'PRONTO! Feche e abra o PowerShell e execute o primeiro programa:' -ForegroundColor Green
-Write-Host 'powershell -ExecutionPolicy Bypass -File "$([Environment]::GetFolderPath(''MyDocuments''))\programacao\curso_programacao\executar.ps1" c 01_ola_mundo'
+Write-Host 'cd "$([Environment]::GetFolderPath(''MyDocuments''))\programacao\curso_programacao"; .\rodar.ps1 01_ola_mundo'
 Write-Host 'Para o VHDL, o simulador GHDL e baixado sozinho no primeiro uso.'
 Write-Host 'Para Arduino/ESP32, instale a Arduino IDE: https://www.arduino.cc/en/software'
 # Executar: irm https://raw.githubusercontent.com/cordeirotelecom/aula_programacao/main/instalar_professor.ps1 | iex

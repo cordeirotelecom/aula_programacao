@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!-- Elaborado pelo Prof. Vagner Cordeiro -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python no navegador - Curso de Programacao</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f8fc;color:#1b2a3a;line-height:1.6}
+header{background:linear-gradient(135deg,#306998,#4b8bbe);color:#fff;padding:24px 16px;text-align:center}
+header h1{margin:0}
+main{max-width:960px;margin:0 auto;padding:16px}
+select,button{font-size:1rem;padding:8px 14px;border-radius:8px;border:1px solid #9ab}
+button{background:#2e9e4f;color:#fff;border:0;font-weight:600;cursor:pointer}
+button:disabled{background:#999;cursor:wait}
+textarea{width:100%;box-sizing:border-box;height:300px;font:14px Consolas,monospace;padding:10px;border-radius:8px;border:1px solid #9ab}
+pre{background:#10202f;color:#e8f1fa;padding:12px;border-radius:8px;min-height:80px;white-space:pre-wrap}
+.msg{color:#555}
+</style>
+</head>
+<body>
+<header><h1>Python no navegador</h1><p>Escolha uma aula, edite o codigo e clique em Executar. Nao precisa instalar nada.</p></header>
+<main>
+<p><label>Aula: <select id="aula"></select></label> <button id="rodar" disabled>Carregando Python...</button></p>
+<textarea id="codigo" spellcheck="false"></textarea>
+<h3>Resultado</h3>
+<pre id="saida">(clique em Executar)</pre>
+<p class="msg">Na primeira vez o navegador baixa o interpretador Python (cerca de 10 MB) e exige internet. Aulas com <code>input()</code> usam uma caixa de dialogo.</p>
+<p><a href="../index.html">&larr; Voltar ao curso</a></p>
+</main>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+<script>
+var AULAS = {
+"01 Ola, mundo": 'print("Ola, mundo!")\nprint("Meu primeiro programa em Python")\n',
+"02 Variaveis": 'idade = 18\ntemperatura = 23.5\ninicial = "A"\nligado = True\nprint(f"Idade: {idade}")\nprint(f"Temperatura: {temperatura:.1f} graus")\nprint(f"Inicial: {inicial}")\nprint(f"Ligado: {ligado}")\nprint("Tipo de idade:", type(idade).__name__)\n',
+"03 Operacoes": 'a = 17\nb = 5\nprint("Soma:", a + b)\nprint("Divisao:", a / b)\nprint("Divisao inteira:", a // b)\nprint("Resto:", a % b)\nprint("Potencia:", a ** 2)\n',
+"04 Entrada de dados": 'nome = input("Qual e o seu nome? ")\nidade = int(input("Quantos anos voce tem? "))\nprint(f"Ola, {nome}! Ano que vem voce tera {idade + 1} anos.")\n',
+"05 Decisoes": 'nota = 7.5\nif nota >= 7:\n    print("Aprovado")\nelif nota >= 5:\n    print("Recuperacao")\nelse:\n    print("Reprovado")\n',
+"06 Repeticoes": 'for i in range(1, 6):\n    print("Contagem:", i)\n\nn = 3\nwhile n > 0:\n    print("Faltam", n)\n    n -= 1\nprint("Fim!")\n',
+"07 Listas": 'sensores = ["temperatura", "umidade", "luz"]\nsensores.append("pressao")\nprint("Primeiro:", sensores[0])\nprint("Quantidade:", len(sensores))\nfor s in sensores:\n    print("-", s)\n',
+"08 Funcoes": 'def celsius_para_fahrenheit(c):\n    return c * 9 / 5 + 32\n\nprint(celsius_para_fahrenheit(25))\n',
+"Redes: mascara e broadcast": 'import ipaddress\nrede = ipaddress.ip_network("192.168.10.77/26", strict=False)\nprint("Rede     :", rede.network_address)\nprint("Broadcast:", rede.broadcast_address)\nprint("Mascara  :", rede.netmask)\nprint("Hosts    :", rede.num_addresses - 2)\n'
+};
+var sel = document.getElementById('aula'), cod = document.getElementById('codigo'),
+    out = document.getElementById('saida'), btn = document.getElementById('rodar'), py = null;
+Object.keys(AULAS).forEach(function (k) { var o = document.createElement('option'); o.textContent = k; sel.appendChild(o); });
+function carregar() { cod.value = AULAS[sel.value]; }
+sel.onchange = carregar; carregar();
+loadPyodide().then(function (p) {
+  py = p;
+  py.setStdout({ batched: function (s) { out.textContent += s + '\n'; } });
+  py.setStdin({ stdin: function () { return prompt('Digite o valor pedido pelo programa:') || ''; } });
+  btn.disabled = false; btn.textContent = 'Executar';
+}).catch(function () { btn.textContent = 'Sem internet: use o VS Code'; });
+btn.onclick = function () {
+  out.textContent = '';
+  py.runPythonAsync(cod.value).catch(function (e) { out.textContent += String(e).split('\n').slice(-3).join('\n'); });
+};
+</script>
+</body>
+</html>

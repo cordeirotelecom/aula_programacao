@@ -19,6 +19,14 @@ pre{background:#10202f;color:#e8f1fa;padding:12px;border-radius:8px;overflow:aut
 .temas{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
 .temas div{background:#fff;border-radius:8px;padding:12px;border-left:5px solid #0b5394}
 footer{text-align:center;padding:24px;color:#555}
+.abas{display:flex;gap:8px;margin:8px 0}
+.aba{background:#cfd8e3;color:#1b2a3a;padding:8px 22px}
+.aba.ativa{background:#0b5394;color:#fff}
+.demo{background:#fff;border-radius:12px;padding:12px 16px;box-shadow:0 2px 8px #0002}
+.passo{border-left:5px solid #2e9e4f;padding:4px 12px;margin:10px 0}
+.passo .n{display:inline-block;background:#2e9e4f;color:#fff;border-radius:50%;width:24px;height:24px;text-align:center;margin-right:8px}
+.passo pre{margin:6px 0}
+.saida{background:#06210f}
 </style>
 </head>
 <body>
@@ -50,6 +58,21 @@ footer{text-align:center;padding:24px;color:#555}
 </p>
 <p><small>No VS Code online voce le e edita as aulas, mas compilar C/C++ exige instalar no computador (passo 2).</small></p>
 
+<h2>Veja como executar (exemplo real)</h2>
+<p>Todo programa segue o mesmo caminho: <b>escrever</b> &rarr; <b>executar</b> &rarr; <b>ver o resultado</b>. Escolha a linguagem:</p>
+<div class="abas">
+  <button class="aba ativa" data-t="c">C</button>
+  <button class="aba" data-t="cpp">C++</button>
+  <button class="aba" data-t="py">Python</button>
+</div>
+<div class="demo" id="demo">
+  <div class="passo"><span class="n">1</span><b>Escreva (ou abra) o codigo</b><pre id="d-cod"></pre></div>
+  <div class="passo"><span class="n">2</span><b>Execute: Ctrl+Shift+B no VS Code, ou no terminal</b><pre id="d-cmd"></pre></div>
+  <div class="passo"><span class="n">3</span><b>Veja o resultado</b><pre id="d-out" class="saida"></pre></div>
+  <div class="passo"><span class="n">?</span><b>O que aconteceu</b><p id="d-exp"></p></div>
+</div>
+<p><a class="btn aluno" href="python/experimente.html">Testar Python agora no navegador</a></p>
+
 <h2>Escolha seu perfil</h2>
 <p>Clique no botao, copie o comando e cole no <b>PowerShell</b> (Menu Iniciar &gt; digite PowerShell). Nao precisa ser administrador.</p>
 <div class="botoes">
@@ -76,7 +99,7 @@ footer{text-align:center;padding:24px;color:#555}
 
 <h2>O que o curso tem</h2>
 <div class="temas">
-<div><b>C e C++</b><br>Fundamentos, intermediario e aplicacoes praticas.</div>
+<div><b>C, C++ e Python</b><br>Fundamentos, intermediario e aplicacoes praticas (Python: 8 aulas + redes e IoT).</div>
 <div><b>Web</b><br>HTML, CSS e JavaScript passo a passo.</div>
 <div><b>Redes</b><br>Mascara, broadcast, sub-redes, classes e calculadora.</div>
 <div><b>Arduino</b><br>Exemplos com LEDs, botoes, sensores e motores.</div>
@@ -88,6 +111,32 @@ footer{text-align:center;padding:24px;color:#555}
 <p>Codigo-fonte e guia completo: <a href="https://github.com/cordeirotelecom/aula_programacao">github.com/cordeirotelecom/aula_programacao</a></p>
 </main>
 <footer>Elaborado pelo Prof. Vagner Cordeiro</footer>
+<script>
+var DEMOS={
+ c:{cod:'#include <stdio.h>\n\nint main(void)\n{\n    int idade = 18;\n    float temperatura = 23.5f;\n    char inicial = \'A\';\n\n    printf("Idade: %d\\n", idade);\n    printf("Temperatura: %.1f graus\\n", temperatura);\n    printf("Inicial: %c\\n", inicial);\n    return 0;\n}',
+    cmd:'.\\rodar.ps1 02_variaveis.c',
+    out:'Idade: 18\nTemperatura: 23.5 graus\nInicial: A',
+    exp:'Em C o codigo precisa ser <b>compilado</b> (o gcc transforma o texto em um programa .exe) e so depois executado. O rodar.ps1 faz os dois passos para voce.'},
+ cpp:{cod:'#include <iostream>\n\nint main()\n{\n    std::cout << "Ola, mundo!" << std::endl;\n    return 0;\n}',
+    cmd:'.\\rodar.ps1 01_ola_mundo.cpp',
+    out:'Ola, mundo!',
+    exp:'C++ tambem e compilado (pelo g++). A diferenca para o C esta nos recursos da linguagem, como std::cout no lugar de printf.'},
+ py:{cod:'print("Ola, mundo!")\nprint("Meu primeiro programa em Python")',
+    cmd:'.\\rodar.ps1 01_ola_mundo.py',
+    out:'Ola, mundo!\nMeu primeiro programa em Python',
+    exp:'Python e <b>interpretado</b>: nao tem etapa de compilar, o interpretador le o arquivo e executa linha por linha. Por isso e a linguagem mais rapida para comecar.'}
+};
+function demo(t){
+  var d=DEMOS[t];
+  document.getElementById('d-cod').textContent=d.cod;
+  document.getElementById('d-cmd').textContent=d.cmd;
+  document.getElementById('d-out').textContent=d.out;
+  document.getElementById('d-exp').innerHTML=d.exp;
+  document.querySelectorAll('.aba').forEach(function(b){b.classList.toggle('ativa',b.dataset.t===t)});
+}
+document.querySelectorAll('.aba').forEach(function(b){b.onclick=function(){demo(b.dataset.t)}});
+demo('c');
+</script>
 <script>
 function mostrar(qual){
   if(location.protocol==='file:'){

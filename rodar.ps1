@@ -1,6 +1,7 @@
 # Elaborado pelo Prof. Vagner Cordeiro
 # Comando unico do curso: roda ou abre QUALQUER arquivo, so pelo nome ou pelo caminho.
 #   .c / .cpp  -> compila e executa
+#   .py        -> executa com Python
 #   .html      -> abre no navegador E no VS Code
 #   outros     -> abre no VS Code
 # Uso: rodar.ps1 01_ola_mundo | rodar.ps1 03_enderecos_ip | rodar.ps1 "C:\caminho\arquivo.c"
@@ -16,7 +17,7 @@ if (Test-Path -LiteralPath $Alvo -PathType Leaf) {
     $ext = [IO.Path]::GetExtension($Alvo)
     $achados = Get-ChildItem -Path $Raiz -Recurse -File |
         Where-Object { $_.FullName -notmatch $Ignorar -and $_.BaseName -eq $nome -and $_.Extension -ne '.exe' -and (-not $ext -or $_.Extension -eq $ext) }
-    $ordem = '.c', '.cpp', '.html', '.ino', '.vhd'
+    $ordem = '.c', '.cpp', '.py', '.html', '.ino', '.vhd'
     $Arquivo = $achados | Sort-Object { $i = $ordem.IndexOf($_.Extension.ToLower()); if ($i -lt 0) { 99 } else { $i } } | Select-Object -First 1
     if (-not $Arquivo) {
         Write-Host "Nao encontrei '$Alvo' dentro de $Raiz" -ForegroundColor Red
@@ -55,6 +56,16 @@ switch ($Arquivo.Extension.ToLower()) {
         if ($LASTEXITCODE -ne 0) { Write-Host 'A compilacao falhou. Leia a mensagem acima.' -ForegroundColor Red; exit 1 }
         Write-Host "--- Executando $($Arquivo.Name) ---"
         & $saida
+    }
+    '.py' {
+        $py = Get-Command python -ErrorAction SilentlyContinue
+        if (-not $py) { $py = Get-Command py -ErrorAction SilentlyContinue }
+        if (-not $py) {
+            Write-Host 'Python nao encontrado. De duplo clique em COMECE_AQUI.bat ou instale em https://www.python.org/downloads' -ForegroundColor Red
+            exit 1
+        }
+        Write-Host "--- Executando $($Arquivo.Name) ---"
+        & $py.Source $Arquivo.FullName
     }
     '.html' {
         Start-Process $Arquivo.FullName

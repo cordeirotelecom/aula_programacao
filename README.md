@@ -14,7 +14,9 @@ Todos os comandos abaixo sao para **Windows PowerShell**. Nao precisa abrir como
 | 3. Abrir no VS Code | Duplo clique em `ABRIR_NO_VSCODE.bat` |
 | 4. Executar | Abra um `.c`, `.cpp` ou `.html` e aperte **Ctrl+Shift+B** |
 
-Pelo terminal, dentro da pasta do curso, um comando serve para tudo: `.\rodar.ps1 01_ola_mundo` (C/C++ compila e roda; `.html` abre no navegador e no VS Code).
+Pelo terminal, dentro da pasta do curso, um comando serve para tudo: `.\rodar.ps1 01_ola_mundo` (C/C++ compila e roda; `.py` roda com Python; `.html` abre no navegador e no VS Code). Para escolher a linguagem, inclua a extensao: `.\rodar.ps1 01_ola_mundo.py`.
+
+**Python:** pasta `python/` com 8 aulas de fundamentos e 2 aplicacoes (calculo de rede e sensor IoT simulado). Para testar sem instalar nada: [Python no navegador](https://cordeirotelecom.github.io/aula_programacao/python/experimente.html).
 
 Outros links: [Pagina do curso online](https://cordeirotelecom.github.io/aula_programacao/) | [Abrir no VS Code online](https://vscode.dev/github/cordeirotelecom/aula_programacao) | [Clonar no VS Code](vscode://vscode.git/clone?url=https://github.com/cordeirotelecom/aula_programacao.git)
 
